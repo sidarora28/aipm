@@ -37,14 +37,15 @@ Launch Claude Desktop. Sign in with your Claude subscription if you haven't alre
 
 You'll download a single ZIP file — no terminal needed.
 
-1. Sid will share a GitHub link in Slack (looks like `https://github.com/.../...`)
-2. Open the link in your browser
-3. Click the green **`< > Code`** button → **"Download ZIP"**
+1. Open this link in your browser: **https://github.com/sidarora28/aipm**
+2. Click the green **`< > Code`** button → **"Download ZIP"**
 
 > [SCREENSHOT 2: GitHub repo page with the green "Code" button menu open, "Download ZIP" highlighted]
 
-4. Once downloaded, **unzip the file** by double-clicking it
-5. Move the unzipped folder somewhere you'll remember (Desktop, Documents, etc.)
+   *(Or use this direct link to skip the click: [download ZIP](https://github.com/sidarora28/aipm/archive/refs/heads/main.zip))*
+
+3. Once downloaded, **unzip the file** by double-clicking it
+4. You'll see a folder called `aipm-main`. Inside it is `Build your first agent with Claude Code` — that's the course folder. Move it somewhere you'll remember (Desktop, Documents, etc.)
 
 ### Step 3 — Open the folder in Claude Desktop
 
@@ -102,15 +103,15 @@ Follow the browser prompts to sign in with your Claude subscription. You don't n
 
 ### Step 3 — Get the activity files
 
-Sid will share a GitHub URL in Slack. Clone it:
+Clone the repo:
 
 ```bash
 cd ~
-git clone <REPO_URL_FROM_SLACK>
-cd "Build your first agent with Claude Code"
+git clone https://github.com/sidarora28/aipm.git
+cd "aipm/Build your first agent with Claude Code"
 ```
 
-> If `git` isn't installed, you can also use the ZIP download from Path A — just unzip and `cd` into the folder.
+> If `git` isn't installed, you can also use the ZIP download from Path A — just unzip and `cd` into the course folder.
 
 ### Step 4 — Start the activity
 
