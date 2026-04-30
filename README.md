@@ -1,4 +1,4 @@
-# Just Another PM — Courses
+# AIPM Courses
 
 A growing collection of self-paced, hands-on courses for product managers learning to work with AI tools.
 
