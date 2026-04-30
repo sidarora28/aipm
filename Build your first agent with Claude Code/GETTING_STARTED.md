@@ -27,7 +27,8 @@ Both paths land at the same place — Claude Code open in this project's folder,
 
 # 🟦 Path A — Claude Desktop
 
-> [SCREENSHOT 1: Claude Desktop with Claude Code feature highlighted in the sidebar/menu]
+<img width="1588" height="1036" alt="image" src="https://github.com/user-attachments/assets/1cb6e74a-cbcb-4801-a511-f3fb63b5b2b3" />
+
 
 ### Step 1 — Open Claude Desktop and sign in
 
