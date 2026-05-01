@@ -41,7 +41,7 @@ You'll download a single ZIP file — no terminal needed.
 1. Open this link in your browser: **https://github.com/sidarora28/aipm**
 2. Click the green **`< > Code`** button → **"Download ZIP"**
 
-> [SCREENSHOT 2: GitHub repo page with the green "Code" button menu open, "Download ZIP" highlighted]
+<img width="1588" height="1036" alt="image" src="https://github.com/user-attachments/assets/92c0d775-59ae-4b09-8b63-f00c272cbc05" />
 
    *(Or use this direct link to skip the click: [download ZIP](https://github.com/sidarora28/aipm/archive/refs/heads/main.zip))*
 
@@ -52,7 +52,7 @@ You'll download a single ZIP file — no terminal needed.
 
 In Claude Desktop, use the "Open folder" or "Open project" option. Point it at the unzipped folder you just placed.
 
-> [SCREENSHOT 3: Claude Desktop with the "Open folder" option highlighted, OR the result of having opened the project folder]
+<img width="1588" height="1036" alt="image" src="https://github.com/user-attachments/assets/458e8d24-0900-40d2-98e5-76abe84eeaff" />
 
 ### Step 4 — Start the activity
 
@@ -122,7 +122,8 @@ Inside the project folder:
 claude
 ```
 
-> [SCREENSHOT 4: Terminal showing Claude Code running inside the project folder]
+<img width="1440" height="903" alt="image" src="https://github.com/user-attachments/assets/1b4ab48b-34b3-4625-bd86-3db782a11a26" />
+
 
 Then type:
 
