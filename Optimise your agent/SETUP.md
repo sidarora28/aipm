@@ -32,9 +32,10 @@ The new module ("Optimise your agent") has been added to the same place you down
 
 4. Once it downloads, double-click the ZIP file to unzip it
 5. You'll see a folder called **`aipm-main`**
-6. Inside it, look for a folder called **`Optimise your agent`** — that's the new module
+6. Inside it, find the folder called **`Optimise your agent`**
+7. **Copy** the `Optimise your agent` folder into your **original** `aipm-main` folder — the one you used for the first module
 
-> 💡 You can delete the old `aipm-main` folder from last time if you like — or just keep the new one. Either is fine.
+> ⚠️ **Do not delete your original `aipm-main` folder.** Your agents are saved inside it. If you delete it, you'll lose them and will need to redo the first module to get them back.
 
 ---
 
@@ -59,8 +60,8 @@ That's it. The `Optimise your agent` folder will appear automatically.
 
 1. Open the **Claude Desktop** app
 2. In the top menu, click **File** → **Open Folder** (or look for an "Open project" button)
-3. Navigate to the `aipm-main` folder you just downloaded
-4. Select the **`Optimise your agent`** folder (not the whole `aipm-main` folder — the specific one inside it)
+3. Navigate to your **original** `aipm-main` folder — the one from the first module
+4. Select the **`Optimise your agent`** folder inside it
 5. Click **Open**
 
 You should see the Claude Code chat window open with the folder loaded.
@@ -69,13 +70,13 @@ You should see the Claude Code chat window open with the folder loaded.
 
 ### Claude Code CLI (terminal)
 
-In your terminal, type:
+Navigate into your original `aipm-main` folder. For example, if it's in Documents:
 
 ```
-cd ~/Downloads/aipm-main/Optimise\ your\ agent
+cd ~/Documents/aipm-main/Optimise\ your\ agent
 ```
 
-> ⚠️ If you saved `aipm-main` somewhere other than Downloads, replace `~/Downloads` with wherever you put it. For example if it's on your Desktop: `cd ~/Desktop/aipm-main/Optimise\ your\ agent`
+> ⚠️ Replace `~/Documents` with wherever your original `aipm-main` folder lives. If you're not sure, look for it on your Desktop or in Downloads — it's the same folder you used for the first module.
 
 Then start Claude Code:
 
