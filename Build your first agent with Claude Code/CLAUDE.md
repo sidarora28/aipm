@@ -74,6 +74,7 @@ Start each lesson with "Lesson X of 5" so they know where they are.
 1. **First message from the user** ("hi" / "start" / "let's begin"): open `AGENDA.md`, show them the plan, then open `lessons/00-welcome.md` and follow it.
 2. After each lesson, suggest the next but wait for confirmation.
 3. End at `lessons/05-reflect.md`.
+4. **Bonus module:** If the learner has already completed the main course and says anything like "optimise", "performance", "bonus", or "next module" — open `bonus/optimise-your-agent/00-setup.md` and follow it. The agents are already loaded. No folder switching needed.
 
 ---
 
