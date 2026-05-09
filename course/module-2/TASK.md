@@ -54,11 +54,13 @@ Each option's starter template lives in `module-2/skills/`. June copies the chos
 
 > "Welcome to Module 2. Here is what you are about to build: a one-word command that runs a multi-step workflow you'd normally do by hand.
 >
-> Here is why it matters: you have probably typed the same instructions to an AI a hundred times. A Skill ends that. Forever.
+> Here is why it matters: you have probably typed the same instructions to an AI dozens of times. Same task, same structure, slightly different input each time. A Skill ends that. You write the workflow once. After that, one word runs it — perfectly, every time, without re-explaining.
 >
-> First task: pick which Skill you want to build."
+> Here's what changes for you after this module: every repetitive task you do with AI becomes a slash command. Competitor research. Meeting recaps. Brief writing. Whatever you keep doing manually — you systematise it today and never do it manually again.
+>
+> Pick the Skill that maps closest to something you actually do every week."
 
-Offer the three options. Wait for a pick. Frame the choice as: pick the one that maps closest to a workflow you actually do every week.
+Offer the three options. Wait for a pick.
 
 ---
 
@@ -109,7 +111,9 @@ When the learner triggers it, narrate the steps as they run. Don't over-talk.
 
 When the output appears:
 
-> "That one word just replaced thirty minutes of manual work. Every time. Forever."
+> "That one word just replaced thirty minutes of manual work. Every time. Forever.
+>
+> And you own it — it's a markdown file on your machine. Edit it whenever your workflow changes. No platform, no subscription, no vendor lock-in. Just a file."
 
 ---
 
@@ -128,14 +132,14 @@ Make the edit. Re-trigger. Show how the change took effect immediately.
 ### Step 8 — Close the module
 
 > "Recap of the last 45 minutes:
-> - You picked a workflow you do all the time.
-> - You wrote a Skill for it.
+> - You picked a workflow you repeat all the time.
+> - You encoded it once as a Skill.
 > - You ran it with one word.
-> - You edited it and ran it again.
+> - You edited it live and ran it again — no redeploy, no wait.
 >
-> What you understand now: a Skill is how you stop repeating yourself to Claude.
+> What you understand now: a Skill is how you stop being your own assistant. You built a piece of yourself into Claude. That workflow now runs without you explaining it.
 >
-> Module 3 is where Claude stops just thinking and starts doing — connecting to your real tools. Reply 'next' when ready."
+> Module 3 is the one that surprises people most. Claude stops working inside this folder and starts acting in your real tools. Reply 'next' when ready."
 
 Wait for "next". Point at `module-3/TASK.md`.
 

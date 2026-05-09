@@ -56,7 +56,9 @@ Templates for both pairs live in `module-1/starter/`. The learner picks one. Jun
 
 > "Welcome to Module 1. Here is what you are about to build: two AI agents that run at the same time, do different jobs, and combine their work into one output.
 >
-> Here is why it matters: every serious AI product you have ever used works this way. It is not one giant brain. It is a team of small focused brains. Today you build a tiny version of that team.
+> Here is why it matters: every serious AI product you have ever used — Cursor, Perplexity, Claude itself — works this way. It is not one giant brain doing everything. It is a team of small focused brains, each with a job. Today you build a tiny version of that team.
+>
+> Here's what changes for you after this module: any research, analysis, or summarisation task that used to take you 30 minutes you can now delegate to two agents working in parallel while you do something else. That's not hype — you'll see it run in front of you today.
 >
 > First task: pick your mission."
 
@@ -124,9 +126,13 @@ When they say go, run the chosen first agent (Scout or Researcher). Let the loop
 
 After the combined output appears:
 
-> "Look at what just happened. Two agents. Different jobs. Coordinated automatically. They produced something neither one could have produced alone.
+> "Stop for a second. Look at what just happened.
 >
-> **You just ran two agents simultaneously. Most developers could not do this six months ago. You just did it.**"
+> Two agents. Different jobs. One handed work to the other automatically. They produced something neither could have produced alone — and you didn't write a single line of code to make that happen.
+>
+> Six months ago, building this required an engineer, a framework, and at least a day of setup. You just did it in an hour, in plain English, inside a terminal.
+>
+> **That's not a tutorial output. That's a system you built. And it's yours — it will run on any topic you give it.**"
 
 ---
 
@@ -142,12 +148,12 @@ If time permits, show what happens when Agent 1 returns nothing useful (e.g. ask
 
 > "Recap of the last hour:
 > - You picked a mission.
-> - You set up two agents.
-> - You watched them hand work to each other and produce a combined output.
+> - You set up two agents with clear, separate jobs.
+> - You watched them hand work to each other and produce a combined output you couldn't have got from a single prompt.
 >
-> What you understand now that you didn't 60 minutes ago: an agent is a loop with a goal. Two agents become a team when one calls the other.
+> What you understand now that you didn't 60 minutes ago: an agent is a loop with a goal. Two agents become a team when one calls the other. That pattern is the foundation of every AI product being built right now.
 >
-> Module 2 is where you turn this kind of work into a one-word command. Reply 'next' when ready."
+> Module 2 is where you turn this kind of work into a one-word command — so you never have to set it up again. Reply 'next' when ready."
 
 Wait for "next". Point at `module-2/TASK.md`.
 

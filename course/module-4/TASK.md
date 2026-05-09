@@ -53,9 +53,11 @@ Each option's templates live in `module-4/starter/`. Orchestrator + two sub-agen
 
 ### Step 1 — Frame the module
 
-> "Welcome to Module 4. Here is what you are about to build: an orchestrator. One agent that decides which other agents should do which work, then assembles the result.
+> "Welcome to Module 4. Here is what you are about to build: an orchestrator. One agent that receives a task, decides which specialist should handle it, delegates the work, and assembles the result.
 >
-> Here is why it matters: every serious AI product has one of these. It is the difference between a clever demo and a real system.
+> Here's why this is the module people talk about: Cursor, Claude, Perplexity, every AI coding tool, every AI customer support system — they all run on this pattern. An orchestrator at the top, specialists underneath. Until now you've been building the specialists. Today you build the manager.
+>
+> Here's what changes after this module: you can build AI systems that handle genuinely varied, unpredictable input and route it to the right place automatically. That's the leap from 'Claude does one thing well' to 'Claude runs a workflow.'
 >
 > First task: pick your mission."
 
@@ -152,14 +154,14 @@ If time allows, give an input that is genuinely ambiguous and see how the orches
 ### Step 9 — Close the module
 
 > "Recap of the last hour:
-> - You designed an orchestrator on paper.
-> - You built two sub-agents.
-> - You built the orchestrator.
-> - You watched it make two real routing decisions, live.
+> - You designed an orchestrator on paper before writing a single prompt.
+> - You built two specialists with narrow, focused jobs.
+> - You built the orchestrator that knows about both and routes between them.
+> - You watched it make two real routing decisions, live, on different inputs.
 >
-> What you understand now: the orchestrator pattern. The architecture that sits inside every serious AI product you have ever used. **You built it. From scratch. In under an hour.**
+> What you understand now is not a toy pattern. It is the architecture that runs inside Cursor, inside Claude, inside every serious AI product you have ever used. You did not watch a video about it. **You built it from scratch in under an hour.**
 >
-> Module 5 is the last one. You learn how to make AI systems fast, cheap, and good — and which of those to optimise when. Reply 'next' when ready."
+> One module left. Module 5 is where you learn to make what you've built fast, cheap, and reliable — and which of those to care about when. Reply 'next' when ready."
 
 Wait for "next". Point at `module-5/TASK.md`.
 

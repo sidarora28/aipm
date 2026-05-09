@@ -45,9 +45,11 @@ The learner picks one. June walks them through it. The point is to see Claude ta
 
 ### Step 1 — Frame the module
 
-> "Welcome to Module 3. Here is what you are about to build: a connection between Claude and your real Google Calendar.
+> "Welcome to Module 3. Here is what you are about to build: a live connection between Claude and your real Google Calendar.
 >
-> Here is why it matters: until now Claude has been working in this folder. Reasoning. Writing files. Today Claude reaches outside this folder for the first time and acts on a tool you actually use.
+> Here is why this is different from every other module: until now, Claude has been working in this folder. Reasoning. Writing files. Talking to you. Today it reaches outside this folder for the first time and acts on a tool you actually use every day.
+>
+> Here's what changes after this module: Claude can see your schedule, create events, and work with your calendar as part of any task. And the pattern you learn today — install, configure, authenticate, use — works for any tool. Slack. GitHub. Email. Your own internal systems. You do it once with Calendar and you know how to do it with everything.
 >
 > First task: a quick check. Do you have a personal Google Calendar you're okay with Claude reading? It will not write anything until you say so."
 
@@ -104,7 +106,9 @@ If they pick Write, get explicit consent before the write happens. Show the prop
 
 When the action lands:
 
-> "Pause for a second and look at what just happened. Claude read your calendar and wrote to it. That is not a demo. That is an integration."
+> "Pause for a second and look at what just happened. Claude read your calendar — your real calendar — and took an action in it. Not a simulated demo. Not a mock. Your actual tool.
+>
+> That's the line between AI that assists and AI that acts. You just crossed it."
 
 ---
 
@@ -139,13 +143,13 @@ Run a small agent that uses the Calendar tool as part of a multi-step task. Don'
 ### Step 8 — Close the module
 
 > "Recap:
-> - You connected Claude to a real tool.
+> - You connected Claude to a real tool — not a demo, your actual calendar.
 > - You watched it take a real action.
-> - You saw an agent pick up the tool mid-task.
+> - You saw an agent pick that tool up mid-task without being told to.
 >
-> What you understand now: MCP is the bridge from AI that thinks to AI that does.
+> What you understand now: MCP is the bridge from AI that thinks to AI that does. And you know the pattern — which means you can connect Claude to any tool that has an MCP server. The list is growing every week.
 >
-> Module 4 is where you build the architecture that makes many tools, many agents, and many decisions work together. Reply 'next' when ready."
+> Module 4 is where you build the architecture that sits underneath every serious AI product — the orchestrator. Reply 'next' when ready."
 
 **If April did NOT fire in Step 6**, June adds one short line *before* the "Reply 'next'" close:
 

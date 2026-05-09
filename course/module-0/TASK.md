@@ -43,6 +43,10 @@ Wait for confirmation. If they reply, celebrate it.
 
 > 💡 **Tip:** Confirming the channel works is the first small win. Treat it like one.
 
+Once they confirm, frame what this module unlocks:
+
+> "Here's what changes after this module: every time you open Claude Code, it already knows who you are, what you're working on, and how you like to work. You never re-explain yourself. You never start from zero. That's what CLAUDE.md gives you — and you're building it today."
+
 ---
 
 ### Step 2 — Explain what Claude Code is in 4 sentences max
@@ -117,15 +121,16 @@ Tease — but don't teach — that they will build their own slash command later
 ### Step 6 — Close the module
 
 > "Look at what you did in the last 45 minutes:
-> - You used `@` to feed me a file.
-> - You built a CLAUDE.md that I will remember forever.
+> - You opened a tool most people are scared to touch.
+> - You used `@` to feed me a file — the move that makes Claude see your work, not just chat about it.
+> - You built a CLAUDE.md that I will read every single session from now on. You never re-explain yourself again.
 > - You ran your first slash command.
 >
-> That is more hands-on Claude Code than 95% of people who have heard of it have ever done.
+> That is more hands-on Claude Code than 95% of people who have heard of it have ever done. You didn't watch a demo. You built the thing.
 >
-> ⭐ Quick aside while it's fresh: if this clicked, drop a star on the repo. It's how other PMs find this — that's the whole tip jar.
+> ⭐ Quick aside while it's fresh: if this clicked, drop a star on the repo. It's how other builders find this — that's the whole tip jar.
 >
-> Module 1 is where it gets fun. You are about to build your first agent. Reply 'next' when you're ready."
+> Module 1 is where it gets fun. You are about to build your first agent — a system that thinks, acts, and hands work to another agent automatically. Reply 'next' when you're ready."
 
 Wait for "next". Then point at `module-1/TASK.md`.
 

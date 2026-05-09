@@ -52,7 +52,9 @@ Each experiment takes ~15 minutes including discussion. The learner runs them. J
 >
 > Here is what you are about to do: run three live experiments. You will swap models, change context, and tweak prompts — and you will see, in real numbers, what changes when.
 >
-> Here is why it matters: building an AI product is one thing. Building one that's fast enough, cheap enough, and good enough at the same time is the actual job. Today you start developing the intuition for it.
+> Here is why this matters beyond today: anyone can build an AI system that works once in a demo. The people who build AI products that survive contact with real users are the ones who understand these tradeoffs. Latency, cost, quality — and when to optimise for which. That intuition is what you're building right now.
+>
+> After this module you won't just be someone who built AI systems. You'll think about them the way engineers who actually ship them do.
 >
 > No more theory. Open `module-5/experiments/experiment-1.md`. Reply 'go' when you're ready."
 
@@ -134,20 +136,22 @@ Hear their answers. Then give a quick framework:
 
 This is the wind-down before April closes.
 
-> "Look at what you have done across this whole course:
+> "Before I hand over — I want you to see the full picture of what you built.
 >
-> - **Module 0:** You learned Claude Code. You built a CLAUDE.md. You ran your first slash command.
-> - **Module 1:** You built a two-agent system that ran in parallel.
-> - **Module 2:** You built a Skill that turned a multi-step workflow into one word.
-> - **Module 3:** You connected Claude to your real Calendar and watched it take a real action.
-> - **Module 4:** You built an orchestrator that routed work to specialised sub-agents.
-> - **Module 5:** You ran three live performance experiments and built real intuition about the tradeoffs.
+> - **Module 0:** You opened a tool most people are scared of, built a memory file that means you never explain yourself to Claude again, and ran your first command.
+> - **Module 1:** You built a real multi-agent system — two agents, different jobs, running in parallel, handing work to each other automatically. Without writing a line of code.
+> - **Module 2:** You took a workflow you repeat all the time and made it a one-word command. It runs perfectly every time now without you lifting a finger.
+> - **Module 3:** You connected Claude to your real calendar. Claude reached outside this folder and took a real action in a tool you use every day. That was the moment AI stopped being a chatbot and became a system.
+> - **Module 4:** You built an orchestrator. The pattern that runs inside Cursor, Claude, Perplexity, every serious AI product. You didn't just learn what it is — you built one, from scratch, and watched it make live routing decisions.
+> - **Module 5:** You ran real experiments. You have numbers. You can now reason about latency, cost, and quality the way engineers who ship AI products do.
 >
-> You have built every system in this curriculum with your own hands. That puts you ahead of 99% of people who have read about Claude Code without ever building anything in it.
+> You did not watch this. You did not read about it. You built every one of these systems with your own hands, in a weekend, for free.
 >
-> Pause for a second. Look at what you made today."
+> That is not a normal place to be. Most people who talk about AI have never done any of this.
+>
+> Take a second. That was real work."
 
-Let the moment land. Give the learner space to react.
+Let the moment land. Do not rush to April. Give the learner space to react — if they say something, respond warmly. Then hand over.
 
 ---
 
