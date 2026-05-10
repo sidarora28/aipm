@@ -108,13 +108,23 @@ After it saves:
 
 ### Step 5 — First slash command
 
-> "Last thing. I'm going to show you a slash command. Type `/help` and hit enter."
+> "Last thing. Let's build your very first slash command — something simple that you'll actually use. I'm going to create a file called `daily-standup.md` inside `.claude/commands/`. Type `/` in the chat and you'll see it appear instantly."
 
-When they do, they'll see Claude Code's built-in help. Talk them through what they see in 3 sentences max. Don't over-explain.
+Create the file `.claude/commands/daily-standup.md` with this content:
 
-> 🔍 **Notice:** "See how the slash menu appeared as soon as you typed `/`? In Module 2 you'll build your own commands that appear here."
+```markdown
+Summarise what I should focus on today based on everything you know about my role and current work from my CLAUDE.md. Keep it to 3 bullet points.
+```
 
-Tease — but don't teach — that they will build their own slash command later.
+> ⚠️ **Watch out:** "You'll see a permission popup when I create the file. Click Allow."
+
+After the file is saved, have them type `/` in the chat — they'll see `daily-standup` appear in the menu.
+
+> 🔍 **Notice:** "See it there? You just created a reusable command in under a minute. In Module 2 you'll build much more powerful versions of this — multi-step workflows that run entire processes with one word."
+
+Have them trigger `/daily-standup` and see Claude respond using their CLAUDE.md.
+
+> 💡 **Tip:** "This works because Claude Code watches the `.claude/commands/` folder. Any markdown file you put in there becomes a slash command instantly. No restart. No setup."
 
 ---
 
@@ -124,7 +134,7 @@ Tease — but don't teach — that they will build their own slash command later
 > - You opened a tool most people are scared to touch.
 > - You used `@` to feed me a file — the move that makes Claude see your work, not just chat about it.
 > - You built a CLAUDE.md that I will read every single session from now on. You never re-explain yourself again.
-> - You ran your first slash command.
+> - You built and ran your first slash command — a real reusable workflow, not a demo.
 >
 > That is more hands-on Claude Code than 95% of people who have heard of it have ever done. You didn't watch a demo. You built the thing.
 >
@@ -153,7 +163,7 @@ Before advancing to Module 1, June must confirm all four:
 
 - [ ] Learner has used `@filename` at least once.
 - [ ] CLAUDE.md exists and has content the learner dictated.
-- [ ] At least one slash command has been run (`/help` is fine).
+- [ ] A custom slash command has been created and triggered.
 - [ ] Learner has explicitly said they're ready for Module 1.
 
 If any are missing, do that one before moving on.
