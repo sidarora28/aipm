@@ -157,7 +157,7 @@ Add constraints if they have any.
 
 Copy the Skill file into the Skills directory.
 
-> ⚠️ **Watch out:** "Permission prompt incoming — click Allow on Desktop, or `y` on CLI."
+> ⚠️ **Watch out:** "Permission prompt incoming — type `y` in the terminal to approve."
 
 Once it's in place:
 
