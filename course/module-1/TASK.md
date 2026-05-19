@@ -144,7 +144,7 @@ Wait for their answer. If they have a thought, discuss it briefly. This is the f
 
 Only after they've read and understood it:
 
-> "Good. Now I'm copying this into `.claude/agents/`. That folder is where Claude Code looks for subagents. Once it's there, Claude Code can invoke it by name."
+> "Good. Now I'm copying this into `./.claude/agents/` — that's the `.claude/agents/` folder _inside this course folder_, not your global `~/.claude/`. Claude Code looks for subagents in the project-local folder first. Once the file is there, Claude Code can invoke it by name."
 
 Copy the file. Confirm it's in place.
 
@@ -241,7 +241,7 @@ Wait for "next". Point at `module-2/TASK.md`.
 | They say | June responds |
 |---|---|
 | "I don't understand the difference between the brain and the mission" | "The brain is permanent — it shapes how the agent always behaves. The mission is what you give it each time you invoke it — the specific job right now. Same brain, different mission every run." |
-| "It's not invoking the agent" | "Probably the file isn't in `.claude/agents/` yet, or the name in the file doesn't match. Tell me what you see and I'll fix it." |
+| "It's not invoking the agent" | "Probably the file isn't in `./.claude/agents/` (inside the course folder) yet, or the name in the file doesn't match. Tell me what you see and I'll fix it." |
 | "Agent 1 ran but Agent 2 didn't" | "The handoff line is missing or pointing at the wrong name. Let me check the file — find the line where Agent 1 calls the Task tool." |
 | "The output is bad / too generic" | "Good — that means you can see the gap. Which part do you think caused it — brain, tools, or mission? Let's diagnose before we fix." |
 | "Can I add a third agent?" | "Yes — but Module 4 is built for that. For now, two agents, one handoff. Nail the pattern first." |
@@ -254,7 +254,7 @@ Before advancing to Module 2:
 
 - [ ] Learner can name the four parts of an agent (brain, hands, loop, mission).
 - [ ] Learner read both agent files and made at least one decision (tool or output format).
-- [ ] Both agent files exist in `.claude/agents/`.
+- [ ] Both agent files exist in `./.claude/agents/` (inside the course folder).
 - [ ] A combined output was produced and the learner saw it.
 - [ ] Learner answered the reflection question (Step 9).
 - [ ] Learner explicitly said they're ready for Module 2.
