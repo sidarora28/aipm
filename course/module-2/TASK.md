@@ -1,44 +1,44 @@
-# Module 2 — Skills and Slash Commands
+# Module 2 — Skills (workflows Claude reaches for on its own)
 
 **Duration:** ~45 minutes
 **Persona:** June only. April does not appear.
-**Goal:** The learner understands the difference between a Skill and an agent, builds a Skill, and makes real design decisions about how it works.
+**Goal:** The learner builds a Skill — a workflow they describe once, that Claude then reaches for on its own when it sees the right moment. No filesystem talk. The product is: *I taught Claude a thing, and now it knows when to use it.*
 
 ---
 
 ## What June teaches
 
-**Start here — the contrast that unlocks Module 2:**
+In Module 0, the learner built a slash command. They type `/name`, Claude runs the workflow they wrote. They're in control of when it runs.
 
-A Skill and an agent are different tools for different jobs. Learners coming out of Module 1 will conflate them if June doesn't draw the line clearly at the start.
+In Module 2, they build a **Skill** — the upgrade. A Skill is a workflow plus a *"use me when X"* description. Claude reads the description and decides on its own when to use the workflow. The learner doesn't have to remember to type anything. Claude just knows.
 
-| | Agent | Skill |
-|---|---|---|
-| What it is | An autonomous loop with a brain and tools | A reusable workflow you define once |
-| How it runs | Independently, makes its own decisions | Step by step, exactly as written |
-| When to use it | Open-ended tasks that require judgement | Repeated tasks with a fixed structure |
-| Who controls it | The agent decides what to do next | You decide — the steps are yours |
-
-The key insight: **an agent is autonomous. A Skill is a recipe you wrote.** Use an agent when the task requires judgement. Use a Skill when the task is the same every time and you want it done your way, perfectly.
+That's the whole leap. The learner stops *commanding* Claude and starts *teaching* Claude.
 
 **Concepts to land (one at a time):**
 
-1. **Skill vs Agent — the distinction.** Agent = autonomous loop. Skill = your recipe, run on demand.
-2. **Why Skills exist.** You've been re-explaining the same workflow to Claude for months. A Skill encodes it once. Forever.
-3. **The anatomy of a Skill.** Name. Description (when to invoke it). Steps (your workflow, exactly). Output format (what you get back).
-4. **Design matters.** The steps you write determine the quality of the output. Vague steps = vague output. Specific steps = specific, useful output.
-5. **Iteration.** A Skill is a markdown file. Edit and re-run instantly.
+1. **Slash command vs Skill — the one-line difference.** Slash command = you decide when. Skill = Claude decides when (using a description you wrote).
+2. **Why Skills compound.** Every Skill the learner writes is a permanent piece of judgement Claude now has access to. The more they build, the more Claude knows about how *they* like things done.
+3. **The four parts of a Skill they'll write.** A name. A description ("use me when…"). The actual steps. What to give back. That's it.
+4. **Design matters more than tools.** The quality of a Skill comes from how well the learner described the workflow — not from any clever software.
+5. **Iteration is instant.** Edit the description or the steps, run again, see the difference. No setup, no reload.
+
+**What not to talk about in this module:**
+
+- Where Skills "live" on disk. Implementation detail.
+- File extensions, folders, frontmatter, paths. None of it matters to the learner.
+- "Registering" anything. June saves the Skill and it just works.
+- Anthropic's Skills API, marketplace, plugins.
 
 ---
 
 ## What June must NOT teach
 
 - Chaining Skills together.
-- Skills that adapt based on input.
+- Skills that adapt their steps based on input.
 - Team-shared Skill libraries.
-- Skills that call subagents internally.
+- Skills that call sub-agents internally.
 
-If asked: **"That's deeper Skills work — not today. One Skill, one job, done perfectly."**
+If asked: **"That's deeper Skills work — not today. One Skill, one job, working perfectly."**
 
 ---
 
@@ -46,161 +46,166 @@ If asked: **"That's deeper Skills work — not today. One Skill, one job, done p
 
 The learner picks one Skill from three options — pick the one closest to something they actually do every week:
 
-**Option A — `/competitor-snapshot`**
-Takes a company name. Outputs: 3 bullets on product, 3 bullets on positioning, 3 risks for our roadmap.
+**Option A — `competitor-snapshot`**
+*Use when:* the user mentions a company name they want intel on.
+*Returns:* 3 bullets on the company's product, 3 bullets on positioning, 3 risks for the user's own work.
 
-**Option B — `/standup-recap`**
-Takes a Slack thread or meeting notes. Outputs: decisions made, action items with owners, open questions.
+**Option B — `standup-recap`**
+*Use when:* the user pastes a Slack thread or meeting notes and wants a clean summary.
+*Returns:* decisions made, action items with owners, open questions.
 
-**Option C — `/feature-brief`**
-Takes a feature idea. Outputs: problem statement, one-sentence solution, success metric, top three risks.
+**Option C — `feature-brief`**
+*Use when:* the user describes a product idea they want shaped up.
+*Returns:* problem statement, one-sentence solution, success metric, top three risks.
 
-Templates live in `module-2/skills/`. But the learner reads, designs, and makes decisions — not just runs a template.
+The point isn't that these are the only Skills the learner will build. The point is that by the end of Module 2, they've designed one of *their* workflows — one they actually use — into something Claude will reach for on its own.
 
 ---
 
 ## Step-by-step flow June should follow
 
-### Step 1 — Frame the module — Skill vs Agent first
+### Step 1 — Frame: from "I press the button" to "Claude presses the button"
 
-Before anything else, land the distinction:
+> "Welcome to Module 2. Quick callback to Module 0 — you built a slash command. You type `/something`, Claude runs your workflow. You're the one deciding when it runs.
+>
+> Today we level that up. You're going to build a Skill. A Skill is the same idea — a workflow you wrote — *plus* a description that tells Claude when to use it. Claude reads the description and reaches for the workflow on its own, when it sees the right moment in our conversation.
+>
+> The slash command is you pressing the button. The Skill is Claude pressing the button.
+>
+> Once you've taught Claude a handful of Skills, you stop having to remember anything. Claude knows what you like, when you like it, and how you like it returned. That compounds."
 
-> "Welcome to Module 2. Before we build anything, I need to tell you what a Skill is — and how it's different from the agents you built in Module 1. This distinction matters.
->
-> In Module 1 you built agents. An agent is autonomous — it has a brain, it has tools, it runs a loop and makes decisions as it goes. You give it a goal and it figures out how to get there.
->
-> A Skill is different. A Skill is a recipe you write. It has specific steps. Claude follows those steps exactly, in order. It doesn't improvise. It doesn't make decisions. It does what you told it to do.
->
-> When do you use which?
-> - Use an **agent** when the task requires judgement — when you don't know exactly what steps will be needed.
-> - Use a **Skill** when the task is the same every time — same structure, different input. You want it done your way, not Claude's way.
->
-> Today you build a Skill. You pick the workflow. You write the steps. Claude follows them."
-
-> 🎯 **Why this matters:** "The difference between an agent and a Skill is the difference between hiring someone and writing a process. Both are powerful. Knowing when to use which is the judgment that separates people who build good AI systems from people who build fragile ones."
+> 🎯 **Why this matters:** "This is the move that turns Claude from a tool you use into a teammate that remembers how you work. Every Skill you build is one less thing you'll ever have to explain again."
 
 ---
 
-### Step 2 — Pick a Skill that matters to them
+### Step 2 — Pick a Skill that matches a real workflow
 
-> "Pick the Skill that maps closest to something you actually do every week. Not the most impressive one — the one that would genuinely save you time."
+> "Pick the option that maps closest to something you actually do every week. Not the most impressive one — the one that would genuinely save you time."
 
 Offer the three options. Wait for a pick.
 
-> 💡 **Tip:** "The best Skills are built for real pain. If you're picking something you never actually do, the output won't matter to you and you won't use it. Pick the one that makes you slightly frustrated when you have to do it manually."
+> 💡 **Tip:** "The best Skills are built for real pain. Pick something you do on repeat and slightly resent doing manually. That's where Skills earn their keep."
 
 ---
 
-### Step 3 — Read the Skill template — understand before building
+### Step 3 — Read the starter Skill — and the four parts
 
-Open the chosen template from `module-2/skills/`. Read it together before copying anything.
+Open the chosen starter and walk through it with the learner. Don't talk about files or extensions. Just read it together as if it were a Google doc.
 
-> "Before we read this — a quick word on what you're looking at. Same as the agent files in Module 1, this is a markdown file. Plain text, `.md` extension. Claude Code reads it when you trigger the Skill, and follows the steps you wrote.
->
-> That's the whole thing. A Skill is a text file with instructions. The power isn't in any clever software — it's in how well you write the steps. Good steps, good output. Vague steps, vague output. You'll feel that difference today."
-
-Then:
-
-> "Now read it with me. I want you to identify four things: the name, the description, the steps, and the output format."
+> "Here's the starter. Let's read it together. There are four parts to every Skill. I want you to spot each one."
 
 Walk through each:
 
-**Name:**
-> "This is what goes after the `/` when you trigger it. Keep it short, memorable, and specific to what it does."
+**The name:**
+> "This is what the Skill is called. Claude uses it to refer to the Skill internally. Short, clear, matches what it does."
 
-**Description:**
-> "This is when Claude should use this Skill. It also shows up in the slash menu. Does this description tell Claude — and you — exactly when to reach for it?"
+**The description — the most important part:**
+> "This is the line that tells Claude when to use the Skill. Read it carefully. *'Use this when the user mentions a company name they want intel on.'* That's the trigger. Claude reads every message looking for the trigger, and when it sees one, it reaches for this Skill.
+>
+> If this line is vague, Claude won't know when to use the Skill. If it's specific, Claude will use it at exactly the right moments. The description is the whole game."
 
-**Steps:**
-> "These are the instructions. Read each one. Are they specific enough that a smart intern with no context could follow them and produce something useful? Or are they vague enough that the output could go in any direction?"
+**The steps — what Claude actually does:**
+> "These are the instructions Claude follows once the Skill kicks in. Read each one. Are they specific enough that a smart intern with no context could follow them? Or are they vague?
+>
+> The output you get back is exactly as good as how clearly you wrote the steps. Vague steps, vague answer. Specific steps, specific answer."
 
-Point at one specific step that's either vague or very specific:
-> "Look at this step. How would you make it more specific? More specific steps = more predictable, useful output."
-
-**Output format:**
-> "This is what you get back at the end. Does it match what you'd actually want? How do you normally consume this kind of output — bullet list, a doc, a table?"
+**The return — what you get at the end:**
+> "This is what shows up in your terminal at the end. Bullet list? A short doc? A table? Does it match how you actually want to read this kind of output?"
 
 ---
 
-### Step 4 — Design decisions (the learner's job)
+### Step 4 — Make it yours (design decisions)
 
-This is the most important step. The learner is not customising a template — they are designing a workflow.
+This is the heart of the module. The learner is not "customising a template." They are designing a workflow that Claude will reach for on their behalf for years.
 
-Ask these questions one at a time. Wait for real answers.
+Ask these one at a time. Wait for real answers.
 
-**Question 1 — The steps:**
-> "Look at the steps in this Skill. If you were doing this manually right now, what's the first thing you'd actually do? Does step 1 match that?
+**Question 1 — Is the trigger right?**
+> "Look at the description — the *'use me when…'* line. When *should* this Skill run? Are there moments it should run that the current line wouldn't catch? Or moments it'd run when you don't want it to?"
+
+If the trigger is off, help them rewrite it. A good rewrite names the situation in the user's own words.
+
+**Question 2 — Are the steps how you'd actually do it?**
+> "If you were doing this manually right now, what's the first thing you'd actually do? Does step 1 match that?
 >
-> What's the thing you check that most AI outputs get wrong? Is there a step for that?"
+> What's the thing you check that most AI outputs get wrong? Is there a step for that? If not, let's add one."
 
-If they identify gaps, help them add a step. If the steps are fine, move on.
+Help them add or rewrite a step. Be specific — find one concrete addition that would change the output meaningfully.
 
-**Question 2 — The output:**
-> "When you've done this manually and it came out well — what did that output look like? How long? What format? What sections?
+**Question 3 — Does the return match how you read?**
+> "When you've done this manually and it came out well, what did the output look like? Length? Format? Sections?
 >
-> Does this Skill produce that? If not, what would you change?"
+> Does this Skill return that? If not, what would you change?"
 
-Help them rewrite the output format section to match what they actually want.
+Help them rewrite the return so it matches what they'd actually use.
 
-**Question 3 — The constraints:**
-> "Is there anything this Skill should never do? Things to avoid, formats to skip, assumptions to never make?
+**Question 4 — What should it never do?**
+> "Anything this Skill should never do? Anything to skip, assume, or avoid?
 >
-> The best Skills have explicit constraints — they narrow what Claude does so the output stays consistent."
+> The best Skills have explicit *don'ts*. They keep Claude on rails."
 
-Add constraints if they have any.
+If the learner has any, add them.
 
-> 💡 **Tip:** "A Skill gets better every time you run it and notice something missing. The first version doesn't have to be perfect. Build something useful today, improve it next week."
+> 💡 **Tip:** "A Skill gets better every time you run it and notice something missing. The first version doesn't need to be perfect — it needs to be real. Ship today, sharpen next week."
 
 ---
 
-### Step 5 — Register it
+### Step 5 — Save the Skill
 
-Copy the Skill file into the Skills directory.
+> "Ready. I'm going to save this so Claude knows about it. You'll see a `y/n` prompt in your terminal — type `y`."
 
-> ⚠️ **Watch out:** "Permission prompt incoming — type `y` in the terminal to approve."
+June handles the save. Don't narrate paths. Don't explain folders. Just: it's saved, Claude can use it now.
 
-Once it's in place:
+After the save:
 
-> "It's registered. Claude Code now knows this Skill exists. Type `/` and you'll see it in the menu."
+> "Done. Claude now knows this Skill exists and knows when to use it."
 
 ---
 
-### Step 6 — Run it
+### Step 6 — Trigger it the natural way (not by typing a command)
 
-> "Time to see if your design works. Trigger `/[skill-name]` and give it a real input — not a made-up one. Give it something you'd actually want the output for."
+This is the surprise moment. The learner doesn't type `/competitor-snapshot`. They write a normal sentence, and Claude reaches for the Skill on its own.
 
-When the learner triggers it, narrate the steps as they run.
+> "Now the magic. *Don't* type a slash command. Just write me a normal message that includes the trigger. For example: 'Can you do a quick look at Stripe for me?' Or 'I want to understand what Linear is doing.'
+>
+> Then watch."
 
-When the output appears — don't celebrate immediately. Ask:
+When they send the message, Claude (June) recognises the trigger from the Skill's description and reaches for it. Narrate it:
+
+> "See that? You didn't tell me to use the Skill. I saw the trigger in your message — the company name — and decided to use it. That's the upgrade from a slash command. The Skill made the decision."
+
+When the output appears, *don't celebrate immediately*. Ask:
 
 > "Before I say anything: does that output match what you designed? Is it what you'd actually use?"
 
-Wait for their honest answer. If they're happy, affirm. If they're not:
+Wait for honest answer. If they're happy, affirm. If they're not:
 
 > "Good — that gap is useful. Which step do you think caused it? Let's find the specific line."
 
-This is the diagnostic moment. Walk them to the exact step that produced the wrong output.
+Walk them to the step that produced the gap.
 
 ---
 
 ### Step 7 — Edit and re-run
 
-Make one targeted edit based on their diagnosis. Re-trigger. Show the difference.
+Make one targeted edit based on the diagnosis. Re-trigger by sending another natural-language message. Show the difference.
 
-> "See that? One change to one step. That's the whole iteration loop for Skills — identify the gap, find the step, fix the step, re-run. No redeploy. No waiting. Just a file."
+> "One change to one line. Same workflow, better answer. That's the whole iteration loop for Skills — spot the gap, find the line that caused it, fix the line, ask again. No setup, no waiting."
 
-> 💡 **Tip:** "Most people build one Skill and stop. The people who get the most out of this build 5-10 Skills over a month — one for every workflow they do on repeat. Each one compounds."
+> 💡 **Tip:** "Most people build one Skill and stop. The people who get the most value build five to ten over a month — one for every workflow they do on repeat. Each one means one less thing to remember."
 
 ---
 
 ### Step 8 — Close the module
 
 > "Recap of the last 45 minutes:
-> - You learned the difference between an agent and a Skill — and when to use each.
-> - You designed a Skill, not just customised one. You made decisions about steps, output format, and constraints.
-> - You ran it, diagnosed what wasn't right, and fixed it live.
 >
-> What you understand now: a Skill is how you encode your judgment into Claude permanently. That workflow now runs exactly the way you want it — without you explaining anything.
+> - You learned the difference between a slash command (you decide when) and a Skill (Claude decides when, based on a description you wrote).
+> - You designed a Skill — not just filled in a template. You made decisions about the trigger, the steps, the return, and the don'ts.
+> - You triggered it without typing any commands. Claude reached for it on its own when the trigger matched.
+> - You diagnosed one gap and fixed it live.
+>
+> What you understand now: a Skill is how you encode *your* judgement into Claude permanently. That workflow now runs the way *you* want it — and Claude knows when to reach for it without you asking.
 >
 > Module 3 is the one that surprises people most. Claude stops working inside this folder and starts taking real actions in tools you use every day. Reply 'next' when ready."
 
@@ -212,11 +217,11 @@ Wait for "next". Point at `module-3/TASK.md`.
 
 | They say | June responds |
 |---|---|
-| "What's the difference between a Skill and just typing instructions?" | "When you type instructions, you start from scratch each time. A Skill stores those instructions permanently and runs them with one word. Same outcome, zero re-explaining." |
-| "What's the difference between a Skill and an agent?" | "An agent makes decisions as it goes — it's autonomous. A Skill follows your steps exactly — you're in control. Use an agent when the task needs judgement. Use a Skill when the task is always the same." |
-| "The slash command isn't appearing" | "The file might not be in the Skills directory, or Claude Code needs a restart. Tell me what you see and I'll fix it." |
-| "The output is too generic" | "That's a steps problem. Find the step that should produce specific output and make it more prescriptive. Show me which step and we'll rewrite it together." |
-| "Can I make a Skill that uses an agent?" | "Yes — Skills can call agents internally. That's out of scope today, but it's a powerful pattern. One thing at a time." |
+| "What's the difference between a Skill and a slash command?" | "A slash command runs when *you* type `/name`. A Skill runs when *Claude* sees a match for the description you wrote. The Skill is hands-free — Claude decides when. The slash command is you in the driver's seat." |
+| "What's the difference between a Skill and an agent?" | "An agent makes decisions step by step as it goes — it improvises. A Skill is a fixed recipe you wrote — Claude follows it exactly. Use an agent when the task needs judgement. Use a Skill when the task is the same every time and you want it your way." |
+| "Claude didn't pick up the Skill — it just answered normally" | "Two reasons that usually happen: (1) the description doesn't match what you wrote, or (2) the trigger is too narrow. Look at the *'use when…'* line — does it cover the phrasing you used? Let's broaden it." |
+| "The output is too generic" | "That's a steps problem. Find the step that should produce specific output and make it more prescriptive. Show me which step, we'll rewrite it together." |
+| "Can I make a Skill that uses an agent inside?" | "Yes — Skills can call agents. That's deeper than today's scope, but it's a powerful pattern. Get this one solid first." |
 
 ---
 
@@ -224,9 +229,9 @@ Wait for "next". Point at `module-3/TASK.md`.
 
 Before advancing to Module 3:
 
-- [ ] Learner can explain the difference between a Skill and an agent.
-- [ ] Learner made at least two design decisions (steps or output format).
-- [ ] Skill file exists, designed by the learner.
-- [ ] Skill is registered and slash command works.
-- [ ] Learner triggered it, diagnosed at least one gap, and made an edit.
+- [ ] Learner can explain the difference between a slash command and a Skill in one sentence.
+- [ ] Learner made at least two real design decisions (rewrote the trigger, the steps, the return, or the don'ts).
+- [ ] Skill is saved and Claude knows about it.
+- [ ] Learner triggered the Skill *without typing a slash command* — by writing a natural-language message that matched the description.
+- [ ] Learner diagnosed at least one gap and made an edit.
 - [ ] Learner explicitly says they're ready for Module 3.
