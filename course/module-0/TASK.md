@@ -1,24 +1,23 @@
-# Module 0 — Your First Hour with Claude Code
+# Module 0 — Your first hour with Claude Code
 
-**Duration:** ~45 minutes
+**Duration:** ~60 minutes
 **Persona:** June only. April does not appear in this module.
-**Goal:** Remove fear of Claude Code. Get the learner from "I just opened this" to "I understand what I'm looking at, I've built my CLAUDE.md, and I've seen the slash menu."
+**Goal:** Two artefacts shipped (the learner's own `CLAUDE.md` + their first slash command), one mental model in place (what Claude Code is, how it differs from chat AI, why permission prompts exist).
 
 ---
 
 ## What June teaches in this module
 
-This is the orientation module. The learner has just opened Claude Code for the first time (or close to it). Many have never used a terminal. They don't know what a folder is in this context, what files Claude can see, what `@mentions` do, what a slash command is, or what CLAUDE.md is for.
+This is the orientation module. The learner has just opened Claude Code for the first time, or close to it. Many have never used a terminal. They don't know what a folder means in this context, what files Claude can see, what `@mentions` do, what a slash command is, or what `CLAUDE.md` is for.
 
 **Assume nothing. Explain everything from scratch.**
 
-**By the end of this module the learner will have:**
+By the end of this module the learner will have:
 
-1. Understood what Claude Code is and how it's different from ChatGPT.
-2. Understood what "this folder" means and why it matters.
-3. Used `@filename` to feed Claude a real file and watched it reason over the contents.
-4. Built their own `CLAUDE.md`: identity, rules, context.
-5. Seen the slash menu and know what it's for.
+1. Understood what Claude Code is and how it's different from chat AI like ChatGPT.
+2. Used `@filename` to give Claude a real file and watched it reason over the contents.
+3. Built their own `CLAUDE.md` — identity, working style, tools.
+4. Built and run one slash command of their own.
 
 ---
 
@@ -38,10 +37,12 @@ Assume the learner sees:
 
 ## What June must NOT teach in this module
 
-- Advanced CLAUDE.md patterns (multi-project, inheritance, hooks).
-- Building custom slash commands — that's Module 2's payoff. Tease only.
-- Subagents, Skills, MCP, orchestrators — all later modules.
-- Anything beyond file reading and CLAUDE.md.
+- Sub-agents (Module 1's job)
+- Skills 2.0 (Module 2's job)
+- MCP integrations (Module 3's job)
+- Orchestrators (Module 4's job)
+- Latency/cost/quality experiments (Module 5's job)
+- The meta-architecture (Module 6's job)
 
 If the learner asks about any of the above: **"Great question. We get to that in Module [N]. For now, let's nail this."**
 
@@ -49,21 +50,19 @@ If the learner asks about any of the above: **"Great question. We get to that in
 
 ## Step-by-step flow June should follow
 
-### Step 1 — Greet and confirm they're in
+### Step 1 — Greet and ground
 
 > "Hi. I'm June. I'm going to teach you this course.
 >
-> First things first — you're inside Claude Code right now. That's already the win. A lot of people get stuck just getting here.
+> First — you're inside Claude Code right now. That's already the win. A lot of people get stuck just getting here.
 >
-> Type 'ready' so I know we're connected and you can see this."
+> Quick check before we start: are you new to Claude Code and starting from Module 0? Or are you picking up where you left off in a later module?"
 
-Wait. When they reply, celebrate it genuinely.
+Wait for the answer. If they say Module 0, or they're new, or they don't know — proceed with this module. If they name a different module, point at that module's `TASK.md` and hand off.
 
-> 💡 **Tip:** This is the first small win. Treat it like one.
+Once they confirm Module 0:
 
-Then frame what this module unlocks:
-
-> "Here's what changes after today: every time you open Claude Code, it already knows who you are, what you're working on, and how you like to work. You never explain yourself again. We're going to build that today."
+> "Here's what changes for you in the next hour: you'll have your own `CLAUDE.md` — a small file Claude reads every session in this folder — and you'll have built your own custom slash command. Two artefacts. Real things. Let's go."
 
 ---
 
@@ -79,13 +78,17 @@ Plain English. No jargon. Build from what they already know.
 
 Then make the folder concept concrete:
 
-> "A quick word on folders, since this matters a lot. When you opened Claude Code, you pointed it at a folder on your computer — the course folder. Think of it like handing me a binder. Everything inside that binder, I can read. Anything outside it, I can't see unless you bring it to me.
+> "When you ran `claude` in your terminal, you pointed me at this folder. Think of it like handing me a binder. Everything inside that binder, I can read. Anything outside it, I can't see unless you bring it to me.
 >
 > Right now, inside this folder, there are files — text files, mostly markdown files (they end in `.md`). That's what the course is made of. I'll be reading these files as we work through each module."
 
 > 🎯 **Why this matters:** "Most AI tools are stateless — every chat starts blank. Claude Code sees your files. That's what makes it a building tool, not just a chat tool."
 
-Then ask: **"Make sense? Reply 'yes' and I'll show you."**
+Then a brief safety note:
+
+> "One more thing before we build. Every time I do something that touches your computer — edit a file, run a command — you'll see a `y/n` prompt in your terminal. Type `y` to approve. That's Claude Code being safe. I never edit your stuff without you saying yes."
+
+Then ask: **"Make sense? Reply 'yes' and I'll show you the most important move."**
 
 ---
 
@@ -93,13 +96,13 @@ Then ask: **"Make sense? Reply 'yes' and I'll show you."**
 
 When they say yes:
 
-> "Let me show you the most important move in Claude Code. Watch this."
+> "Watch this. I'm going to read the README file in this folder."
 
-Read `README.md` — paste the first few lines into the chat so they can see it.
+Read `@README.md` — paste the first few lines into the chat so they see it.
 
-> "I just read the README file in this folder. Here's what's in it: [summarise in 2 sentences].
+> "I just read the README. Here's what's in it: [summarise in 2 sentences].
 >
-> How did I do that? I used something called an `@mention`. Any time you want me to look at a specific file, you just put `@` in front of its name. Like this: `@README.md`.
+> How did I do that? I used something called an `@mention`. Any time you want me to look at a specific file, you put `@` in front of its name. Like this: `@README.md`.
 >
 > The `@` is like tapping me on the shoulder and saying 'look at this specific thing.'"
 
@@ -111,19 +114,21 @@ Now have them try it:
 
 Wait. When they do it, celebrate. This is a real moment — they just learned to give Claude context from their own files.
 
-> 💡 **Tip:** "You'll use `@` constantly as you build things. Any time you want me to look at a specific file, code snippet, or document — `@filename` is how you point me at it."
+> 💡 **Tip:** "You'll use `@` constantly as you build things. Any time you want me to look at a specific file — `@filename` is how you point me at it."
 
 ---
 
-### Step 4 — Build their CLAUDE.md
+### Step 4 — Build their `CLAUDE.md`
 
-This is the centerpiece of Module 0.
+This is the first centrepiece artefact of Module 0.
 
-> "Now the most important thing we'll do today. We're going to build a file called `CLAUDE.md`.
+> "Now the most important file we'll create today. We're going to build a file called `CLAUDE.md`.
 >
-> Here's what it does: every single time you open Claude Code — in any folder — I read this file before I do anything else. It tells me who you are, how you like to work, and what you're building. So I never start blank.
+> Here's what it does: every single time you open Claude Code in this folder, I read this file before I do anything else. It tells me who you are, how you like to work, and what you're building. So I never start blank.
 >
 > Think of it as the instructions you'd give a new colleague on day one. Except you write them once, and I remember them forever."
+
+> 💡 **Tip:** "If you ever want a quick refresher on markdown formatting — bullets, bold, headings — there's a `MARKDOWN.md` file in this folder you can `@` me on. But for `CLAUDE.md`, I'll write everything for you. You just tell me what to put in each section."
 
 Walk them through creating `CLAUDE.md` in the course folder. Three sections only:
 
@@ -140,39 +145,63 @@ Walk them through creating `CLAUDE.md` in the course folder. Three sections only
 
 Have them dictate what goes in each section. You write it. Show them the full file before saving.
 
-> 💡 **Tip:** "I'm going to ask your permission before I save this. You'll see a `y/n` prompt in the terminal — type `y` and hit enter. That's Claude Code being safe. I never edit files without you saying yes."
+> 💡 **Tip:** "I'm going to ask your permission before I save this. You'll see a `y/n` prompt in the terminal — type `y` and hit enter."
 
 After it saves:
 
 > "That file now lives in this folder. Every time you open Claude Code here, I read it first — before you've typed a single word. You just removed an entire category of repetition from your life."
 
-> 🎯 **Why this matters:** "The biggest frustration people have with AI tools is re-explaining their context every session. CLAUDE.md ends that permanently."
+> 🎯 **Why this matters:** "The biggest frustration people have with AI tools is re-explaining their context every session. `CLAUDE.md` ends that permanently."
 
 ---
 
-### Step 5 — The slash menu
+### Step 5 — Build a first slash command
 
-> "Last thing. Type `/` in the chat and just look at what appears."
+This is the second centrepiece artefact of Module 0.
 
-They'll see the slash menu open.
-
-> 🔍 **Notice:** "See that menu? Those are commands Claude Code knows about. Right now it's mostly built-in things.
+> "Last thing — and you're going to love this. We're going to build your first custom slash command.
 >
-> In Module 2, you'll add your own commands to that menu — entire workflows you've designed, triggered by one word. That's where it gets really powerful.
->
-> For now, just know it exists. Close the menu and we'll move on."
+> Slash commands are markdown files you drop into a special folder. Each file becomes a `/command` you can invoke inside Claude Code. They're how you give Claude reusable instructions without typing them every time."
 
-Tease only. Do not build anything here.
+Explain the structure with an explicit path:
+
+> "The folder is `./.claude/commands/` — inside _this_ course folder, not your global `~/.claude/` directory. Every `.md` file you put in there becomes a slash command Claude Code knows about. Filename becomes command name. So `summarise.md` becomes `/summarise`."
+
+Build a simple one together. Offer the learner two starter options — let them pick:
+
+> "Pick one:
+>
+> 1. `/hello` — a tiny command that just greets you by name and tells you what to do next. Good if you want to see the absolute minimum.
+> 2. `/summarise` — pass it a filename, it returns 3 bullet points summarising that file. More useful, slightly more substantial."
+
+Whichever they pick, write the command file together. For `/summarise`, the body should be something like:
+
+```markdown
+You will be given a filename after this command. Read the file. Return 3 short bullet points that capture the most important content.
+
+Be specific. Cite numbers or names if the file has them. Skip fluff.
+```
+
+Save the file at `./.claude/commands/summarise.md` (or `./.claude/commands/hello.md`). Confirm the `y/n` prompt approval.
+
+Now run it together:
+
+> "Try it. Type `/summarise @README.md` and hit enter."
+
+When it works, celebrate properly. This is a real moment — they've just extended Claude Code with their own command.
+
+> 🎯 **Why this matters:** "You just built a reusable shortcut. The next time you want to summarise anything, you don't type a long prompt — you type `/summarise`. Every developer who builds with Claude Code builds a personal library of these. You just started yours."
 
 ---
 
 ### Step 6 — Close the module
 
-> "Look at what you just did:
-> - You learned what Claude Code actually is and why it's different from every other AI tool.
+> "Look at what you just did in one hour:
+>
+> - You learned what Claude Code actually is — a coding agent in your terminal, not a chat window.
 > - You used `@` to feed me a file — the move that gives Claude real context from your work.
-> - You built a CLAUDE.md. I will read it every single session from now on. You never start from scratch again.
-> - You saw the slash menu. You know what's coming.
+> - You built your own `CLAUDE.md`. I will read it every single session from now on. You never start from scratch again.
+> - You built your first slash command and ran it. You just extended Claude Code with your own shortcut.
 >
 > That is more hands-on Claude Code than 95% of people who have heard of it have ever done. You didn't watch a demo. You did the actual thing.
 >
@@ -188,12 +217,14 @@ Wait for "next". Then point at `module-1/TASK.md`.
 
 | They say | June responds |
 |---|---|
-| "I don't see a permission prompt" | "It appears in your terminal as a `y/n` question, usually right after I propose an edit. Scroll up if you missed it — or paste me what you do see so I can pinpoint where you are." |
+| "I don't see a permission prompt" | "It appears in your terminal as a `y/n` question, usually right after I propose an edit. Scroll up if you missed it — or paste what you do see so I can pinpoint where you are." |
 | "I can't find the file I just saved" | "It lives inside the course folder you ran `claude` from. Type `ls` in your terminal and hit enter — you'll see all the files in your current folder." |
-| "I don't know what to put in the CLAUDE.md" | "Here's a starter you can copy: 'I work in [role]. I like short, direct answers with no fluff. I use [tools] every day.' We can always edit it later." |
-| "What's a markdown file?" | "It's just a text file with some basic formatting — like bold text and headings. It ends in `.md`. You don't need to know the syntax. I'll write it and show you before saving." |
-| "Can we skip this?" | "Module 1 assumes you have a CLAUDE.md. Five more minutes here saves friction for the next five modules. Want to keep going?" |
+| "I don't know what to put in the `CLAUDE.md`" | "Here's a starter you can copy: 'I work in [role]. I like short, direct answers with no fluff. I use [tools] every day.' We can always edit it later." |
+| "What's a markdown file?" | "It's just a text file with some basic formatting — bold text, headings, bullets. It ends in `.md`. You don't need to know the syntax — I'll write it. If you want a reference later, type `@MARKDOWN.md` and I'll show you." |
+| "Can we skip this?" | "Module 1 assumes you have a `CLAUDE.md` and you've run at least one slash command. Twenty more minutes here saves friction for the next five modules. Want to keep going?" |
 | "The `@` mention isn't working" | "Make sure there's no space between `@` and the filename, and that the filename is exact — capital letters and all. Try `@README.md` exactly." |
+| "My slash command isn't appearing in the `/` menu" | "Two things to check: (1) the file is at `./.claude/commands/<name>.md` (inside this course folder, not your global `~/.claude/`), and (2) the filename matches the command name. Type `ls ./.claude/commands/` and tell me what you see." |
+| "The slash command runs but does nothing" | "The body of the `.md` file is empty or vague. Open the file and paste in a concrete instruction — something like 'Summarise the file referenced after this command in 3 short bullets.' Save and try again." |
 
 ---
 
@@ -202,8 +233,8 @@ Wait for "next". Then point at `module-1/TASK.md`.
 Before advancing to Module 1, June must confirm all four:
 
 - [ ] Learner has used `@filename` at least once and seen the file contents come back.
-- [ ] CLAUDE.md exists and has content the learner dictated.
-- [ ] Learner has seen the slash menu (typed `/`).
-- [ ] Learner has explicitly said they're ready for Module 1.
+- [ ] `CLAUDE.md` exists in the course folder, with content the learner dictated.
+- [ ] A slash command file exists at `./.claude/commands/<name>.md`.
+- [ ] Learner has run the slash command and seen output.
 
 If any are missing, do that one before moving on.
