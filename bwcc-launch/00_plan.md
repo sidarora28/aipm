@@ -1,51 +1,39 @@
-# BWCC: 6 → 70 by Jul 12 — 24-day campaign
+# BWCC Cohort 003 — campaign plan (Jun 19 → Jul 19)
 
-Need 64 more sales. ~2.7/day. Lever stack:
+## The shape of the goal
+- **Target:** 70 sales before cohort starts Sun 19 Jul 2026
+- **Starting point:** 6 sales as of Jun 19 (Stripe rows 1516–1522)
+- **Need:** 64 more sales over 30 days = ~2.1/day
 
-## Daily cadence (Jun 19 → Jul 12)
+## Channel mix (truth-based)
 
-| Day | Date | Email | Twitter | LinkedIn | Other |
-|---|---|---|---|---|---|
-| 1 | Jun 19 (Fri) | **Launch email #1** — open seats | Launch tweet + thread | Launch post | DM 10 warmest AI PM alums |
-| 2 | Jun 20 (Sat) | — | 2 hook tweets | — | — |
-| 3 | Jun 21 (Sun) | — | 2 hook tweets | Reply/engage | — |
-| 4 | Jun 22 (Mon) | **Email #2** — curriculum / what you'll build | Build-in-public tweet | Carousel | DM 10 more alums |
-| 5 | Jun 23 | — | 2 tweets | — | — |
-| 6 | Jun 24 | — | thread #2 | — | — |
-| 7 | Jun 25 | — | 2 tweets | — | Partner cross-promo ask (1 person's list) |
-| 8 | Jun 26 | **Email #3** — social proof / objections | Quote tweet of first signups | Post | — |
-| 9 | Jun 27 | — | 2 tweets | — | — |
-| 10 | Jun 28 | — | thread #3 | — | — |
-| 11 | Jun 29 | — | 2 tweets | — | — |
-| 12 | Jun 30 | **Email #4** — half-way, X/70 seats left | 2 tweets | Post | — |
-| 13 | Jul 1 | — | 2 tweets | — | — |
-| 14 | Jul 2 | — | thread #4 | — | — |
-| 15 | Jul 3 | — | 2 tweets | — | — |
-| 16 | Jul 4 | — | — | — | — |
-| 17 | Jul 5 | **Email #5** — only X seats left, bonus stack closes tonight | 2 tweets | Post | — |
-| 18 | Jul 6 | — | 2 tweets | — | — |
-| 19 | Jul 7 | — | thread #5 | — | — |
-| 20 | Jul 8 | **Email #6** — 4 days left | 2 tweets | Post | — |
-| 21 | Jul 9 | — | 2 tweets | Reply to comments | — |
-| 22 | Jul 10 | **Email #7** — 48h left | 2 tweets | Post | — |
-| 23 | Jul 11 | **Email #8** — 24h | 3 tweets | Post + DMs | — |
-| 24 | Jul 12 | **Email #9** — closing tonight + final reminder same day | 3 tweets | Final post | — |
+| Channel | Mechanism | Status | Lever |
+|---|---|---|---|
+| Beehiiv list (19K) | "CC PC Soft Sell" + Part 2 — already running | LIVE | Already firing; track conversion |
+| Beehiiv list (warm segment) | "CC Hard Sell x Objections" automation | **DRAFT — needs publish + trigger** | The biggest unlocked lever |
+| Beehiiv broadcast (one-off post) | A direct launch announcement to the full list | Not yet sent | Decide whether to send |
+| Twitter / X | Launch single + thread + question hooks daily | Not started | `02_tweets_week1.md`, `15_tweets_weeks_2_3.md` |
+| LinkedIn | Launch post + closing-week posts | Not started | `06_linkedin_post.md` |
+| Warm DMs | 69 AI PM alums, personalized | Not started | `03_dm_to_ai_pm_alums.md` |
+| Partner cross-promo | 5–8 newsletter partners | Not started | `16_partner_cross_promo.md` |
+| Buyer referrals | $100 off / $100 refund | Not set up | Worth doing once you have ~15 buyers |
 
-## Conversion math
-- ML list 16,800 × 40% open × 1.4% click = ~95 clicks/email × 9 emails = ~850 clicks
-- At 2% click-to-sale (modest for a $450 PM offer with relevance) = ~17 sales from email
-- Twitter: 1 reasonable thread can hit 30K impressions historically → 5–10 sales over 5 threads
-- LinkedIn: 1K-row outreach list, 1% conversion = 10
-- AI PM alum DMs (69 people, warmest audience): 5–10 sales realistic
-- Partner cross-promo: 5–10
-- Total realistic: **~50–60**. Need scarcity + bonus stack to push final 10–20.
+## Pricing scarcity (real)
+- First **25 entrants** get $450 (code `CCEB150`)
+- After that: **$600 list**
+- Currently 6 sold → 19 early-bird seats left
+- At ~2.1 sales/day, early bird sells out in ~9 days (around Jun 28)
+- After early bird sells out, the urgency shifts from "lock in early bird" to "X seats left out of 70"
 
-## Scarcity stack (build into emails 4–9)
-- **Hard seat cap: 70.** Public from day 1. When it's gone the cohort closes — no second wave, no waitlist promise.
-- **Bonus stack expires Jul 5**: 1:1 onboarding call + bonus office hours + private repo of cohort-built prototypes. Anyone who buys before Jul 5 gets all three; after, just the core.
-- "X/70 seats left" goes in every subject line from Email #4 onward.
+## Decision rules
+| If by… | We see… | Then… |
+|---|---|---|
+| Jun 22 (Day 3) | < 10 cumulative | Publish "CC Hard Sell x Objections" immediately. Don't wait. |
+| Jun 28 (Day 9) | < 20 cumulative (early bird not gone) | Extend early bird OR keep $450 for full cohort. Decide deliberately. |
+| Jul 5 (Day 16) | < 35 cumulative | Switch effort to 1:1 outreach. Stop new content. |
+| Jul 12 (Day 23) | < 55 cumulative | Open payment plan (3 × $150) for final week. |
 
-## Tracking
-- Add UTM tags to every CTA so referrer column starts filling in
-- Update "Source" column in All Online Sales daily
-- Pivot: sales by source — kill the channel that doesn't ship by Jun 26
+## Channel kill-rules
+- Email click rate < 0.5% on a send → rewrite subject + first line
+- Tweet impressions < 2K avg → reduce frequency, increase quality
+- LinkedIn impressions < 1K → switch effort to direct LI DMs

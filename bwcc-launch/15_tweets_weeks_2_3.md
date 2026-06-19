@@ -1,58 +1,58 @@
-# Tweets — Weeks 2 & 3 (Jun 26 → Jul 12)
+# Tweets — Weeks 2-3 + closing week (Jun 26 → Jul 19)
 
-## Question hooks (use 1-2/day, fill in date placeholders as you go)
+## Question hooks (1-2/day)
 
-- PMs: what's the smallest feature you've been waiting on from eng for more than 6 months?
+- If you could ship three working AI products in four weeks, which three would you pick?
 
-- If you could ship one prototype this weekend with no engineer involved, what would it be?
+- Honest: how much of your week is spent describing things to other people instead of building them?
 
-- Honest question for PMs: how much of your week is spent describing things to other people instead of building them?
+- Reading code vs writing it: which one matters more in 2026?
 
-- Product managers — when's the last time a stakeholder review changed direction because of a *working* demo instead of slides?
+- The hardest part of building an AI product isn't the AI. It's deciding when one Claude call is enough and when you need three. Most people reach for three when one would do.
 
-- Reading code vs writing it: which one matters more for a PM in 2026?
+- Most "AI courses" teach you to chat with an LLM. Why is nobody teaching you to direct one?
 
-- PMs: would you trust a 4-week sprint estimate from your engineering team more, or less, than a prototype Claude Code wrote in an afternoon?
+- What would change about your week if "build a prototype" took an afternoon instead of a sprint?
 
-- The PM job description in 2027 is going to have "ships prototypes" in it. Or am I wrong?
+- The CLAUDE.md file is the single highest-leverage thing in any Claude Code workflow. And almost nobody uses one. Why?
 
-- Which is the bigger PM skill in 12 months: writing a great PRD, or knowing how to drive a model that turns PRDs into working code?
+- Multi-agent products are over-deployed. Single Claude call does ~80% of products well. The cohort spends a session just on this decision tree.
 
-- PMs who've started using Claude Code: what did you notice in your first week that surprised you?
+- The thing most people misunderstand: Claude Code isn't for engineers. Engineers already have IDEs. It's for the operator, designer, marketer, PM who finally wants to ship the thing they've been describing.
 
-- If your team built three side prototypes instead of one polished feature each quarter, what changes about how you ship?
+- A non-coder built a working AI Interview Coach in week 2 of the last cohort. Multi-user. Real auth. Real DB. Strangers signed up. The "I'm not technical" voice is provably wrong.
 
-## Build-in-public (BIP) cadence — post one of these daily
+## Build-in-public (BIP) cadence — post 1-2/day
 
-- BWCC update: [N]/70 seats. Last big push starts now.
+- BWCC update: [N]/70 seats. First 25 still get $450, then $600. Code CCEB150.
 
-- Just sent BWCC email #[N]. Open rate so far this launch: [X]%. Best subject line of the campaign was "[subject]".
+- Early-bird seats remaining: [25-N]. After that the price moves to $600 list. No tricks, no fake countdown — just the cap.
 
-- Reading the BWCC replies is the part of launching a thing I forget I love. [Real quote you can share].
+- Reading the cohort 003 inbox is the part of launching I forget I love. One reply this morning: "[real quote]"
 
-- One thing I underestimated about a cohort with a hard cap: people DM me asking which seat number they got. Currently at [N].
+- Just answered the same question 4 times today: "do I really not need to code?" No. You really do not. Claude Code writes the code. You direct it.
 
-- BWCC closes Saturday. The week-3 prototypes from cohort 0 had three reactions in the channel: "wait this actually shipped?", "how", and "I want to do that next."
+- BWCC cohort 003 is at [N]/70. Starts Sun July 19. Demo Day Aug 16.
 
-## Thread starters (run 1 thread mid-week 2 and 1 thread mid-week 3)
+## Thread starters (1 mid-week 2, 1 mid-week 3)
 
-### Thread idea A — "5 things that get easier the moment you stop pasting into chat"
-Frame around the workflow shift the cohort teaches. Each tweet = one shift, with a one-line example.
+### Thread A — "5 things that get easier the moment you stop pasting into chat"
+Each tweet = one shift (CLAUDE.md, slash commands, sub-agents, prompt caching, evals) with a one-line example.
 
-### Thread idea B — "I asked cohort 0 what they wished they'd known week 1. Here are 7 things."
-Reuse cohort 0 quotes. Each tweet = one lesson + a one-sentence anecdote.
+### Thread B — "I asked the last cohort what they wished they'd known week 1. Here are 7 things."
+Use Karthik, Tushar, Yashaswini, Sheila, Milo quotes from the testimonials section.
 
-### Thread idea C — "How a PM with 0 coding experience shipped an internal tool in week 3 of BWCC"
-Walk through their actual project: backlog item → PRD → Claude session → working tool → handoff to eng for production. Show that the PM was in the driver's seat the whole time.
+### Thread C — "How a QA-turned-PM with 0 coding experience shipped a working AI app in 14 days"
+Karthik's story end-to-end. Show the loop, not the magic.
 
-## Closing-week posts (Jul 8 → Jul 12)
+## Closing-week posts (Jul 13 → Jul 19)
 
-- BWCC closes Saturday. [N]/70 seats. After this it's gone — no second wave.
+- BWCC closes Saturday night. [N]/70 seats. Cohort 003 starts Sunday.
 
-- 48 hours. [N]/70 seats. Honest read on whether it's for you: if "I want to ship my own ideas without waiting on eng" is a real pain point for you, it's for you. If not, it isn't.
+- 48 hours. [N]/70 seats. Honest read: if "I want to ship an AI product before the end of summer" is real for you, this is it. If not, it isn't.
 
-- 24 hours. [N]/70.
+- 24 hours. [N]/70. https://japmusd.mysamcart.com/checkout/build-with-claude-code?coupon=CCEB150
 
-- Closing tonight 11:59 PT. [link]
+- Closes tonight 11:59 PT. Cohort 003 starts tomorrow morning.
 
-- Final BWCC seats just went. Thank you to everyone who joined and everyone who shared.  (Post when sold out — this is the social proof for whatever you sell next.)
+- Cohort 003 is full. Thank you to everyone who joined and everyone who shared. (Post when sold out.)

@@ -1,50 +1,38 @@
-# BWCC launch — 6 → 70 sales by Jul 12, 2026
+# BWCC Cohort 003 launch — 6 → 70 sales by Jul 19, 2026
 
-Asset bundle for the BWCC (Build With Claude Code) cohort launch. Everything below is copy-complete and ready to send.
+**Course:** Build with Claude Code (Cohort 003). Live cohort starts **Sunday 19 July 2026**.
+**Hard cap:** 70 seats.
+**Price:** $450 early bird with code `CCEB150` — first 25 entrants only. Then $600 list.
+**Promise:** Three real AI products on real URLs by Demo Day (Second Brain, AI Interview Coach, Your Own Idea).
+**Checkout:** https://japmusd.mysamcart.com/checkout/build-with-claude-code?coupon=CCEB150
 
-## Send order
+---
 
-| # | Date | Asset | File |
-|---|---|---|---|
-| 1 | Jun 19 | Launch email | 01_email_launch.md |
-| 1 | Jun 19 | Launch tweet + thread | 02_tweets_week1.md |
-| 1 | Jun 19 | LinkedIn launch post | 06_linkedin_post.md |
-| 1 | Jun 19 | DM to 69 AI PM alums | 03_dm_to_ai_pm_alums.md (list: 04_ai_pm_alum_list.csv) |
-| 1 | Jun 19 | Partner DM (5–8 partners) | 16_partner_cross_promo.md |
-| 2 | Jun 22 | Email #2 — curriculum | 07_email_2_full.md |
-| 3 | Jun 23 | Referral email to existing buyers | 20_referral_program.md |
-| 4 | Jun 26 | Email #3 — objections | 08_email_3_full.md |
-| 5 | Jun 30 | Email #4 — halfway + bonus warning | 09_email_4_full.md |
-| 6 | Jul 5 | Email #5 — bonus stack closes tonight | 10_email_5_full.md |
-| 7 | Jul 8 | Email #6 — cost of not doing it | 11_email_6_full.md |
-| 8 | Jul 10 | Email #7 — 48h recap | 12_email_7_full.md |
-| 9 | Jul 11 | Email #8 — 24h FAQ | 13_email_8_full.md |
-| 10 | Jul 12 | Email #9 — closing tonight (AM + PM resend) | 14_email_9_close.md |
+## What's already running (Beehiiv)
 
-Daily: 1–2 question-hook tweets from `02_tweets_week1.md` (week 1) and `15_tweets_weeks_2_3.md` (weeks 2–3).
+| Automation | State | Enrolled | Open % | Click % | Notes |
+|---|---|---|---|---|---|
+| CC Free Course | live | 2,025 | 50.2% | 26.16% | Lead magnet, very high engagement |
+| CC PC Soft Sell | live | 12,436 | 30.67% | 1.61% | Main soft-sell sequence into the list |
+| CC PC Soft Sell Part 2 | live | 11,243 | 28.1% | 0.91% | Cascades from Part 1 |
+| **CC Hard Sell x Objections** | **DRAFT** | 0 | — | — | **3 emails written, automation not published, no trigger set** |
 
-## Standing setup
-- Landing page copy: `19_landing_page.md`
-- Post-purchase / referral mechanic: `20_referral_program.md`
-- UTM tracker (fill daily): `17_utm_tracker.csv`
-- Daily dashboard (fill daily): `18_daily_dashboard_template.md`
+## What this folder is for now
 
-## Plan + math
-- `00_plan.md` — 24-day calendar, conversion math, scarcity stack, kill-rules
+Not duplicating the email work — Beehiiv has the email machine. This folder covers the **other surfaces**:
 
-## Placeholders to fill before sending
-- `[BWCC_CHECKOUT_URL]` → your real Stripe / checkout link
-- `[BWCC_LANDING_URL]` → your landing page URL
-- `[DATE]` / `[COHORT_START_DATE]` → cohort start date
-- `[N]` → current seat count, updated each send
-- AI PM alum $100-off code → mint and drop in
-- Referral code `BWCC100` → set up in Stripe
+| File | Surface | Status |
+|---|---|---|
+| `02_tweets_week1.md` | Twitter / X (launch + week 1) | Updated to real course details |
+| `15_tweets_weeks_2_3.md` | Twitter / X (weeks 2–3, closing week) | Updated |
+| `06_linkedin_post.md` | LinkedIn launch post | Updated |
+| `03_dm_to_ai_pm_alums.md` | Personal DMs to 69 AI PM alums (+ list in `04_ai_pm_alum_list.csv`) | Updated |
+| `16_partner_cross_promo.md` | Newsletter partner cross-promo DMs + blurbs | Updated |
+| `19_landing_page.md` | Landing page copy (Samcart product page or backup page) | Updated |
+| `00_plan.md` | 24-day campaign calendar + decision rules | Updated |
 
-## Scarcity stack
-- **Hard cap: 70 seats.** When full, cohort closes. No second wave.
-- **Bonus stack** (1:1 onboarding + Friday office hours + cohort prototype repo) closes **Jul 5**.
+## The two highest-leverage things to do next
 
-## Pricing
-- $450 USD / $350 PPP (India, LATAM, SEA)
-- AI PM alums: $100 off
-- Referral: $100 off the friend, $100 refund to the referrer
+1. **Publish the "CC Hard Sell x Objections" automation.** The bodies are written. It needs (a) a trigger — likely a manual enrolment of the soft-sell completers + warm CC Free Course completers, and (b) hit Publish in the Beehiiv UI.
+
+2. **Post the launch tweet + LinkedIn post today.** Email is mostly going to existing list. The X/LinkedIn/alum DM/partner blast is the *new-traffic* push.

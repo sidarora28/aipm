@@ -4,21 +4,25 @@ Send from your personal inbox, not the newsletter. Subject from the inbox, no te
 
 ---
 
-**Subject:** quick one — built something I think you'll like
+**Subject:** quick one — opened cohort 003
 
 Hey {{first_name}},
 
-You bought AI PM a while back, so you already get why I think most PMs are leaving leverage on the table with AI.
+You bought AI PM a while back, so you already get why I think most people are leaving leverage on the table by not actually shipping AI products.
 
-I quietly ran a beta of a new thing called **BWCC — Build With Claude Code** — with a handful of folks last month, and the response was strong enough that I'm opening it properly this week.
+I just opened **Build with Claude Code — cohort 003**. 4 weeks, one live session per week, Demo Day at the end. You walk in with an idea, you walk out with three deployed AI products — a Second Brain, an AI Interview Coach, and your own idea. Real URLs, used by real strangers.
 
-It's the practical, hands-on cousin of AI PM: 4 weeks, twice-weekly live sessions, and at the end you've actually shipped a working prototype of a feature you speced — built by you, in Claude Code.
+You don't write code. You direct Claude Code. That's the whole skill.
 
 Two reasons I'm reaching out personally:
 
-1. AI PM buyers get **$100 off automatically**. Just reply "send it" and I'll send your code + the checkout link.
-2. I'd genuinely love your feedback on whether the pitch lands. I'm sending the broader launch email tomorrow; if anything reads off to you, I want to hear it.
+1. **AI PM alums get an extra $50 off the early-bird** — reply "send it" and I'll DM you the code on top of `CCEB150`.
+2. **Honest feedback ask:** the cohort is for AI-curious non-coders broadly (designers, marketers, ops, founders, PMs). If your gut says "Sid is going too wide on the audience," I want to hear it before I push the broadcast.
+
+Cohort starts Sun July 19. 70 seats, 6 taken, first 25 still get $450 (then $600).
+
+https://japmusd.mysamcart.com/checkout/build-with-claude-code?coupon=CCEB150
 
 — Sid
 
-PS: 70 seats total, 6 taken. $450. When it sells out, the cohort closes — no second wave.
+PS: If you've already been hearing about it through the newsletter — yes, same thing. I just wanted to make sure my warmest list got a personal note first.

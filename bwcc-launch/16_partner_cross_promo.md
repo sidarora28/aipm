@@ -1,7 +1,7 @@
 # Partner cross-promo asks — DM template
 
 ## Who to ask (pick 5–8 from your network)
-Criteria: someone with an audience of working PMs / PM-adjacent operators, who already knows you, who isn't selling a directly competing cohort this month.
+Criteria: someone with an audience of operators, PMs, designers, marketers, or AI-curious builders. Knows you. Not running a directly competing cohort right now.
 
 ## DM template (personalize the first line; rest is fine as-is)
 
@@ -9,22 +9,21 @@ Hey {{name}} —
 
 Hope launch season is treating you well. Quick ask, no pressure either way.
 
-I'm opening **BWCC** — a 4-week cohort for PMs who want to ship working prototypes with Claude Code — and I'm trying to fill the cohort by Jul 12. Hard cap of 70, 6 in from a quiet beta.
+I'm opening cohort 003 of **Build with Claude Code** — 4 weeks, you walk in with an idea and walk out with three deployed AI products on real URLs. Trying to fill 70 seats before cohort starts Sun July 19. 6 in already.
 
 If it'd land for some of your readers, two ways you could help:
 
-**1. A one-line drop in your next newsletter** — happy to write something in your voice if that's easier.
-
-**2. A single tweet/post** — same offer, I'll send copy you can edit.
+1. **A one-line drop in your next newsletter** — happy to write something in your voice if easier.
+2. **A single tweet/LinkedIn post** — same, I'll send copy you can edit.
 
 In return I'll happily:
 - Send you a free seat (or a 50%-off code for one of your readers/team)
-- Promote your next thing on my list (16.8K PMs) — pick the date
+- Promote your next thing on my list (19K+ readers) — pick the date
 - Just owe you one — your call
 
-Link if you want to look at the page: [BWCC_LANDING_URL]
+Course page if you want a look: https://japmusd.mysamcart.com/checkout/build-with-claude-code?coupon=CCEB150
 
-If it's not a fit right now, totally good — appreciate you reading this far.
+If not a fit right now, totally fine.
 
 — Sid
 
@@ -32,8 +31,8 @@ If it's not a fit right now, totally good — appreciate you reading this far.
 
 ## Ready-to-use newsletter blurb (send to partners who say yes)
 
-> Sid Arora — who runs AI PM — is opening a 4-week cohort called **BWCC (Build With Claude Code)** for PMs who want to ship working prototypes themselves instead of waiting for an engineering cycle. 70 seats, closes Jul 12. If the question "what would change if I could prototype my own ideas in an afternoon?" lands for you, take a look: [link]
+> Sid Arora — Head of Product for Gen AI at Yelp, writes JustAnotherPM — is running cohort 003 of **Build with Claude Code**. Four weeks. You walk in with an idea, you walk out with three deployed AI products on real URLs, directing Claude Code (you don't write code). Starts Sunday July 19. First 25 seats at $450 with code `CCEB150`, then $600. [link]
 
-## Ready-to-use tweet (send to partners who say yes)
+## Ready-to-use tweet / LinkedIn post (send to partners who say yes)
 
-> The most useful PM upskill I've seen this year is @sidarora28's BWCC — a 4-week cohort that teaches PMs to ship working prototypes in Claude Code. 70 seats, closes Jul 12. [link]
+> The most useful AI upskill I've seen this year is @sidarora28's Build with Claude Code. Four weeks. You ship three AI products on real URLs, directing Claude (you don't write code). Cohort 003 starts July 19, first 25 at $450 with code CCEB150. [link]

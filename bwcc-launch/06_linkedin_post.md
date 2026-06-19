@@ -1,21 +1,27 @@
 # LinkedIn — launch post (Jun 19)
 
-Most PMs are still using AI like Google.
+The single most common sentence I hear from people who care about AI:
 
-They paste a question into chat, copy the answer, move on.
+"I'm not technical enough."
 
-Meanwhile a quieter shift is happening: PMs who *actually open Claude Code* — point it at their repo, hand it the PRD, watch it write — are doing in an afternoon what used to take an eng sprint.
+It's the sentence that keeps smart, ambitious people on the bench while the room around them ships.
 
-Not "vibes" prototyping. Real working code. Real handoff-ready features. Built by the PM, reviewed by eng.
+I built Build with Claude Code to remove that sentence from the conversation.
 
-This is the gap I built BWCC to close.
+You don't write code. Claude Code writes the code. Your job is to direct it — pick the tool, pick the model, read what it produced, push back when it's wrong, iterate until it ships.
 
-4 weeks. 2 live sessions/week. By the end you've shipped a working prototype of a feature you speced this quarter — built by you, in Claude Code.
+That's the entire skill. And it transfers to anything you ever build.
 
-Open today. 70 seats. 6 taken in beta. $450 until sellout.
+In the cohort, you ship three real AI products in four weeks:
+→ A personal Second Brain (week 1)
+→ A multi-user AI Interview Coach with three Claudes working together (week 2)
+→ Your own idea, deployed to a live URL (weeks 3-4 → Demo Day)
+
+70 seats. First 25 at $450 (code `CCEB150`), then $600.
+Cohort 003 starts Sunday July 19.
 
 Link in the first comment.
 
 ---
 
-**First comment:** [BWCC_CHECKOUT_URL?utm_source=linkedin&utm_medium=post&utm_campaign=bwcc_launch]
+**First comment:** https://japmusd.mysamcart.com/checkout/build-with-claude-code?coupon=CCEB150
