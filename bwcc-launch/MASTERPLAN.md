@@ -11,50 +11,57 @@ Detailed checklist + dashboard lives at `/root/.claude/plans/wtf-is-happening-wo
 
 ---
 
-## Epic 1 — Emails
-Activate every high-intent sub-segment in Beehiiv + 1:1 personal outreach to past responders. Publish the Hard Sell automation. Send one-off broadcasts to the AI PM alums and cart abandons. Goal: hit each segment with the right message at the right time.
+## Epic 1 — Emails / Messaging
+Hit every high-intent pocket outside what the existing automations already cover. Different channel, different offer, or net-new audience.
 
 Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 
-### 1.1 Journeys / automations
-- [~] **Publish CC Hard Sell x Objections automation** (handled in another thread)
-  - confirm all 3 emails are final copy
-  - set trigger: Soft Sell Part 2 completers, exclude buyers
-  - publish
+### 1. Email to AI PM alumni ($300 offer)
+- [~] Sid sending (subject being rewritten, then send)
 
-### 1.2 Broadcasts to specific segments
-- [~] **AI PM Alumni $300 email** — Sid sending (in progress)
-- [ ] **AIPMA Cart Abandon re-engagement (315)**
-  - confirm/build segment in Beehiiv
-  - draft re-engagement email (1 send)
-  - schedule
-- [ ] **CCFC From Base paid offer (209)**
-  - confirm segment
-  - draft offer email
-  - schedule
-- [ ] **AI PM Waitlist + Cohort 2 broadcast (~700)**
-  - confirm segment
-  - draft broadcast
-  - schedule
-- [ ] **Past events / masterclass tags broadcast (~500)**
-  - pull tag list, build segment
-  - draft broadcast
-  - schedule
+### 2. Slack message to AI PM alumni
+- [ ] Draft Slack post (casual, $300 offer, link)
+- [ ] Post in AI PM Alumni Slack
+- [ ] Reply individually to reactions / DMs
 
-### 1.3 Off-Beehiiv broadcast
-- [ ] **WhatsApp 400 masterclass invite**
-  - export the 400 numbers
-  - draft WA message
-  - send (manual or via tool)
+### 3. 1:1 emails based on Gmail repliers
+- [ ] Pull Gmail repliers from BWCC/AIPM threads (last 12 months)
+- [ ] Filter to non-buyers, dedupe + rank
+- [ ] Draft 1:1 template (3-4 lines, personal hook field)
+- [ ] Send round 1 — top 25
+- [ ] Send round 2 — next 25
 
-### 1.4 1:1 personal emails
-- [ ] **Build list of ~50 past responders who haven't bought**
-  - pull Gmail high-replies (last 12 months, BWCC/AIPM topics)
-  - pull Beehiiv high-engagement-no-purchase
-  - dedupe + rank
-- [ ] **Draft 1:1 email template** (warm, 3-4 lines, personal hook field)
-- [ ] **Send round 1 — top 25**
-- [ ] **Send round 2 — next 25**
+### 4. Messaging for WhatsApp groups
+- [ ] List all WhatsApp groups + member counts
+- [ ] Draft per-group message (tone varies by group)
+- [ ] Send in each group
+- [ ] Follow-up DMs to anyone who reacts
+
+### 5. 5-email journey for AIPMA cart abandons
+- [ ] Confirm segment in Beehiiv (315)
+- [ ] Map 5-email arc: re-engage → price objection → time objection → social proof → urgency
+- [ ] Write all 5 emails
+- [ ] Build automation in Beehiiv
+- [ ] Set trigger + activate
+
+### 6. Reply-handling system
+- [ ] Define SLA (e.g. respond within 2 business hours)
+- [ ] Gmail label/filter for replies to Beehiiv automation emails
+- [ ] Draft 5 quick-reply templates (price / time / fit / yes / not interested)
+- [ ] Morning + evening sweep ritual
+
+### 7. Message to entire base for referrals
+*(blocked by #8 being live)*
+- [ ] Draft referral broadcast (WIIFM, code, expiry)
+- [ ] Decide audience: full 19K or engaged-only
+- [ ] Schedule send
+
+### 8. Build referral system
+- [ ] Mechanic: unique code or unique link?
+- [ ] Rewards: referrer gets X / referee gets Y (proposal: $100 cash to referrer + $100 off for referee)
+- [ ] Set up tracking (Samcart codes or affiliate-style)
+- [ ] Build /refer page
+- [ ] End-to-end test (buy with code → both rewards land)
 
 ---
 
