@@ -3,8 +3,10 @@
 ## Data sources — source of truth
 
 - **Source of truth for buyers / sales / cohort stats: the "Full Stats for DS" Google Sheet** (Sid maintains this manually).
+  - File ID: `1GBCmgnBDOXLD3dznKPepmEGhE-TgjsrDP4J5yBbzmuw`
+  - Buyer rows live on the **`all online sales`** tab (gid=689252720).
 - **DO NOT** rely on Gmail Stripe/Samcart receipt notifications for buyer lists. Sid has deleted most of them — they are NOT a comprehensive source.
-- When asked for buyer data, always go to the Google Sheet first. If a tab/range isn't visible, ASK where the right tab lives — don't fall back to Gmail-receipt sweeps.
+- When asked for buyer data, always go to the Google Sheet's `all online sales` tab first. If you can't find a tab, ASK — don't fall back to Gmail-receipt sweeps.
 
 ## Project context
 
