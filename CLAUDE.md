@@ -14,6 +14,12 @@
 - **AIPMA / AIPM Accelerator** — Sid's earlier cohort course. AIPM alumni get a 50% discount on BWCC ($300 vs $450/$600). They're handled by a separate email automation — exclude them from any general 1:1 outreach lists.
 - Sid's email: sid@justanotherpm.com. His Beehiiv sending domain: sid@www.mail.justanotherpm.com.
 
+## Pricing & sales rules
+
+- **Never lead with a discount.** The current pricing ($450/$600) is fair — including for Indian PMs (who earn enough to pay it). Discounting is a last resort, not an opening move.
+- If a prospect raises a price objection, sell the value harder before considering price flexibility. Only offer alt pricing if the prospect has clearly stated they're a fit AND price is the genuine final blocker (and even then, only when Sid approves on a case-by-case basis).
+- The 50% AIPMA-alumni discount ($300) is the only standing discount — and that's automated, not negotiated.
+
 ## Working files
 
 - Master plan: `bwcc-launch/MASTERPLAN.md`
