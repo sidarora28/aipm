@@ -11,6 +11,7 @@
 ## Project context
 
 - **BWCC = Build With Claude Code** — Sid's cohort course launching 19 July 2026 (Cohort 003).
+- **Checkout link (always use this one):** https://buildwithcc.vercel.app/paid
 - **AIPMA / AIPM Accelerator** — Sid's earlier cohort course. AIPM alumni get a 50% discount on BWCC ($300 vs $450/$600). They're handled by a separate email automation — exclude them from any general 1:1 outreach lists.
 - Sid's email: sid@justanotherpm.com. His Beehiiv sending domain: sid@www.mail.justanotherpm.com.
 
