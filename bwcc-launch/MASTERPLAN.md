@@ -25,8 +25,9 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [ ] Reply individually to reactions / DMs
 
 ### 3. 1:1 emails based on Gmail repliers
-- [ ] Pull Gmail repliers from BWCC/AIPM threads (last 12 months)
-- [ ] Filter to non-buyers, dedupe + rank
+- [x] Pull Gmail repliers from BWCC/AIPM threads (last 12 months) — 216 threads scanned
+- [x] Filter to non-buyers, dedupe + rank — list at `bwcc-launch/outreach/gmail-repliers-list.md` (caveats noted)
+- [ ] Sid sanity-check the list (Stripe/Samcart export + Ram Dwivedi dedupe)
 - [ ] Draft 1:1 template (3-4 lines, personal hook field)
 - [ ] Send round 1 — top 25
 - [ ] Send round 2 — next 25
