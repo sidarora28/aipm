@@ -29,6 +29,7 @@
 - **Scarcity card for non-price-objectors.** Use early-bird-closing + seats-filling urgency to push action now. "Lock it in tonight," "the price jumps soon," "I don't want you to come back next week and find the seat is gone."
 - **Keep it short.** Most 1:1 emails should be 80-120 words. Long enough to be personal, short enough that they're read on a phone in 20 seconds.
 - **Don't over-pitch.** If they've already seen the curriculum and said it looks good, don't re-pitch the curriculum. Acknowledge what they said and close.
+- **Draft placement: always reply to the LAST message in the thread overall** — not the last inbound message from the prospect. If Sid has sent a follow-up after their reply, anchor the draft to Sid's follow-up so it appears at the bottom of the thread with full context preserved. Anchoring to an earlier inbound message slots the draft mid-thread and breaks readability.
 
 ## Working files
 
