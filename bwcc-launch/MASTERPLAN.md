@@ -14,8 +14,47 @@ Detailed checklist + dashboard lives at `/root/.claude/plans/wtf-is-happening-wo
 ## Epic 1 — Emails
 Activate every high-intent sub-segment in Beehiiv + 1:1 personal outreach to past responders. Publish the Hard Sell automation. Send one-off broadcasts to the AI PM alums and cart abandons. Goal: hit each segment with the right message at the right time.
 
-### Tasks
-- [ ]
+Legend: `[ ]` todo · `[~]` in progress · `[x]` done
+
+### 1.1 Journeys / automations
+- [~] **Publish CC Hard Sell x Objections automation** (handled in another thread)
+  - confirm all 3 emails are final copy
+  - set trigger: Soft Sell Part 2 completers, exclude buyers
+  - publish
+
+### 1.2 Broadcasts to specific segments
+- [~] **AI PM Alumni $300 email** — Sid sending (in progress)
+- [ ] **AIPMA Cart Abandon re-engagement (315)**
+  - confirm/build segment in Beehiiv
+  - draft re-engagement email (1 send)
+  - schedule
+- [ ] **CCFC From Base paid offer (209)**
+  - confirm segment
+  - draft offer email
+  - schedule
+- [ ] **AI PM Waitlist + Cohort 2 broadcast (~700)**
+  - confirm segment
+  - draft broadcast
+  - schedule
+- [ ] **Past events / masterclass tags broadcast (~500)**
+  - pull tag list, build segment
+  - draft broadcast
+  - schedule
+
+### 1.3 Off-Beehiiv broadcast
+- [ ] **WhatsApp 400 masterclass invite**
+  - export the 400 numbers
+  - draft WA message
+  - send (manual or via tool)
+
+### 1.4 1:1 personal emails
+- [ ] **Build list of ~50 past responders who haven't bought**
+  - pull Gmail high-replies (last 12 months, BWCC/AIPM topics)
+  - pull Beehiiv high-engagement-no-purchase
+  - dedupe + rank
+- [ ] **Draft 1:1 email template** (warm, 3-4 lines, personal hook field)
+- [ ] **Send round 1 — top 25**
+- [ ] **Send round 2 — next 25**
 
 ---
 
