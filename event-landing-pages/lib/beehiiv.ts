@@ -18,6 +18,7 @@ export type SubscribeInput = {
   attribution?: Attribution;
   eventSlug: string;
   publicationId?: string; // optional per-event override
+  tags?: string[]; // Beehiiv subscriber tags to apply on signup
 };
 
 export type SubscribeResult =
@@ -80,6 +81,36 @@ export async function subscribeToBeehiiv(input: SubscribeInput): Promise<Subscri
       const text = await res.text().catch(() => "");
       return { ok: false, status: res.status, error: text || `Beehiiv error ${res.status}` };
     }
+
+    // Apply tags (best-effort, non-fatal). Beehiiv's Update Subscription (PUT)
+    // accepts a `tags` array and auto-creates any that don't exist. A tag
+    // failure must NOT fail the signup — the subscriber is already created and
+    // segmentable via the `event` custom field.
+    const data = await res.json().catch(() => null);
+    const subscriptionId: string | undefined = data?.data?.id;
+    const tags = (input.tags || []).filter(Boolean);
+    if (subscriptionId && tags.length) {
+      try {
+        const tagRes = await fetch(
+          `${BEEHIIV_API_BASE}/publications/${publicationId}/subscriptions/${subscriptionId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify({ tags }),
+          }
+        );
+        if (!tagRes.ok) {
+          const t = await tagRes.text().catch(() => "");
+          console.error("[beehiiv] tagging failed:", tagRes.status, t);
+        }
+      } catch (e) {
+        console.error("[beehiiv] tagging error:", (e as Error).message);
+      }
+    }
+
     return { ok: true, status: res.status };
   } catch (err) {
     return { ok: false, status: 502, error: (err as Error).message };

@@ -36,6 +36,7 @@ export async function POST(req: NextRequest) {
     eventSlug,
     attribution: payload.attribution || {},
     publicationId: ev.beehiivPublicationId,
+    tags: ev.beehiivTags,
   });
 
   if (!result.ok) {

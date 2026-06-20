@@ -51,6 +51,10 @@ export type EventConfig = {
 
   // ---- Beehiiv override (optional; falls back to BEEHIIV_PUBLICATION_ID env) ----
   beehiivPublicationId?: string;
+
+  // ---- Beehiiv tags applied on signup (reuse existing tag names exactly) ----
+  // Existing convention examples: "master class signed up", "claude free course".
+  beehiivTags: string[];
 };
 
 const PLACEHOLDER_VIDEOS: VideoEmbed[] = [
@@ -115,6 +119,10 @@ function makePlaceholderEvent(n: number): EventConfig {
     videos: PLACEHOLDER_VIDEOS,
     testimonialsHeading: "Also, people usually get a lot of value from our free trainings…",
     testimonials: PLACEHOLDER_TESTIMONIALS,
+
+    // "master class signed up" already exists in Beehiiv; the per-event tag is a
+    // placeholder — set the real, existing tag name before launch.
+    beehiivTags: ["master class signed up", `TODO-tag-event-${n}`],
   };
 }
 
