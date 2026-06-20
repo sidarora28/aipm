@@ -52,8 +52,12 @@ are `NEXT_PUBLIC_*` and optional — everything no-ops cleanly without them.
 
 - [ ] Replace placeholder copy in `lib/events.ts` (4 events).
 - [ ] Set real slugs.
-- [ ] Add `BEEHIIV_API_KEY` + `BEEHIIV_PUBLICATION_ID` (+ per-event pub id if needed).
-- [ ] Create matching Beehiiv custom fields (Event, utm_term, etc.).
+- [x] Beehiiv publication wired → JustAnotherPM (`pub_f1be7747…`, default in
+      `lib/beehiiv.ts`).
+- [x] Beehiiv custom fields created: `event`, `ck_subscriber_id`, `landing_path`,
+      `gclid`, `fbclid` (+ existing `first_name`). `utm_source/medium/campaign/
+      term/content` + `referring_site` are native Beehiiv fields.
+- [ ] Add `BEEHIIV_API_KEY` (the only required secret) in `.env.local` / Vercel.
 - [ ] Add `NEXT_PUBLIC_MIXPANEL_TOKEN` / `NEXT_PUBLIC_GA_ID` and confirm event
       names match the bwcc analytics schema.
 - [ ] Swap placeholder calendar icons for real brand SVGs (AddEvent-style).
