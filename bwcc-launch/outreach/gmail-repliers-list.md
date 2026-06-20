@@ -15,7 +15,7 @@ Use legend: `[ ]` not contacted · `[~]` sent, awaiting reply · `[r]` replied �
 | 4 | [ ] | Divya Adinarayanan | divya.adinarayanan@gmail.com | 2026-01-03 | Asked price/curriculum | HIGH |
 | 5 | [ ] | U. Choudhry | uchoudhry88@gmail.com | 2026-03-31 | Joined live, interested cohort 2 | HIGH |
 | 6 | [ ] | Balaji Chandrasekaran | balaji1chandrasekaran@gmail.com | 2026-01-09 | Price-sensitive but interested | HIGH |
-| 7 | [ ] | Soofi | soofi293@gmail.com | 2026-06-15 | Reviewed curriculum, draft sitting in Gmail (not yet sent) | HIGH |
+| 7 | [~] | Soofi | soofi293@gmail.com | 2026-06-15 | Sent Jun 20 17:02 — awaiting reply | HIGH |
 | 8 | [~] | Vibhuti Bhushan | vibhuti.bhushan@gmail.com | 2026-06-15 | Sent Jun 20 — awaiting reply | MED |
 | 9 | [ ] | Prateek Garg | prateek.garg@genesys.com | 2026-01-12 | Interested but timing | HIGH |
 | 10 | [ ] | Rhea Kaushik | kaushik.rhea@gmail.com | 2025-12-31 | Wants to switch into AI PM | HIGH |
@@ -71,13 +71,13 @@ Verified against the **full** `all online sales` data (through Jun 2026):
 
 ## Sent log (2026-06-20)
 
-5 of 6 1:1 emails sent today, all to last-7-day prospects. Soofi draft remains in Gmail unsent.
+All 6 1:1 emails sent today, all to last-7-day prospects.
 
-| Prospect | Status | Sent at (UTC) | Notes |
+| Prospect | Status | Sent at (local) | Notes |
 |---|---|---|---|
-| Vibhuti | ✓ sent | 16:06 | Sid edited body before sending |
-| Lisane | ✓ sent | 16:01 | Sid rewrote — added "I'm UK based too" angle |
-| Prasad | ✓ sent | 15:59 | Close to the v2 draft |
-| Kemprai | ✓ sent | 15:46 | Sid opened a price negotiation ("what number works for you") — different angle from the drafts |
-| Isht | ✓ sent | 15:46 | Sid sent the v1 draft (which still had the discount mention) |
-| Soofi | ✗ not yet | — | Draft still in Gmail — needs Sid to send |
+| Soofi | ✓ sent | 17:02 | Close to v2 draft; "code pre applied" link |
+| Vibhuti | ✓ sent | 16:06 UTC | Sid edited body before sending |
+| Lisane | ✓ sent | 16:01 UTC | Sid rewrote — added "I'm UK based too" angle |
+| Prasad | ✓ sent | 15:59 UTC | Close to v2 draft |
+| Kemprai | ✓ sent | 15:46 UTC | Sid opened a price negotiation ("what number works for you") — different angle from the drafts |
+| Isht | ✓ sent | 15:46 UTC | Sid sent the v1 draft (still had the discount mention) |
