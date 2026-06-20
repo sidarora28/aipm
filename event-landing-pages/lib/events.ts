@@ -120,9 +120,10 @@ function makePlaceholderEvent(n: number): EventConfig {
     testimonialsHeading: "Also, people usually get a lot of value from our free trainings…",
     testimonials: PLACEHOLDER_TESTIMONIALS,
 
-    // "master class signed up" already exists in Beehiiv; the per-event tag is a
-    // placeholder — set the real, existing tag name before launch.
-    beehiivTags: ["master class signed up", `TODO-tag-event-${n}`],
+    // Applied to every signup. Beehiiv auto-creates the tag on first use.
+    // Which specific event someone signed up for is still captured in the
+    // `event` custom field, so one shared tag is enough.
+    beehiivTags: ["bwcc masterclass"],
   };
 }
 
