@@ -30,6 +30,10 @@ Series across the 4 weekends leading into the cohort.
 - [ ] **2.1 Finalise list of event topics for 4 weekends**
 - [ ] **2.2 Create landing pages for all events**
 - [ ] **2.3 Create scheduled emails (promo + reminders) for all events**
+- [ ] **2.4 Nail topic + structure of each event** (upstream of 2.1, 2.2, 2.3 — gets it right before producing)
+- [ ] **2.5 Tactics to get insanely high sign-ups** (the funnel into each event)
+- [ ] **2.6 Tactics to retain attendees till the end of each session** (drop-off is where conversion dies)
+- [ ] **2.7 Tactics to hit 30% event → BWCC purchase conversion** (the close mechanics)
 
 ---
 
