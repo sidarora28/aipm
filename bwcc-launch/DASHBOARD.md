@@ -10,12 +10,12 @@
 |---|---|
 | Days to cohort start | **28** |
 | Sales today | **0** so far |
-| Cumulative sales | **6** |
+| Cumulative sales | **10** (live from Beehiiv tag `cc paid course`) |
 | Realistic target | 70 |
 | Stretch target | 100 |
-| Gap to realistic | **64** |
-| Daily rate needed | **2.3 / day** |
-| % to realistic | 8.6% |
+| Gap to realistic | **60** |
+| Daily rate needed | **2.1 / day** |
+| % to realistic | 14.3% |
 
 ---
 
