@@ -10,12 +10,12 @@
 |---|---|
 | Days to cohort start | **28** |
 | Sales today | **0** so far |
-| Cumulative sales | **10** (live from Beehiiv tag `cc paid course`) |
+| Cumulative sales | **9** (verified by Sid · file: `bwcc-launch/data/buyers.md`) |
 | Realistic target | 70 |
 | Stretch target | 100 |
-| Gap to realistic | **60** |
-| Daily rate needed | **2.1 / day** |
-| % to realistic | 14.3% |
+| Gap to realistic | **61** |
+| Daily rate needed | **2.2 / day** |
+| % to realistic | 12.9% |
 
 ---
 
