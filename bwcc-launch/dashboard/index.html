@@ -49,7 +49,7 @@
     <!-- TASKS TAB -->
     <div id="tab-content-tasks">
       <section class="mb-10">
-        <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold mb-4">Today's focus · 2026-06-20</h2>
+        <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold mb-4">Today's focus · 2026-06-21</h2>
         <div class="space-y-2" id="todayPriorities"></div>
       </section>
 
@@ -137,69 +137,65 @@
   <script>
     const DATA = {
       meta: {
-        lastUpdated: 'Jun 20, 2026 · 5:30 PM',
-        daysRemaining: 29
+        lastUpdated: 'Jun 21, 2026 · morning',
+        daysRemaining: 28
       },
       sales: {
         target: 70,
         cumulative: 6,
-        today: 1,
+        today: 0,
         gap: 64,
-        dailyRate: 2.2,
+        dailyRate: 2.3,
         progressPct: 8.6,
         dailyLog: [
           { date: 'Jun 19', sales: 0 },
-          { date: 'Jun 20', sales: 1 }
+          { date: 'Jun 20', sales: 1 },
+          { date: 'Jun 21', sales: 0 }
         ]
       },
       sources: [
-        { name: 'Newsletter / automations', target: 25, actual: 6, status: 'running' },
+        { name: 'Newsletter automations', target: 25, actual: 6, status: 'running' },
         { name: 'Hard Sell × Objections', target: 15, actual: 0, status: 'inprogress' },
-        { name: 'AIPMA Cart Abandon (5-email)', target: 13, actual: 0, status: 'not-started' },
+        { name: 'BWCC cart-abandon flow', target: 10, actual: 0, status: 'not-started' },
         { name: '1:1 personal emails', target: 10, actual: 0, status: 'inprogress' },
-        { name: 'WhatsApp groups', target: 12, actual: 0, status: 'not-started' },
-        { name: 'AIPMA alumni email', target: 5, actual: 0, status: 'inprogress' },
-        { name: 'AIPMA alumni Slack', target: 5, actual: 0, status: 'not-started' },
-        { name: 'Masterclass Jul 18', target: 12, actual: 0, status: 'not-started' },
-        { name: 'Affiliates — warm tier (7)', target: 20, actual: 0, status: 'not-started' },
-        { name: 'Affiliates — cold tier (16)', target: 10, actual: 0, status: 'not-started' },
+        { name: 'AIPM alumni email + Slack', target: 8, actual: 0, status: 'running' },
+        { name: 'Events series (4 weekends)', target: 15, actual: 0, status: 'not-started' },
         { name: 'Ads — Meta cold', target: '?', actual: '?', status: 'running' },
         { name: 'Ads — Meta retargeting', target: '?', actual: 0, status: 'not-started' },
-        { name: 'Buyer referrals', target: 4, actual: 0, status: 'not-started' },
+        { name: 'Social — Twitter + LinkedIn', target: 8, actual: 0, status: 'not-started' },
         { name: 'Organic / unpredictable', target: 6, actual: 0, status: 'running' }
       ],
       todayPriorities: [
-        { task: 'Watch for replies on the 6 outreach emails sent today', detail: 'Soofi · Vibhuti · Lisane · Prasad · Kemprai · Isht. Respond within 2 hrs to anyone hot.', priority: 'high' },
-        { task: 'Publish Hard Sell × Objections automation', detail: 'In another thread — trigger to Soft Sell Part 2 completers, exclude buyers.', priority: 'inprogress' },
-        { task: 'Send AI PM Alumni $300 email', detail: 'Subject being rewritten — finalise & send.', priority: 'inprogress' },
-        { task: 'Lock masterclass date + platform for Jul 18', detail: 'StreamYard → YouTube Live recommendation. Pick exact time.', priority: 'high' },
-        { task: 'Audit Meta cold ads', detail: 'CPC / CTR / CVR / ROAS — pause underperformers, double-down on winners.', priority: 'med' }
+        { task: 'Publish Hard Sell × Objections automation', detail: 'ETA today (Sun 21 Jun) — being handled in another thread.', priority: 'inprogress' },
+        { task: 'Reply quickly to anyone responding to yesterday\'s 6 outreach emails', detail: 'Soofi · Vibhuti · Lisane · Prasad · Isht · Kemprai. Hot leads. Sub-2-hour reply SLA.', priority: 'high' },
+        { task: 'Decide BWCC differentiator', detail: 'Epic 5.1 — upstream of landing page, Twitter, ad creative, cart-abandon copy. Everything else mis-fires without this.', priority: 'high' },
+        { task: 'Lock topics for the 4-weekend events series', detail: 'Epic 2.1 — gates Epic 2.2 (landing pages) and 2.3 (promo emails).', priority: 'med' },
+        { task: 'Audit Meta cold ad performance', detail: 'CPC / CTR / CVR / ROAS — pause losers, double-down on winners.', priority: 'med' }
       ],
       thisWeek: [
-        { task: 'Reach out to 7 warm affiliate partners', detail: 'David Pereira, Bart, Pawel, Aakash, Aatir, Ankit, Maja. Pre-written copy bundle first.' },
-        { task: 'Build AIPMA Cart Abandon 5-email journey', detail: 'Confirm segment (315) → map arc → write → build in Beehiiv → activate.' },
-        { task: 'Slack message to AIPMA alumni', detail: '$300 offer in their community channel.' },
-        { task: 'Set up affiliate tracking in Samcart (~30 min)', detail: 'Then write the copy bundle: tweet thread + newsletter blurb + LinkedIn post.' },
-        { task: 'Launch Meta warm retargeting campaign', detail: 'Site visitors 30d + Beehiiv list upload + masterclass video viewers. 3 creative variants.' },
-        { task: 'Pull list of 30 most-engaged for Loom outreach', detail: 'Then write script and send.' },
-        { task: 'Ask each of 6 existing buyers for one referral', detail: 'Personal email + referral code (once system is live).' },
-        { task: 'Set up reply-handling system', detail: 'Gmail filter on Beehiiv replies, 5 quick-reply templates, morning + evening sweep.' }
+        { task: 'Build BWCC cart-abandon flow (Epic 1.5)', detail: 'High-intent segment. Fit for the creative tactics on file — objection contest, personalised Loom.' },
+        { task: 'Event landing pages × 4 (Epic 2.2)', detail: 'Depends on topic decision today.' },
+        { task: 'Scheduled emails (promo + reminders) for all 4 events (Epic 2.3)', detail: '' },
+        { task: 'Launch Meta warm retargeting campaign (Epic 3.1)', detail: 'Site visitors 30d + Beehiiv list upload + masterclass video viewers. 3 creative variants.' },
+        { task: 'Add new creatives to cold-targeting campaigns (Epic 3.2)', detail: 'Tied to the differentiator outcome.' },
+        { task: 'Twitter 2×/day + LinkedIn M-F content sprint (Epic 4.2)', detail: 'Sunday-morning batch produce + Typefully schedule for the week.' },
+        { task: 'Credibility-as-builder plan (Epic 4.1)', detail: 'Open question — could power via existing masterclasses → YouTube + Shorts via Opus Clip.' },
+        { task: 'Restructure main landing page (Epic 5.2)', detail: 'Once differentiator is locked.' }
       ],
       conversationsToWatch: [
-        { name: 'Vibhuti', detail: 'WhatsApp call offer open + tonight nudge sent 16:06 UTC.', state: 'waiting' },
-        { name: 'Soofi', detail: 'Final-step warm lead. Sent 17:02. "Build-first" angle.', state: 'waiting' },
-        { name: 'Kemprai', detail: 'Sid opened price negotiation — awaiting their number.', state: 'waiting' },
-        { name: 'Isht (physics prof)', detail: 'Sent 15:46 with discount mention.', state: 'waiting' },
-        { name: 'Lisane (UK)', detail: 'Timing answered + tonight nudge sent 16:01.', state: 'waiting' },
-        { name: 'Prasad (PST)', detail: 'PST timing confirmed + tonight nudge sent 15:59.', state: 'waiting' }
+        { name: 'Soofi', detail: 'Sent Jun 20 17:02. Warm "build-first" lead. No reply yet.', state: 'waiting' },
+        { name: 'Vibhuti', detail: 'Sent Jun 20 16:06. WhatsApp call offer + tonight nudge. No reply yet.', state: 'waiting' },
+        { name: 'Lisane (UK)', detail: 'Sent Jun 20 16:01. Timing answered + tonight nudge. No reply yet.', state: 'waiting' },
+        { name: 'Prasad (PST)', detail: 'Sent Jun 20 15:59. PST timing confirmed + tonight nudge. No reply yet.', state: 'waiting' },
+        { name: 'Isht (physics prof)', detail: 'Sent Jun 20 15:46. v1 draft with discount mention. No reply yet.', state: 'waiting' },
+        { name: 'Kemprai', detail: 'Sent Jun 20 15:46. Sid opened price negotiation — awaiting their number.', state: 'waiting' }
       ],
       epics: [
-        { name: '1 · Emails / Messaging', total: 8, done: 0, inprogress: 3, pct: 15 },
-        { name: '2 · Events / Masterclasses', total: 0, done: 0, inprogress: 0, pct: 0, note: 'not yet broken down' },
-        { name: '3 · Partnerships / Affiliates', total: 0, done: 0, inprogress: 0, pct: 0, note: 'not yet broken down' },
-        { name: '4 · Personal outreach', total: 0, done: 0, inprogress: 0, pct: 0, note: 'not yet broken down' },
-        { name: '5 · Social / Organic', total: 0, done: 0, inprogress: 0, pct: 0, note: 'not yet broken down' },
-        { name: '6 · Ads (Meta)', total: 0, done: 0, inprogress: 1, pct: 5, note: 'cold running, not audited' }
+        { name: '1 · Emails', total: 5, done: 3, inprogress: 1, pct: 70 },
+        { name: '2 · Events (4-weekend series)', total: 3, done: 0, inprogress: 0, pct: 0 },
+        { name: '3 · Ads (Meta)', total: 2, done: 0, inprogress: 1, pct: 5, note: 'cold running, not audited' },
+        { name: '4 · Social / Organic', total: 2, done: 0, inprogress: 0, pct: 0, note: 'strategy drafted in chat' },
+        { name: '5 · Meta-level', total: 2, done: 0, inprogress: 0, pct: 0, note: 'upstream of everything' }
       ]
     };
 

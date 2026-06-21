@@ -1,6 +1,6 @@
 # BWCC Cohort 003 — Launch Dashboard
 
-**Snapshot:** 2026-06-20 (Sat) · **Cohort starts:** Sun 19 July 2026
+**Snapshot:** 2026-06-21 (Sun) · **Cohort starts:** Sun 19 July 2026
 
 ---
 
@@ -8,72 +8,78 @@
 
 | | |
 |---|---|
-| Days to cohort start | **29** |
-| Sales today | **1** (Afra AlSuwaidi, $450, AE) |
+| Days to cohort start | **28** |
+| Sales today | **0** so far |
 | Cumulative sales | **6** |
 | Realistic target | 70 |
 | Stretch target | 100 |
 | Gap to realistic | **64** |
-| Daily rate needed | **2.2 / day** |
+| Daily rate needed | **2.3 / day** |
 | % to realistic | 8.6% |
 
 ---
 
 ## Sales by source
 
-| Source | Target | Actual | % | Status |
-|---|---|---|---|---|
-| Newsletter / automations (CC PC Soft Sell live) | 25 | 6 | 24% | running |
-| Hard Sell x Objections automation | 15 | 0 | 0% | publishing in other thread |
-| AIPMA Cart Abandon (5-email journey) | 13 | 0 | 0% | not built |
-| 1:1 personal emails (Gmail repliers) | 10 | 0 | 0% | 6 sent today, awaiting replies |
-| WhatsApp groups | 12 | 0 | 0% | not started |
-| AIPMA alumni broadcast | 5 | 0 | 0% | in progress (Sid sending) |
-| AIPMA alumni Slack | 5 | 0 | 0% | not posted |
-| Masterclass Jul 18 | 12 | 0 | 0% | not scheduled |
-| Affiliates — warm tier | 20 | 0 | 0% | not contacted |
-| Affiliates — cold tier | 10 | 0 | 0% | not contacted |
-| Ads — Meta cold | ? | ? | — | running, not audited |
-| Ads — Meta retargeting | ? | 0 | — | not launched |
-| Buyer referrals | 4 | 0 | 0% | not asked |
-| Organic / unpredictable | 6 | 0 | 0% | — |
-| **TOTAL** | **137+** | **6** | **4%** | |
+Aligned with the scoped 5-epic MASTERPLAN.
 
-*Note: attribution for the 6 existing sales is best-guess — no UTM tracking on the checkout link yet. Worth adding `?ref=` params to outbound emails going forward so this table sharpens.*
+| Source | Target | Actual | Status |
+|---|---|---|---|
+| Newsletter automations (CC PC Soft Sell live) | 25 | 6 | running |
+| Hard Sell × Objections automation | 15 | 0 | publishing today |
+| BWCC cart-abandon flow | 10 | 0 | not built |
+| 1:1 personal emails (Gmail repliers) | 10 | 0 | 6 sent yesterday, awaiting replies |
+| AIPM alumni email + Slack | 8 | 0 | sent |
+| Events series (4 weekends) | 15 | 0 | topics not finalised |
+| Ads — Meta cold | ? | ? | running, not audited |
+| Ads — Meta retargeting | ? | 0 | not launched |
+| Social — Twitter + LinkedIn | 8 | 0 | strategy drafted |
+| Organic / unpredictable | 6 | 0 | — |
+| **TOTAL** | **97+** | **6** | |
+
+*Attribution for the 6 sales so far is best-guess — no UTM tracking on checkout yet. Worth adding `?ref=` params to outbound links so this table sharpens.*
 
 ---
 
-## Today's log — 2026-06-20
+## Today — 2026-06-21 (Sun)
 
-**Shipped:**
-- 1:1 outreach: 6 emails sent (Soofi, Vibhuti, Lisane, Prasad, Kemprai, Isht) — last-7-day high-recency prospects
-- 1:1 outreach list cleaned + saved to `bwcc-launch/outreach/gmail-repliers-list.md` (31 prospects after buyer filter)
-- MASTERPLAN.md scaffold (6 epics) + Epic 1 (Emails) task breakdown
-- CLAUDE.md project memory written (data sources, pricing rules, 1:1 email house style, draft placement rules)
+**Today's priorities:**
+1. Publish Hard Sell × Objections automation (ETA today, other thread)
+2. Reply quickly to anyone responding to yesterday's 6 outreach emails
+3. **Decide BWCC differentiator** (Epic 5.1) — upstream of landing page + Twitter + ad creative
+4. Lock topics for the 4-weekend events series (Epic 2.1)
+5. Audit Meta cold ad performance — pause losers, double-down on winners
 
-**Sales:** 1 (Afra AlSuwaidi, $450 BWCC, AE)
-
-**Conversations to watch over the weekend:**
-- Vibhuti — open WhatsApp-call offer + tonight nudge
-- Soofi — final-step warm lead, sent late afternoon
-- Kemprai — Sid opened price negotiation; awaiting their number
-- Isht — physics professor, India, sent with discount mention
+**Conversations to watch (sent Jun 20, no replies yet):**
+- Soofi (warm) · Vibhuti · Lisane · Prasad · Isht · Kemprai (price-neg)
 
 **Blocked / parked:**
-- Hard Sell x Objections automation — in another thread, not yet published
-- AIPMA Cart Abandon journey — not designed
-- Affiliate program — Samcart tracking not enabled
-- Ads — cold campaign needs audit, warm retargeting not launched
+- BWCC cart-abandon flow — not designed
+- Event landing pages — depends on topic decisions
+- Meta retargeting — needs creative
+- Twitter + LinkedIn series — strategy drafted, content not produced
+
+---
+
+## Epic progress
+
+| Epic | Tasks | Done | In progress | % |
+|---|---|---|---|---|
+| 1 · Emails | 5 | 3 | 1 | 70% |
+| 2 · Events (4-weekend series) | 3 | 0 | 0 | 0% |
+| 3 · Ads (Meta) | 2 | 0 | 1 (cold running) | 5% |
+| 4 · Social / Organic | 2 | 0 | 0 | 0% |
+| 5 · Meta-level (differentiator + LP) | 2 | 0 | 0 | 0% |
 
 ---
 
 ## Daily sales tracker
 
-| Date | Day-of | Sales today | Cumulative | What shipped |
+| Date | Day | Sales today | Cumulative | What shipped |
 |---|---|---|---|---|
 | Jun 19 | Fri | (baseline) | 5 | — |
-| Jun 20 | Sat | 1 | 6 | 1:1 outreach (×6), MASTERPLAN scaffold, list cleaned |
-| Jun 21 | Sun | | | |
+| Jun 20 | Sat | 1 | 6 | 1:1 outreach (×6), MASTERPLAN scaffold, list cleaned, dashboard built |
+| Jun 21 | Sun | 0 so far | 6 | (in motion: Hard Sell automation, dash refresh) |
 | Jun 22 | Mon | | | |
 | Jun 23 | Tue | | | |
 | Jun 24 | Wed | | | |
@@ -100,16 +106,18 @@
 | Jul 15 | Wed | | | |
 | Jul 16 | Thu | | | |
 | Jul 17 | Fri | | | |
-| Jul 18 | Sat | | | (masterclass — if scheduled) |
+| Jul 18 | Sat | | | (event weekend 4) |
 | Jul 19 | Sun | | | **Cohort starts** |
 
 ---
 
+## On file but not in MASTERPLAN yet
+
+- Creative sales tactics playbook (7 ideas): `bwcc-launch/playbook/creative-sales-tactics.md`
+- Twitter + LinkedIn content strategy drafted in chat — not yet codified
+- YouTube + Shorts/Reels from existing masterclasses via Opus Clip — discussed, not decided
+- HTML dashboard at `bwcc-launch/dashboard/index.html` — not yet deployed to Vercel
+
 ## How this gets refreshed
 
-Each morning I pull:
-- New sales from `Full Stats for DS` Google sheet → update Top-line + daily tracker
-- Replies & sends from Gmail → update conversations to watch
-- Anything shipped overnight → today's log
-
-If you want a different time-of-day refresh (e.g. evening), say so. Default = first thing in your morning.
+Ping me ("refresh" / "morning" / "where are we") → I pull from the sheet + Gmail and regenerate this file + the HTML dashboard.
