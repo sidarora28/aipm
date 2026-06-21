@@ -48,8 +48,12 @@ Cold campaign is already running. Retargeting / warm not yet launched.
 
 ## Epic 4 — Social / Organic
 
-- [ ] **4.1 Build credibility plan as "top builder"** — solid positioning push, not generic launch promo. Reputation > announcements.
-- [ ] **4.2 Twitter 2× per day soft- and hard-sell series** (AI-generated)
+Full strategy: `bwcc-launch/social-strategy.md` (grounded in actual X analytics — teaching content wins, sell-posts die; social's job is TOFU + free-course funnel, not direct BWCC selling).
+
+- [ ] **4.1 Build credibility plan as "top builder"** — solid positioning push, not generic launch promo. Reputation > announcements. → Pillar 2 (authority/BIP) in strategy doc.
+- [ ] **4.2 Value-first cadence on X** (teaching + build-in-public → free-course CTA; sell-beats rationed to launch/milestones/scarcity/close). *Supersedes the old "2×/day soft+hard sell" instinct — the data says pitch-heavy posting burns reach.*
+- [ ] **4.3 Stand up LinkedIn** — biggest untapped surface; PM buyers live there. Native long-form 4–5×/week, reformatted from best X content.
+- [ ] **4.4 Deploy social stunts** — public buyer list (#1), 10th-buyer Venmo (#3), midnight close on LinkedIn Live (#5). See playbook + strategy §7.
 
 ---
 
