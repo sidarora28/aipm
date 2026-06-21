@@ -50,6 +50,7 @@ Cold campaign is already running. Retargeting / warm not yet launched.
 
 - [ ] **4.1 Build credibility plan as "top builder"** — solid positioning push, not generic launch promo. Reputation > announcements.
 - [ ] **4.2 Twitter 2× per day soft- and hard-sell series** (AI-generated)
+- [ ] **4.3 Creator / influencer cross-promo** — recruit 5–8 creators, hand each a tailored brief. Deal: affiliate commission per sale; audience gets early-bird **+ bonus** (no price cut); unique tracked link/code per creator. Master brief: `bwcc-launch/outreach/influencer-campaign-brief.md`. Recruit DM: `bwcc-launch/16_partner_cross_promo.md`.
 
 ---
 
