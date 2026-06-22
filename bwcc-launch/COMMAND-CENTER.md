@@ -17,6 +17,17 @@
 
 ---
 
+## 📆 Daily tracker — anti-drift spine
+
+> **Ritual:** AM — pull yesterday's *carry-over*, set ONE focus. EOD — mark done vs slipped; slipped rolls to the next day. No silent restarts onto new things.
+
+### Mon 22 Jun — focus: lock strategy + stand up the system
+- **Committed AM (EOD goals):** publish hard-sell · reply to repliers (Soofi +5) · lock differentiator (5.1) · lock event topics (2.1) · audit cold ads
+- **✅ Done:** differentiator locked · W1 finalised + page live · influencer brief · hard-sell built 11/11 · command center + Karpathy principles · growth-agent direction set
+- **⬚ Slipped → carry to Tue 23:** publish hard-sell (your final checks) · reply to repliers · event topics W2–4 · audit cold ads
+
+---
+
 ## 🔴 Blocked on Sid — each one clears a lane
 
 | # | Decision | Unblocks |
