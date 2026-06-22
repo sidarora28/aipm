@@ -1,9 +1,9 @@
 # BWCC — Positioning & Differentiator
-## drafted 2026-06-22 · PROPOSED lock for Epic 5.1 (Sid to confirm)
+## LOCKED 2026-06-22 (Sid) · Epic 5.1
 
-> Distilled from Sid's creator brief (`outreach/creator-brief.md`). Single source for the positioning line used across the landing page, ads, emails, and social. Nothing here is locked until Sid signs off.
+> Distilled from Sid's creator brief (`outreach/creator-brief.md`). Single source for the positioning line used across the landing page, ads, emails, and social. **Locked by Sid — 2026-06-22.**
 
-## The differentiator (Epic 5.1 — proposed)
+## The differentiator (Epic 5.1 — LOCKED)
 
 **Most "AI courses" teach you to *chat* with a model. BWCC teaches you to *direct* one.**
 

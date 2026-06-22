@@ -20,6 +20,7 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - **W1 event (Email Assistant) details finalised** (Epic 2.4) — topic, structure, 3 milestones + retention beats locked. Spec: `bwcc-launch/events/01-email-assistant.md`.
 - **W1 event landing page live** (Epic 2.2).
 - **Influencer campaign brief done** (Epic 4.3) — ready to brief talent and start outreach.
+- **Differentiator LOCKED** (Epic 5.1) — "teach people to *direct* AI, not chat with it; ship 3 real products in 4 weeks, no code." `positioning.md`.
 
 ## Focus — tomorrow, Tue 23 June
 
@@ -77,7 +78,7 @@ Cold campaign is already running. Retargeting / warm not yet launched.
 
 The strategic anchor for everything above. Without these settled, the tactical work below mis-fires.
 
-- [~] **5.1 Decide a differentiator** — *proposed + drafted* in `positioning.md`: "most courses teach you to *chat* with a model; BWCC teaches you to *direct* one — ship 3 real products in 4 weeks, no code." Awaiting Sid's lock.
+- [x] **5.1 Differentiator — LOCKED** (Sid, 2026-06-22): "most courses teach you to *chat* with a model; BWCC teaches you to *direct* one — ship 3 real products in 4 weeks, no code." Full positioning in `positioning.md`.
 - [ ] **5.2 Finalise new structure for main landing page** — reflecting the differentiator
 
 ---
