@@ -16,7 +16,7 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 
 ## Shipped today — Mon 22 June
 
-- **Hard Sell × Objections automation — 8 of 11 emails built** (Epic 1.4). 3 to go, then publish.
+- **Hard Sell × Objections automation — all 11 emails built** (Epic 1.4). Sid in final checks → publish.
 - **W1 event (Email Assistant) details finalised** (Epic 2.4) — topic, structure, 3 milestones + retention beats locked. Spec: `bwcc-launch/events/01-email-assistant.md`.
 - **W1 event landing page live** (Epic 2.2).
 - **Influencer campaign brief done** (Epic 4.3) — ready to brief talent and start outreach.
@@ -34,7 +34,7 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [x] **1.1 Email to AIPM alumni** ($300 offer) — sent
 - [x] **1.2 Slack to AIPM alumni** — posted
 - [x] **1.3 1:1 emails to Gmail repliers** — 6 sent 2026-06-20 (Soofi, Vibhuti, Lisane, Prasad, Kemprai, Isht), awaiting replies
-- [~] **1.4 Publish Hard Sell × Objections automation** — 8 of 11 emails built (2026-06-22); 3 to go, then publish (handled in another thread)
+- [~] **1.4 Publish Hard Sell × Objections automation** — all 11 emails built (2026-06-22); Sid in final checks, then publish (built in Beehiiv / another thread)
 - [ ] **1.5 Create cart-abandon flow for BWCC clickers** — clicked checkout, didn't buy. High-intent segment, great fit for creative tactics (objection contest, personalized Loom — see playbook)
 
 ---
