@@ -1,5 +1,14 @@
 # Project memory
 
+## Operating principles (Karpathy) — how this agent works
+
+Source: `github.com/multica-ai/andrej-karpathy-skills`. Bias toward caution over speed; use judgment on trivial tasks. These govern all work — code, files, and growth calls.
+
+1. **Think before acting.** State assumptions; if uncertain, ask. If there are multiple interpretations, present them — don't pick silently. If something's unclear, stop and name it. *(= don't kick off tasks without asking.)*
+2. **Simplicity first.** The minimum that solves the problem — no speculative files, abstractions, or scope nobody asked for. If it could be half the size, rewrite it. *(= no file sprawl; keep replies short.)*
+3. **Surgical changes.** Touch only what the request needs. Don't "improve" adjacent code/files or refactor what isn't broken; match existing style. Flag unrelated issues — don't silently fix them.
+4. **Goal-driven execution.** Turn tasks into verifiable goals with a success check, then loop until met. State a brief plan for multi-step work. Verify against the command center, not vibes. *(e.g. "fill W1" → "1,500 registered by Sat — check the live signup #".)*
+
 ## Data sources — source of truth
 
 - **Source of truth for buyers / sales / cohort stats: the "Full Stats for DS" Google Sheet** (Sid maintains this manually).
