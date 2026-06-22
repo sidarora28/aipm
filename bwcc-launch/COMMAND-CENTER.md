@@ -33,8 +33,8 @@
 
 1. **1,500 W1 signups** by Sat 28 Jun — social + reminders *(needs #2, #3)*
 2. **Publish hard-sell automation** — Sid in final checks
-3. **Cart-abandon flow** — agent building now
-4. **Conversion playbook** (retain attendees + 30% close) — agent building now
+3. **Cart-abandon flow** — already in progress (Beehiiv, Sid's thread)
+4. **Conversion playbook** (retain attendees + 30% close) — drafted; awaiting Sid's OK to keep
 5. **Audit cold ads** — cut losers / scale winners
 
 ---
@@ -43,8 +43,8 @@
 
 | Lane | Now | Status |
 |---|---|---|
-| **Lifecycle / Email** | cart-abandon flow being built · hard-sell → publish | 🟢 active · reminders 🔴 #2 |
-| **Events / Funnel** | conversion playbook being drafted · W2–W4 pages next | 🟢 active |
+| **Lifecycle / Email** | cart-abandon in progress (Beehiiv) · hard-sell → publish | reminders 🔴 #2 |
+| **Events / Funnel** | conversion playbook drafted (awaiting OK) · W2–W4 pages next | ⚪ queued |
 | **Ads** | cold running · audit + retargeting queued | ⚪ queued · creative 🔴 #5 |
 | **Social / Influencer** | 1,500 plan · series · influencer outreach | 🔴 #3, #4 |
 | **Analytics** | this board · UTM/attribution next | 🟢 active |
@@ -70,5 +70,6 @@
 
 - **Look here, not at the briefs, for state.** Briefs are reference; this board is truth.
 - Daily refresh: what shipped · what's next · what's blocked on you.
-- I run specialist sub-agents per lane in parallel and integrate their output here.
+- **I propose, you approve, then I act** — no task kickoffs or sub-agents without your go.
+- I run specialist sub-agents per lane in parallel and integrate their output here once you greenlight.
 - **You touch the 🔴 queue; I drive everything else.**
