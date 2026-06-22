@@ -12,7 +12,9 @@
 
 - **BWCC = Build With Claude Code** — Sid's 4-week live cohort course. Cohort 003 starts **Sun 19 July 2026**, **hard-capped at 70 seats**, with **Demo Day Sat 16 Aug**. Taught by Sid (Head of Product for Gen AI at Yelp; founder of *JustAnotherPM*, ~19K newsletter list).
 - **Cohort curriculum (what buyers build):** Wk1 personal Second Brain · Wk2 multi-user AI Interview Coach (real auth + DB, 3 Claudes) · Wks3–4 their own idea, deployed → Demo Day. NB: this is the *cohort* curriculum — distinct from the launch *event* masterclass builds (e.g. the W1 event builds an Email Assistant).
-- **Differentiator (articulated in the creator brief; pending formal lock as Epic 5.1):** most "AI courses" teach you to *chat* with a model — BWCC teaches you to *direct* one. Ship 3 real, deployed products in 4 weeks without writing code. One line: "removes 'I'm not technical enough.'"
+- **W1 masterclass build = the Email Assistant (locked).** The *Growth Agent* is NOT a masterclass build — it's a **build-in-public marketing tactic** to drive the 1,500 W1 signups. Never conflate the two.
+- **W1 registration flow:** "Lock my seat" → thank-you page (`/events/claude-code-multi-agent-thanks`) → **WhatsApp group**. Event reminders run through **WhatsApp**, not email.
+- **Differentiator (LOCKED 2026-06-22, Epic 5.1):** most "AI courses" teach you to *chat* with a model — BWCC teaches you to *direct* one. Ship 3 real, deployed products in 4 weeks without writing code. One line: "removes 'I'm not technical enough.'"
 - **Checkout link (always use this one):** https://buildwithcc.vercel.app/paid
 - **AIPMA / AIPM Accelerator** — Sid's earlier cohort course. AIPM alumni get a 50% discount on BWCC ($300 vs $450/$600). They're handled by a separate email automation — exclude them from any general 1:1 outreach lists.
 - Sid's email: sid@justanotherpm.com. His Beehiiv sending domain: sid@www.mail.justanotherpm.com.

@@ -11,7 +11,7 @@
 |---|---|---|
 | Cohort sales | **11** | 70 (stretch 100) |
 | Gap / pace | 59 left | ~2.2 / day over 27d |
-| W1 masterclass signups | TBD (no tracking yet) | **1,500** |
+| W1 masterclass signups | tracking live (pull #) | **1,500** |
 | W1 event | **Sat 28 Jun — 6 days out** | — |
 | Cohort start | Sun 19 Jul — 27 days out | — |
 
@@ -22,19 +22,18 @@
 | # | Decision | Unblocks |
 |---|---|---|
 | 1 | Newsletter count: **17K or 19K?** | ad + email copy |
-| 2 | Where does **"Lock my seat"** send people? | reminder automation |
-| 3 | Live build: **Email Assistant or Growth Agent?** | social plan + "what would you automate" series |
-| 4 | Creator **commission % + bonus** | influencer outreach |
-| 5 | **Canva ad drafts — go?** | ad creative |
+| 2 | Creator **commission % + bonus** | influencer outreach |
+
+**✅ Decided 22 Jun:** W1 build = **Email Assistant** (locked) · Growth Agent = build-in-public tactic to drive signups (discuss in detail) · "Lock my seat" → thank-you page → **WhatsApp group** (reminders via WhatsApp) · Canva ads = **hold** · conversion playbook = **keep (committed)**.
 
 ---
 
 ## 🟢 This week — by leverage
 
-1. **1,500 W1 signups** by Sat 28 Jun — social + reminders *(needs #2, #3)*
+1. **1,500 W1 signups** by Sat 28 Jun — build-in-public (Growth Agent) + newsletter + WhatsApp reminders
 2. **Publish hard-sell automation** — Sid in final checks
 3. **Cart-abandon flow** — already in progress (Beehiiv, Sid's thread)
-4. **Conversion playbook** (retain attendees + 30% close) — drafted; awaiting Sid's OK to keep
+4. **Conversion playbook** (retain attendees + 30% close) — ✓ kept, committed
 5. **Audit cold ads** — cut losers / scale winners
 
 ---
@@ -43,11 +42,11 @@
 
 | Lane | Now | Status |
 |---|---|---|
-| **Lifecycle / Email** | cart-abandon in progress (Beehiiv) · hard-sell → publish | reminders 🔴 #2 |
-| **Events / Funnel** | conversion playbook drafted (awaiting OK) · W2–W4 pages next | ⚪ queued |
-| **Ads** | cold running · audit + retargeting queued | ⚪ queued · creative 🔴 #5 |
-| **Social / Influencer** | 1,500 plan · series · influencer outreach | 🔴 #3, #4 |
-| **Analytics** | this board · UTM/attribution next | 🟢 active |
+| **Lifecycle / Email** | cart-abandon in progress (Beehiiv) · hard-sell → publish · WhatsApp reminders | 🟢 active |
+| **Events / Funnel** | conversion playbook ✓ kept · W2–W4 pages next | ⚪ queued |
+| **Ads** | cold running · audit + retargeting queued | creative on hold |
+| **Social / Influencer** | Growth Agent build-in-public for 1,500 signups (discuss) · influencer outreach | 🔴 creator % |
+| **Analytics** | signup tracking live · this board · UTM attribution next | 🟢 active |
 
 ---
 
