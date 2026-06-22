@@ -1,7 +1,7 @@
 # BWCC Growth — Command Center
 
 **Single source of truth.** This is the only place to look for status; everything else links from here. Refreshed **2026-06-22 (Mon)**.
-**Head of Growth:** Claude (orchestrator) — owns the number **9 → 70** and runs the agent team below.
+**Head of Growth:** Claude (orchestrator) — owns the number **11 → 70** and runs the agent team below.
 
 ---
 
@@ -9,8 +9,8 @@
 
 | Metric | Now | Target |
 |---|---|---|
-| Cohort sales | **9** | 70 (stretch 100) |
-| Gap / pace | 61 left | ~2.3 / day over 27d |
+| Cohort sales | **11** | 70 (stretch 100) |
+| Gap / pace | 59 left | ~2.2 / day over 27d |
 | W1 masterclass signups | TBD (no tracking yet) | **1,500** |
 | W1 event | **Sat 28 Jun — 6 days out** | — |
 | Cohort start | Sun 19 Jul — 27 days out | — |

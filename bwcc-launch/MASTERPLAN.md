@@ -5,7 +5,7 @@
 **Cohort starts:** Sun 19 July 2026
 **Today:** 2026-06-22 (Mon)
 **Days remaining:** 27
-**Sales target:** 70 realistic / 100 stretch · **Current:** 9 (verified — `bwcc-launch/data/buyers.md`) · **Gap:** 61
+**Sales target:** 70 realistic / 100 stretch · **Current:** 11 (per Sid 2026-06-22; buyers.md lists 9, +2 new rows pending) · **Gap:** 59
 
 Scoped down from 6 epics → 5 epics.
 Detailed dashboard at `bwcc-launch/DASHBOARD.md` and `bwcc-launch/dashboard/index.html`.

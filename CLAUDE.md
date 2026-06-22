@@ -34,6 +34,10 @@
 - **Don't over-pitch.** If they've already seen the curriculum and said it looks good, don't re-pitch the curriculum. Acknowledge what they said and close.
 - **Draft placement: always reply to the LAST message in the thread overall** — not the last inbound message from the prospect. If Sid has sent a follow-up after their reply, anchor the draft to Sid's follow-up so it appears at the bottom of the thread with full context preserved. Anchoring to an earlier inbound message slots the draft mid-thread and breaks readability.
 
+## Communicating with Sid (chat replies)
+
+- **Keep it short.** Sid finds long messages hard to focus on. Lead with the answer, use tight bullets, cut preamble/throat-clearing. Summarise; don't write essays. (Distinct from the email house style above — this governs chat replies to Sid.)
+
 ## Working files
 
 - Master plan: `bwcc-launch/MASTERPLAN.md`
