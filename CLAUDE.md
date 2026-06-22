@@ -10,7 +10,9 @@
 
 ## Project context
 
-- **BWCC = Build With Claude Code** — Sid's cohort course launching 19 July 2026 (Cohort 003).
+- **BWCC = Build With Claude Code** — Sid's 4-week live cohort course. Cohort 003 starts **Sun 19 July 2026**, **hard-capped at 70 seats**, with **Demo Day Sat 16 Aug**. Taught by Sid (Head of Product for Gen AI at Yelp; founder of *JustAnotherPM*, ~19K newsletter list).
+- **Cohort curriculum (what buyers build):** Wk1 personal Second Brain · Wk2 multi-user AI Interview Coach (real auth + DB, 3 Claudes) · Wks3–4 their own idea, deployed → Demo Day. NB: this is the *cohort* curriculum — distinct from the launch *event* masterclass builds (e.g. the W1 event builds an Email Assistant).
+- **Differentiator (articulated in the creator brief; pending formal lock as Epic 5.1):** most "AI courses" teach you to *chat* with a model — BWCC teaches you to *direct* one. Ship 3 real, deployed products in 4 weeks without writing code. One line: "removes 'I'm not technical enough.'"
 - **Checkout link (always use this one):** https://buildwithcc.vercel.app/paid
 - **AIPMA / AIPM Accelerator** — Sid's earlier cohort course. AIPM alumni get a 50% discount on BWCC ($300 vs $450/$600). They're handled by a separate email automation — exclude them from any general 1:1 outreach lists.
 - Sid's email: sid@justanotherpm.com. His Beehiiv sending domain: sid@www.mail.justanotherpm.com.
@@ -18,6 +20,7 @@
 ## Pricing & sales rules
 
 - **Never lead with a discount.** The current pricing ($450/$600) is fair — including for Indian PMs (who earn enough to pay it). Discounting is a last resort, not an opening move.
+- **Pricing mechanic:** early-bird **$450 for the first 25 seats**, then **$600** (70-seat hard cap). Creator-campaign audiences get early-bird **+ a bonus** (default: a 1:1 with Sid) via a per-creator code — framed as a *bonus, never a discount*. The early-bird and the cap are real, not manufactured scarcity. (Creator commission + bonus specifics pending Sid's confirm — see creator brief.)
 - If a prospect raises a price objection, sell the value harder before considering price flexibility. Only offer alt pricing if the prospect has clearly stated they're a fit AND price is the genuine final blocker (and even then, only when Sid approves on a case-by-case basis).
 - The 50% AIPMA-alumni discount ($300) is the only standing discount — and that's automated, not negotiated.
 
@@ -36,6 +39,7 @@
 - Master plan: `bwcc-launch/MASTERPLAN.md`
 - Detailed checklist + dashboard: `/root/.claude/plans/wtf-is-happening-wobbly-pudding.md`
 - Outreach lists: `bwcc-launch/outreach/`
+- **Creator/influencer campaign — master brief:** `bwcc-launch/outreach/creator-brief.md` (synced from Google Doc `1C4i4eP9BtrE5Qo99sp4bbP06hP3bbEKK40F3dCoUuNI`, owner sid@justanotherpm.com). Mohith customizes per creator.
 
 ## Working branch
 
