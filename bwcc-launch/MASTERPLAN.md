@@ -77,7 +77,7 @@ Cold campaign is already running. Retargeting / warm not yet launched.
 
 The strategic anchor for everything above. Without these settled, the tactical work below mis-fires.
 
-- [ ] **5.1 Decide a differentiator** — what makes BWCC genuinely different from every other AI PM course (positioning, not feature)
+- [~] **5.1 Decide a differentiator** — *proposed + drafted* in `positioning.md`: "most courses teach you to *chat* with a model; BWCC teaches you to *direct* one — ship 3 real products in 4 weeks, no code." Awaiting Sid's lock.
 - [ ] **5.2 Finalise new structure for main landing page** — reflecting the differentiator
 
 ---
