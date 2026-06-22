@@ -3,7 +3,7 @@
 
 **Objective:** Meta ads that drive sign-ups to the **masterclass series** — **topic-agnostic** so ONE campaign runs across all 4 events (W1–W4). 3–4 concepts.
 **Key constraint:** creative must NOT name a specific build (no "Email Assistant"). Sell the *experience* — a real product built live in 90 minutes with Claude Code, free, live-only.
-**Destination dependency:** ads point to a **stable "next masterclass" URL** (series page or always-current-event link) — *needed so the same ad keeps working every week.* Flag to Sid: decide this URL before launch.
+**Destination (resolved for W1):** W1 event page is live → `https://buildwithcc.vercel.app/events/claude-code-multi-agent`. Point the W1 flight here now. Creative stays topic-agnostic, so for W2–W4 either (a) spin a fresh flight per event at that week's URL, or (b) add a stable `/events/next` redirect and run one evergreen campaign. Recommend (a) for now; (b) only if weekly flight-swaps become a chore.
 **Audience:** founders, PMs, builders, marketers, students curious about Claude Code who haven't shipped with it yet.
 
 ## Concepts (hook + visual direction)

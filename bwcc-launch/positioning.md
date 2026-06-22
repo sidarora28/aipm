@@ -23,15 +23,14 @@ Why it's *positioning*, not a feature: competitors sell prompts, theory, or "AI 
 - *"My French is better than my SQL, and I don't know French."* — Tushar (shipped anyway)
 - A non-coder built a multi-user AI Interview Coach (auth, DB, 3 Claudes) in **week 2**.
 
-## Event landing-page — above the fold (draft for the W1 revamp)
+## Event landing-page — above the fold
 
-- **Eyebrow:** Free live masterclass · Sat 28 June · live-only, no replay
-- **Headline:** Watch a real AI tool get built live — in 90 minutes, without code.
-- **Sub:** Most people *chat* with AI. In this session you'll watch one get *directed* — start to finish, on stage, until it's running. Then you'll get the starter kit to do it yourself.
-- **CTA:** Save my seat
-- **Trust line:** Run by Sid Arora — Head of Product, Gen AI at Yelp · *JustAnotherPM* (~19K)
+**✓ SHIPPED 2026-06-22** → `https://buildwithcc.vercel.app/events/claude-code-multi-agent`
 
-> Keep the event hook on *the experience of directing AI*, which ladders up to the cohort's differentiator — without conflating the **event's** Email Assistant build with the **cohort's** Week 1 Second Brain.
+Live headline: *"Build a Real Product with Claude Code — Free Live Masterclass."* Build = Email Assistant (voice/RAG → classification → drafter+reviewer agents), sold via the three transferable skills. Live-only / no-replay scarcity + a dedicated "why no replay" FAQ. On-message with the differentiator.
+
+> Guardrail still holds: keep the **event's** Email Assistant build distinct from the **cohort's** Week 1 Second Brain.
+> Optional tweak: the sub leads with "embeddings, classification, multi-agent systems" — a touch technical for the broad ad audience; a plain-language first clause would keep it from undercutting "removes 'I'm not technical enough.'"
 
 ## Ad headlines (topic-agnostic — feeds `ads/event-ad-creative-brief.md`)
 
@@ -43,3 +42,4 @@ Why it's *positioning*, not a feature: competitors sell prompts, theory, or "AI 
 
 - Never "discount/sale." Early-bird + bonus only.
 - No jobs/income/"anyone can do anything" promises. "Ship 3 real products without code" is enough.
+- **Reconcile the newsletter count:** live event page says *17,000+*; CLAUDE.md/our docs say *~19K*. Pick one real number and sync it across the page, ads, and emails. (pending Sid)

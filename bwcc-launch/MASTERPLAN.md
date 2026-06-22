@@ -44,7 +44,7 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 Series across the 4 weekends leading into the cohort.
 
 - [~] **2.1 Finalise list of event topics for 4 weekends** — archetypes locked for all 4 (`events/README.md`); W1 fully designed
-- [~] **2.2 Create landing pages for all events** — ✓ W1 (Email Assistant) landing page live 2026-06-22; W2-W4 pending
+- [~] **2.2 Create landing pages for all events** — ✓ W1 (Email Assistant) landing page live 2026-06-22 → `https://buildwithcc.vercel.app/events/claude-code-multi-agent`; W2-W4 pending
 - [ ] **2.3 Create scheduled emails (promo + reminders) for all events**
 - [~] **2.4 Nail topic + structure of each event** (upstream of 2.1, 2.2, 2.3) — ✓ W1 finalised 2026-06-22 (`events/01-email-assistant.md`); W2-W4 scaffolded
 - [ ] **2.5 Tactics to get insanely high sign-ups** (the funnel into each event)
