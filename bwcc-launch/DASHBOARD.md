@@ -1,5 +1,7 @@
 # BWCC Cohort 003 — Launch Dashboard
 
+> ⚠️ **Frozen snapshot (Jun 21).** Live status now lives in **`COMMAND-CENTER.md`** — look there, not here. This file is kept only for the historical daily sales tracker further down.
+
 **Snapshot:** 2026-06-21 (Sun) · **Cohort starts:** Sun 19 July 2026
 
 ---

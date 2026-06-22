@@ -1,5 +1,7 @@
 # BWCC Cohort 003 — Master Plan
 
+> 📍 Live board → **`COMMAND-CENTER.md`**. This file is the durable epic/task backlog the board pulls from.
+
 **Cohort starts:** Sun 19 July 2026
 **Today:** 2026-06-22 (Mon)
 **Days remaining:** 27
