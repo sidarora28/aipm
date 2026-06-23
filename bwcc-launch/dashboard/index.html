@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BWCC Cohort 003 — Launch Dashboard</title>
+  <title>BWCC — Growth Tracker</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -14,113 +14,102 @@
     .tab-btn.active { background: #18181b; color: white; }
     .tab-btn:not(.active) { color: #71717a; }
     .tab-btn:not(.active):hover { color: #18181b; }
-    .priority-high { border-left: 3px solid #dc2626; }
-    .priority-med { border-left: 3px solid #f59e0b; }
-    .priority-low { border-left: 3px solid #71717a; }
-    .priority-inprogress { border-left: 3px solid #2563eb; }
-    .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-    .status-running { background: #16a34a; }
-    .status-not-started { background: #d4d4d8; }
-    .status-blocked { background: #dc2626; }
-    .status-inprogress { background: #2563eb; }
+    .chip { display:inline-flex; align-items:center; font-size:12px; padding:3px 9px; border-radius:9999px; border:1px solid; line-height:1.2; }
+    .chip-done { background:#f0fdf4; color:#15803d; border-color:#bbf7d0; }
+    .chip-slip { background:#fffbeb; color:#b45309; border-color:#fde68a; }
+    .chip-carry { background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe; }
   </style>
 </head>
 <body class="bg-zinc-50 text-zinc-900 min-h-screen">
-  <div class="max-w-6xl mx-auto px-4 py-6 md:p-10">
+  <div class="max-w-5xl mx-auto px-4 py-6 md:p-10">
 
     <!-- Header -->
-    <header class="mb-8 flex justify-between items-start gap-4">
+    <header class="mb-6 flex justify-between items-start gap-4">
       <div>
-        <h1 class="text-2xl md:text-3xl font-bold tracking-tight">BWCC Cohort 003</h1>
+        <h1 class="text-2xl md:text-3xl font-bold tracking-tight">BWCC Growth Tracker</h1>
         <p class="text-sm text-zinc-500 mt-1" id="lastUpdated"></p>
       </div>
-      <div class="text-right shrink-0">
-        <div class="text-3xl md:text-4xl font-bold mono leading-none" id="daysRemaining">29</div>
-        <div class="text-[10px] uppercase tracking-wider text-zinc-500 mt-1">days to cohort</div>
+      <div class="flex gap-6 text-right shrink-0">
+        <div>
+          <div class="text-2xl md:text-3xl font-bold mono leading-none" id="daysToW1">6</div>
+          <div class="text-[10px] uppercase tracking-wider text-zinc-500 mt-1">days to W1</div>
+        </div>
+        <div>
+          <div class="text-2xl md:text-3xl font-bold mono leading-none" id="daysToCohort">27</div>
+          <div class="text-[10px] uppercase tracking-wider text-zinc-500 mt-1">days to cohort</div>
+        </div>
       </div>
     </header>
 
+    <!-- Scoreboard -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+      <div class="bg-white border border-zinc-200 rounded-xl p-5">
+        <div class="text-[10px] uppercase tracking-wider text-zinc-500 font-semibold">Cohort sales</div>
+        <div class="text-3xl font-bold mono mt-2 leading-none"><span id="sales">11</span><span class="text-zinc-300 text-xl"> / 70</span></div>
+      </div>
+      <div class="bg-white border border-zinc-200 rounded-xl p-5">
+        <div class="text-[10px] uppercase tracking-wider text-zinc-500 font-semibold">Gap</div>
+        <div class="text-3xl font-bold mono mt-2 leading-none" id="gap">59</div>
+      </div>
+      <div class="bg-white border border-zinc-200 rounded-xl p-5">
+        <div class="text-[10px] uppercase tracking-wider text-zinc-500 font-semibold">W1 signups</div>
+        <div class="text-3xl font-bold mono mt-2 leading-none" id="signups">—</div>
+        <div class="text-[10px] text-zinc-400 mt-1">target 1,500</div>
+      </div>
+      <div class="bg-white border border-zinc-200 rounded-xl p-5">
+        <div class="text-[10px] uppercase tracking-wider text-zinc-500 font-semibold">Pace / day</div>
+        <div class="text-3xl font-bold mono mt-2 leading-none" id="dailyRate">2.2</div>
+      </div>
+    </section>
+
     <!-- Tabs -->
-    <div class="flex gap-1 mb-8 border-b border-zinc-200 -mx-1">
-      <button onclick="showTab('tasks')" id="tab-tasks" class="tab-btn active px-4 py-2.5 text-sm font-semibold rounded-t-lg">Tasks & Priorities</button>
+    <div class="flex gap-1 mb-8 border-b border-zinc-200">
+      <button onclick="showTab('tracker')" id="tab-tracker" class="tab-btn active px-4 py-2.5 text-sm font-semibold rounded-t-lg">Daily Tracker</button>
       <button onclick="showTab('stats')" id="tab-stats" class="tab-btn px-4 py-2.5 text-sm font-semibold rounded-t-lg">Stats</button>
     </div>
 
-    <!-- TASKS TAB -->
-    <div id="tab-content-tasks">
+    <!-- TRACKER TAB -->
+    <div id="tab-content-tracker">
       <section class="mb-10">
-        <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold mb-4">Today's focus · 2026-06-21</h2>
-        <div class="space-y-2" id="todayPriorities"></div>
+        <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold mb-4">Daily log — one focus a day, slipped items carry forward</h2>
+        <div class="space-y-3" id="dailyLog"></div>
       </section>
 
       <section class="mb-10">
-        <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold mb-4">This week's backlog</h2>
-        <div class="space-y-2" id="thisWeek"></div>
-      </section>
-
-      <section class="mb-10">
-        <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold mb-4">Conversations to watch</h2>
-        <div class="space-y-2" id="conversationsToWatch"></div>
+        <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold mb-4">🔴 Blocked on Sid</h2>
+        <div class="space-y-2" id="blocked"></div>
       </section>
 
       <section>
-        <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold mb-4">Epic progress</h2>
-        <div class="space-y-3" id="epicProgress"></div>
+        <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold mb-4">This week — by leverage</h2>
+        <div class="space-y-2" id="thisWeek"></div>
       </section>
     </div>
 
     <!-- STATS TAB -->
     <div id="tab-content-stats" class="hidden">
-      <section class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-        <div class="bg-white border border-zinc-200 rounded-xl p-5">
-          <div class="text-[10px] uppercase tracking-wider text-zinc-500 font-semibold">Sales today</div>
-          <div class="text-3xl md:text-4xl font-bold mono mt-2 leading-none" id="salesToday">1</div>
-        </div>
-        <div class="bg-white border border-zinc-200 rounded-xl p-5">
-          <div class="text-[10px] uppercase tracking-wider text-zinc-500 font-semibold">Cumulative</div>
-          <div class="text-3xl md:text-4xl font-bold mono mt-2 leading-none" id="cumulativeSales">6</div>
-        </div>
-        <div class="bg-white border border-zinc-200 rounded-xl p-5">
-          <div class="text-[10px] uppercase tracking-wider text-zinc-500 font-semibold">Gap to 70</div>
-          <div class="text-3xl md:text-4xl font-bold mono mt-2 leading-none" id="gap">61</div>
-        </div>
-        <div class="bg-white border border-zinc-200 rounded-xl p-5">
-          <div class="text-[10px] uppercase tracking-wider text-zinc-500 font-semibold">/ day needed</div>
-          <div class="text-3xl md:text-4xl font-bold mono mt-2 leading-none" id="dailyRate">2.2</div>
-        </div>
-      </section>
-
       <section class="mb-10">
         <div class="flex justify-between items-baseline mb-3">
           <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold">Path to 70</h2>
-          <span class="text-sm font-medium mono" id="progressPct">8.6%</span>
+          <span class="text-sm font-medium mono" id="progressPct">15.7%</span>
         </div>
         <div class="h-2 bg-zinc-200 rounded-full overflow-hidden">
-          <div class="h-full bg-zinc-900 transition-all duration-500" id="progressBar" style="width: 8.6%"></div>
+          <div class="h-full bg-zinc-900 transition-all duration-500" id="progressBar" style="width: 15.7%"></div>
         </div>
-        <div class="flex justify-between text-xs text-zinc-500 mt-2 mono">
-          <span>0</span><span>35 (50%)</span><span>70</span>
-        </div>
+        <div class="flex justify-between text-xs text-zinc-500 mt-2 mono"><span>0</span><span>35</span><span>70</span></div>
       </section>
 
       <section class="mb-10">
-        <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold mb-4">Daily sales</h2>
-        <div class="bg-white border border-zinc-200 rounded-xl p-5">
-          <canvas id="salesChart" height="80"></canvas>
-        </div>
+        <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold mb-4">Sales per day <span class="text-zinc-400 normal-case">· best-guess, no UTM yet</span></h2>
+        <div class="bg-white border border-zinc-200 rounded-xl p-5"><canvas id="salesChart" height="80"></canvas></div>
       </section>
 
-      <section class="mb-10">
+      <section>
         <h2 class="text-[11px] uppercase tracking-wider text-zinc-500 font-semibold mb-4">Sales by source</h2>
         <div class="bg-white border border-zinc-200 rounded-xl overflow-hidden">
           <table class="w-full text-sm">
             <thead class="bg-zinc-50 text-[10px] uppercase tracking-wider text-zinc-500 font-semibold">
-              <tr>
-                <th class="text-left p-3">Source</th>
-                <th class="text-right p-3">Target</th>
-                <th class="text-right p-3">Actual</th>
-                <th class="text-right p-3">Status</th>
-              </tr>
+              <tr><th class="text-left p-3">Source</th><th class="text-right p-3">Target</th><th class="text-right p-3">Actual</th><th class="text-right p-3">Status</th></tr>
             </thead>
             <tbody id="sourcesTable"></tbody>
           </table>
@@ -129,188 +118,119 @@
     </div>
 
     <footer class="mt-12 pt-6 border-t border-zinc-200 text-xs text-zinc-400">
-      <p>Refreshed manually each morning. Source: <code class="bg-zinc-100 px-1.5 py-0.5 rounded">Full Stats for DS</code> sheet · Gmail · MASTERPLAN.md</p>
+      <p>Rendered view of <code class="bg-zinc-100 px-1.5 py-0.5 rounded">COMMAND-CENTER.md</code> — the single source of truth. Sales from the <code class="bg-zinc-100 px-1.5 py-0.5 rounded">Full Stats for DS</code> sheet.</p>
     </footer>
 
   </div>
 
   <script>
     const DATA = {
-      meta: {
-        lastUpdated: 'Jun 21, 2026 · morning',
-        daysRemaining: 28
-      },
-      sales: {
-        target: 70,
-        cumulative: 9,
-        today: 0,
-        gap: 61,
-        dailyRate: 2.2,
-        progressPct: 12.9,
-        dailyLog: [
-          { date: 'Jun 19', sales: 0 },
-          { date: 'Jun 20', sales: 1 },
-          { date: 'Jun 21', sales: 0 }
-        ]
-      },
-      sources: [
-        { name: 'Newsletter automations', target: 25, actual: 6, status: 'running' },
-        { name: 'Hard Sell × Objections', target: 15, actual: 0, status: 'inprogress' },
-        { name: 'BWCC cart-abandon flow', target: 10, actual: 0, status: 'not-started' },
-        { name: '1:1 personal emails', target: 10, actual: 0, status: 'inprogress' },
-        { name: 'AIPM alumni email + Slack', target: 8, actual: 0, status: 'running' },
-        { name: 'Events series (4 weekends)', target: 15, actual: 0, status: 'not-started' },
-        { name: 'Ads — Meta cold', target: '?', actual: '?', status: 'running' },
-        { name: 'Ads — Meta retargeting', target: '?', actual: 0, status: 'not-started' },
-        { name: 'Social — Twitter + LinkedIn', target: 8, actual: 0, status: 'not-started' },
-        { name: 'Organic / unpredictable', target: 6, actual: 0, status: 'running' }
+      meta: { lastUpdated: 'Mon 22 Jun 2026', daysToW1: 6, daysToCohort: 27 },
+      score: { sales: 11, gap: 59, dailyRate: 2.2, signups: '—', progressPct: 15.7 },
+      days: [
+        {
+          date: 'Mon 22 Jun', today: true,
+          focus: 'Lock strategy + stand up the system',
+          done: ['Differentiator locked (5.1)', 'W1 event finalised + page live', 'Influencer brief', 'Hard-sell built 11/11', 'Command center + Karpathy principles', 'Growth-agent direction set', 'Live tracker built'],
+          slipped: ['Publish hard-sell (your final checks)', 'Reply to repliers (Soofi +5)', 'Event topics W2–4', 'Audit cold ads']
+        },
+        {
+          date: 'Tue 23 Jun', today: false,
+          focus: '(set AM)',
+          carry: ['Publish hard-sell', 'Reply to repliers', 'Event topics W2–4', 'Audit cold ads']
+        }
       ],
-      todayPriorities: [
-        { task: 'Publish Hard Sell × Objections automation', detail: 'ETA today (Sun 21 Jun) — being handled in another thread.', priority: 'inprogress' },
-        { task: 'Reply quickly to anyone responding to yesterday\'s 6 outreach emails', detail: 'Soofi · Vibhuti · Lisane · Prasad · Isht · Kemprai. Hot leads. Sub-2-hour reply SLA.', priority: 'high' },
-        { task: 'Decide BWCC differentiator', detail: 'Epic 5.1 — upstream of landing page, Twitter, ad creative, cart-abandon copy. Everything else mis-fires without this.', priority: 'high' },
-        { task: 'Lock topics for the 4-weekend events series', detail: 'Epic 2.1 — gates Epic 2.2 (landing pages) and 2.3 (promo emails).', priority: 'med' },
-        { task: 'Audit Meta cold ad performance', detail: 'CPC / CTR / CVR / ROAS — pause losers, double-down on winners.', priority: 'med' }
+      blocked: [
+        { q: 'Newsletter count — 17K or 19K?', unblocks: 'ad + email copy' },
+        { q: 'Creator commission % + bonus', unblocks: 'influencer outreach' }
       ],
       thisWeek: [
-        { task: 'Build BWCC cart-abandon flow (Epic 1.5)', detail: 'High-intent segment. Fit for the creative tactics on file — objection contest, personalised Loom.' },
-        { task: 'Event landing pages × 4 (Epic 2.2)', detail: 'Depends on topic decision today.' },
-        { task: 'Scheduled emails (promo + reminders) for all 4 events (Epic 2.3)', detail: '' },
-        { task: 'Launch Meta warm retargeting campaign (Epic 3.1)', detail: 'Site visitors 30d + Beehiiv list upload + masterclass video viewers. 3 creative variants.' },
-        { task: 'Add new creatives to cold-targeting campaigns (Epic 3.2)', detail: 'Tied to the differentiator outcome.' },
-        { task: 'Twitter 2×/day + LinkedIn M-F content sprint (Epic 4.2)', detail: 'Sunday-morning batch produce + Typefully schedule for the week.' },
-        { task: 'Credibility-as-builder plan (Epic 4.1)', detail: 'Open question — could power via existing masterclasses → YouTube + Shorts via Opus Clip.' },
-        { task: 'Restructure main landing page (Epic 5.2)', detail: 'Once differentiator is locked.' }
+        '1,500 W1 signups by Sat 28 Jun — build-in-public (Growth Agent) + newsletter + WhatsApp reminders',
+        'Publish hard-sell automation — in final checks',
+        'Cart-abandon flow — in progress (Beehiiv)',
+        'Conversion playbook — kept + committed',
+        'Audit cold ads — cut losers / scale winners'
       ],
-      conversationsToWatch: [
-        { name: 'Soofi', detail: 'Sent Jun 20 17:02. Warm "build-first" lead. No reply yet.', state: 'waiting' },
-        { name: 'Vibhuti', detail: 'Sent Jun 20 16:06. WhatsApp call offer + tonight nudge. No reply yet.', state: 'waiting' },
-        { name: 'Lisane (UK)', detail: 'Sent Jun 20 16:01. Timing answered + tonight nudge. No reply yet.', state: 'waiting' },
-        { name: 'Prasad (PST)', detail: 'Sent Jun 20 15:59. PST timing confirmed + tonight nudge. No reply yet.', state: 'waiting' },
-        { name: 'Isht (physics prof)', detail: 'Sent Jun 20 15:46. v1 draft with discount mention. No reply yet.', state: 'waiting' },
-        { name: 'Kemprai', detail: 'Sent Jun 20 15:46. Sid opened price negotiation — awaiting their number.', state: 'waiting' }
-      ],
-      epics: [
-        { name: '1 · Emails', total: 5, done: 3, inprogress: 1, pct: 70 },
-        { name: '2 · Events (4-weekend series)', total: 3, done: 0, inprogress: 0, pct: 0 },
-        { name: '3 · Ads (Meta)', total: 2, done: 0, inprogress: 1, pct: 5, note: 'cold running, not audited' },
-        { name: '4 · Social / Organic', total: 2, done: 0, inprogress: 0, pct: 0, note: 'strategy drafted in chat' },
-        { name: '5 · Meta-level', total: 2, done: 0, inprogress: 0, pct: 0, note: 'upstream of everything' }
+      salesLog: [ { date: 'Jun 19', sales: 0 }, { date: 'Jun 20', sales: 1 }, { date: 'Jun 21', sales: 0 }, { date: 'Jun 22', sales: 2 } ],
+      sources: [
+        { name: 'Newsletter automations', target: 25, actual: 6, status: 'running' },
+        { name: 'Hard Sell × Objections', target: 15, actual: 0, status: 'inprogress', note: 'built 11/11, final checks' },
+        { name: 'Events series (4 weekends)', target: 15, actual: 0, status: 'inprogress', note: 'W1 live' },
+        { name: 'BWCC cart-abandon flow', target: 10, actual: 0, status: 'inprogress', note: 'Beehiiv' },
+        { name: '1:1 personal emails', target: 10, actual: 0, status: 'inprogress' },
+        { name: 'AIPM alumni email + Slack', target: 8, actual: 0, status: 'running' },
+        { name: 'Ads — Meta cold', target: '?', actual: '?', status: 'running' },
+        { name: 'Social / Influencer', target: 8, actual: 0, status: 'not-started' }
       ]
     };
 
     function showTab(name) {
-      ['tasks', 'stats'].forEach(t => {
+      ['tracker', 'stats'].forEach(t => {
         document.getElementById('tab-' + t).classList.toggle('active', t === name);
         document.getElementById('tab-content-' + t).classList.toggle('hidden', t !== name);
       });
     }
 
-    function statusBadge(status) {
-      const colors = {
-        'running': 'bg-green-50 text-green-700 border-green-200',
-        'inprogress': 'bg-blue-50 text-blue-700 border-blue-200',
-        'not-started': 'bg-zinc-50 text-zinc-500 border-zinc-200',
-        'blocked': 'bg-red-50 text-red-700 border-red-200'
-      };
-      const labels = {
-        'running': 'running',
-        'inprogress': 'in progress',
-        'not-started': 'not started',
-        'blocked': 'blocked'
-      };
-      return `<span class="inline-flex items-center gap-1.5 text-[11px] px-2 py-0.5 rounded-full border ${colors[status] || colors['not-started']}"><span class="status-dot status-${status}"></span>${labels[status] || status}</span>`;
+    function statusBadge(status, note) {
+      const colors = { running: 'bg-green-50 text-green-700 border-green-200', inprogress: 'bg-blue-50 text-blue-700 border-blue-200', 'not-started': 'bg-zinc-50 text-zinc-500 border-zinc-200' };
+      const labels = { running: 'running', inprogress: 'in progress', 'not-started': 'not started' };
+      return `<span class="inline-flex items-center text-[11px] px-2 py-0.5 rounded-full border ${colors[status] || colors['not-started']}">${labels[status] || status}${note ? ' · ' + note : ''}</span>`;
     }
 
-    function renderAll() {
-      document.getElementById('lastUpdated').textContent = 'Last updated: ' + DATA.meta.lastUpdated;
-      document.getElementById('daysRemaining').textContent = DATA.meta.daysRemaining;
+    function render() {
+      document.getElementById('lastUpdated').textContent = 'Updated ' + DATA.meta.lastUpdated;
+      document.getElementById('daysToW1').textContent = DATA.meta.daysToW1;
+      document.getElementById('daysToCohort').textContent = DATA.meta.daysToCohort;
+      document.getElementById('sales').textContent = DATA.score.sales;
+      document.getElementById('gap').textContent = DATA.score.gap;
+      document.getElementById('dailyRate').textContent = DATA.score.dailyRate;
+      document.getElementById('signups').textContent = DATA.score.signups;
+      document.getElementById('progressPct').textContent = DATA.score.progressPct + '%';
+      document.getElementById('progressBar').style.width = DATA.score.progressPct + '%';
 
-      // Today's priorities
-      document.getElementById('todayPriorities').innerHTML = DATA.todayPriorities.map(p => `
-        <div class="priority-${p.priority} bg-white border border-zinc-200 rounded-lg p-4 pl-5">
-          <div class="font-medium">${p.task}</div>
-          ${p.detail ? `<div class="text-sm text-zinc-500 mt-1">${p.detail}</div>` : ''}
-        </div>
-      `).join('');
-
-      // This week
-      document.getElementById('thisWeek').innerHTML = DATA.thisWeek.map(t => `
-        <div class="bg-white border border-zinc-200 rounded-lg p-4">
-          <div class="font-medium text-sm">${t.task}</div>
-          ${t.detail ? `<div class="text-xs text-zinc-500 mt-1">${t.detail}</div>` : ''}
-        </div>
-      `).join('');
-
-      // Conversations
-      document.getElementById('conversationsToWatch').innerHTML = DATA.conversationsToWatch.map(c => `
-        <div class="bg-white border border-zinc-200 rounded-lg p-4 flex justify-between items-start gap-3">
-          <div>
-            <div class="font-medium text-sm">${c.name}</div>
-            <div class="text-xs text-zinc-500 mt-1">${c.detail}</div>
+      document.getElementById('dailyLog').innerHTML = DATA.days.map(d => `
+        <div class="bg-white border ${d.today ? 'border-zinc-900' : 'border-zinc-200'} rounded-xl p-5">
+          <div class="flex items-baseline gap-2 mb-1">
+            <span class="font-semibold">${d.date}</span>
+            ${d.today ? '<span class="text-[10px] uppercase tracking-wider bg-zinc-900 text-white px-2 py-0.5 rounded-full">today</span>' : ''}
           </div>
-          <span class="text-[10px] uppercase tracking-wider text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full shrink-0">${c.state}</span>
+          <div class="text-sm mb-3"><span class="text-zinc-400">Focus:</span> <span class="font-medium">${d.focus}</span></div>
+          ${d.done ? `<div class="mb-2"><div class="text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Done</div><div class="flex flex-wrap gap-1.5">${d.done.map(x => `<span class="chip chip-done">✓ ${x}</span>`).join('')}</div></div>` : ''}
+          ${d.slipped ? `<div class="mb-1"><div class="text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Slipped → carries forward</div><div class="flex flex-wrap gap-1.5">${d.slipped.map(x => `<span class="chip chip-slip">${x}</span>`).join('')}</div></div>` : ''}
+          ${d.carry ? `<div><div class="text-[10px] uppercase tracking-wider text-zinc-400 mb-1.5">Carry-in</div><div class="flex flex-wrap gap-1.5">${d.carry.map(x => `<span class="chip chip-carry">${x}</span>`).join('')}</div></div>` : ''}
         </div>
       `).join('');
 
-      // Epic progress
-      document.getElementById('epicProgress').innerHTML = DATA.epics.map(e => `
-        <div class="bg-white border border-zinc-200 rounded-lg p-4">
-          <div class="flex justify-between items-baseline mb-2">
-            <div class="font-medium text-sm">${e.name}</div>
-            <div class="text-xs text-zinc-500 mono">${e.pct}%${e.note ? ' · ' + e.note : ''}</div>
-          </div>
-          <div class="h-1.5 bg-zinc-100 rounded-full overflow-hidden">
-            <div class="h-full bg-zinc-900 transition-all" style="width: ${e.pct}%"></div>
-          </div>
-          ${e.total > 0 ? `<div class="text-[11px] text-zinc-400 mt-2 mono">${e.done} done · ${e.inprogress} in progress · ${e.total - e.done - e.inprogress} to do</div>` : ''}
+      document.getElementById('blocked').innerHTML = DATA.blocked.map(b => `
+        <div class="bg-white border border-zinc-200 rounded-lg p-4 flex justify-between items-center gap-3" style="border-left:3px solid #dc2626">
+          <div class="font-medium text-sm">${b.q}</div>
+          <div class="text-xs text-zinc-400 shrink-0">unblocks: ${b.unblocks}</div>
         </div>
       `).join('');
 
-      // Stats numbers
-      document.getElementById('salesToday').textContent = DATA.sales.today;
-      document.getElementById('cumulativeSales').textContent = DATA.sales.cumulative;
-      document.getElementById('gap').textContent = DATA.sales.gap;
-      document.getElementById('dailyRate').textContent = DATA.sales.dailyRate;
-      document.getElementById('progressPct').textContent = DATA.sales.progressPct + '%';
-      document.getElementById('progressBar').style.width = DATA.sales.progressPct + '%';
+      document.getElementById('thisWeek').innerHTML = DATA.thisWeek.map((t, i) => `
+        <div class="bg-white border border-zinc-200 rounded-lg p-4 flex gap-3 text-sm">
+          <span class="mono text-zinc-300 font-bold">${i + 1}</span><span class="font-medium">${t}</span>
+        </div>
+      `).join('');
 
-      // Sources table
       document.getElementById('sourcesTable').innerHTML = DATA.sources.map(s => `
         <tr class="border-t border-zinc-100">
           <td class="p-3 text-sm">${s.name}</td>
           <td class="p-3 text-sm text-right mono text-zinc-500">${s.target}</td>
           <td class="p-3 text-sm text-right mono font-semibold">${s.actual}</td>
-          <td class="p-3 text-right">${statusBadge(s.status)}</td>
+          <td class="p-3 text-right">${statusBadge(s.status, s.note)}</td>
         </tr>
       `).join('');
 
-      // Chart
       const ctx = document.getElementById('salesChart').getContext('2d');
       new Chart(ctx, {
         type: 'bar',
-        data: {
-          labels: DATA.sales.dailyLog.map(d => d.date),
-          datasets: [{
-            data: DATA.sales.dailyLog.map(d => d.sales),
-            backgroundColor: '#18181b',
-            borderRadius: 4,
-            barThickness: 24
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: {
-            y: { beginAtZero: true, grid: { color: '#f4f4f5' }, ticks: { font: { family: 'JetBrains Mono', size: 11 }, color: '#a1a1aa', stepSize: 1 } },
-            x: { grid: { display: false }, ticks: { font: { family: 'JetBrains Mono', size: 11 }, color: '#71717a' } }
-          }
-        }
+        data: { labels: DATA.salesLog.map(d => d.date), datasets: [{ data: DATA.salesLog.map(d => d.sales), backgroundColor: '#18181b', borderRadius: 4, barThickness: 28 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: '#f4f4f5' }, ticks: { stepSize: 1, color: '#a1a1aa' } }, x: { grid: { display: false }, ticks: { color: '#71717a' } } } }
       });
     }
-
-    renderAll();
+    render();
   </script>
 </body>
 </html>
