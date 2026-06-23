@@ -65,6 +65,8 @@
 
 - Positioning / differentiator (LOCKED) — `positioning.md`
 - W1 event spec — `events/01-email-assistant.md`
+- W1 welcome/countdown email-series brief — `events/welcome-series-brief.md`
+- Conversion playbook (retain + 30% close) — `events/conversion-playbook.md`
 - Ad creative brief — `ads/event-ad-creative-brief.md`
 - Creator brief — `outreach/creator-brief.md`
 - Cart-abandon brief — `emails/cart-abandon-brief.md`
