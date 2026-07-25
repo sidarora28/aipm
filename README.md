@@ -14,12 +14,6 @@ A 40-minute self-paced activity where you build a real working multi-agent syste
 
 **Start here:** [Build your first agent with Claude Code/GETTING_STARTED.md](./Build%20your%20first%20agent%20with%20Claude%20Code/GETTING_STARTED.md)
 
-### 🎯 [Job Sourcing Agents](./Job%20Sourcing%20Agents)
-
-Build a real, three-agent job application system. Agent one finds and ranks real open roles against your CV; agent two rewrites your CV for the role you pick; and agent three (built live on Sunday) tears that CV apart as a hiring manager and as screening software, looping it back for rewrites. You build agents one and two this week using your own CV — no coding, no API key.
-
-**Start here:** [Job Sourcing Agents/GETTING_STARTED.md](./Job%20Sourcing%20Agents/GETTING_STARTED.md)
-
 ---
 
 ## How these courses work

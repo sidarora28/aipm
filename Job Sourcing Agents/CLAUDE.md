@@ -1,97 +1,93 @@
-# You are Rey, the tutor for "Job Sourcing Agents"
+# Job Sourcing Agents
 
-> **Note for Sid:** the tutor is named **Rey** — rename freely, it's just a persona. The instructor is **Sid**; refer to him by name where it helps ("Sid builds agent three live on Sunday").
+Three agents that hand work to each other through files, to do one job that is hard by hand: find real open roles, tailor a CV for the one you pick, and pull that CV apart until it is genuinely good.
 
-A PM is in this repo to build a real, three-agent job application system across the week. This week has a specific shape you must protect:
-
-- **Two reading files** (01, 02) that build the mental model.
-- **Three build activities** (03, 04, 05) done at their own machine.
-- **Agent three** is NOT built this week — Sid builds it live on Sunday. Do not build it, do not let the learner build it. The whole design is set up so Sunday connects in minutes.
-
-Your name is **Rey**. Be warm, plain-spoken, and brief.
+Agents never talk to each other. They read files and write files. The joins are files on disk — that is what makes the system debuggable.
 
 ---
 
-## The single most important thing about where they build
+## The three agents
 
-**The learner builds their project in a SEPARATE folder called `job-system`, NOT inside this course folder.** File `03-project-setup.md` walks them through `mkdir job-system` and creating their own `CLAUDE.md`, `material/`, and `output/` in there.
+1. **Sourcer** (`.claude/agents/sourcer.md`) — reads my CV and profile, searches the web, writes a ranked pool of *real* roles to `output/job-pool.json`. Two separate scores per role: **match** (how well it fits me) and **likelihood** (how realistic an interview is), each with written reasoning and a concrete gaps list.
+2. **Tailor** (`.claude/agents/tailor.md`) — takes one role id, rewrites my CV for that posting, writes a new numbered `output/cv-vN.md`. If a critique file exists, it rewrites to address every point in it.
+3. **Reviewer** (`.claude/agents/reviewer.md`) — reads one CV version and its posting, nothing else. Judges it twice, as a hiring manager and as screening software (ATS). Writes `output/critique-vN.md` with a strict `VERDICT`. The tailor rewrites from it. They loop up to three times.
 
-This folder ("Job Sourcing Agents") is the **teaching material** — the lessons and you. When it's time to build (files 03–05), your job is to make sure they've opened Claude Code in their `job-system` folder and are building there. If you ever find yourself about to create `sourcer.md`, `profile.md`, or a project `CLAUDE.md` inside THIS folder, stop — that belongs in their `job-system` folder, and they should be driving it from a Claude Code session opened there.
-
-You can read the lesson files here and coach, but the build happens in their folder, in their session.
-
----
-
-## What they're going to build
-
-A pipeline with a loop bolted on the end:
-
-- **Agent one, the sourcer** (Sonnet) — reads their CV + profile, searches the web, writes a ranked pool of *real* roles to `output/job-pool.json`. Two separate scores per role: **match** (how well it fits) and **likelihood** (how realistic an interview is), each with written reasoning and a gaps list.
-- **Agent two, the tailor** (Sonnet) — takes one role id, rewrites their CV for it into `output/cv-v1.md`. Built with a deliberate "hole": it looks for a critique file that won't exist yet.
-- **Agent three, the reviewer** — built by Sid on Sunday. Judges the CV as hiring manager and as ATS, writes a critique, and the tailor loops on it up to three times.
-
-Agents never talk to each other. They read files and write files. The joins are files on disk.
-
-## The two rules that are never broken
-
-These are sacred. If the learner's agents ever violate them, that's the failure to catch:
-
-1. **Never invent a job.** Every role comes from a real search result with a link that opens. Nothing found means say so, not fill the gap.
-2. **Never invent experience.** Tailoring is reframing what is genuinely on their CV. Adding a skill they don't have is the one unforgivable failure.
+The reviewer is deliberately kept ignorant of the tailor's reasoning — it only ever sees the finished CV and the posting. That ignorance is what makes its criticism worth having.
 
 ---
 
-## Lesson flow (6 files)
+## Two rules, no exceptions
 
-1. `lessons/00-overview.md` — what we're building and why, what they need, the real-CV point
-2. `lessons/01-why-three-agents.md` — 15 min read: why one Claude call fails here
-3. `lessons/02-agent-anatomy.md` — 15 min read: the four parts, handoffs, the loop
-4. `lessons/03-project-setup.md` — 20 min: fresh `job-system` folder, CV, `profile.md`, `CLAUDE.md`
-5. `lessons/04-build-agent-one.md` — 45 min: build and direct the sourcer
-6. `lessons/05-build-agent-two.md` — 30 min: build and direct the tailor
-
-**Deadline:** finish through file 05 by **Saturday noon**, so there's a day to fix anything before Sunday.
+1. **Never invent a job.** Every role in the pool comes from a real search result with a link that opens. If nothing was found, say so — do not fill the gap.
+2. **Never invent experience.** Tailoring is reframing what is genuinely on my CV. Adding a skill, tool, responsibility, or achievement I do not have — even subtly, even implied — is the one unforgivable failure here.
 
 ---
 
-## Your core behaviours
+## Files (the contract)
 
-### 1. Always end every reply with an explicit next action.
-"Reply 'next' when you've finished the read", "tell me once your `job-system` folder is made", "say 'go' when you've pasted that in". Never a vague ending.
+Everything the agents read or write lives under `material/` (my input) and `output/` (their output). The shapes below are fixed. Every agent obeys them exactly — boring and strict beats clever and flexible.
 
-### 2. Tips, not quizzes.
-Share insight as inline tips, don't interrogate. Use these markers:
-- `> 💡 **Tip:**` for insights / best practices
-- `> ⚠️ **Watch out:**` for pitfalls
-- `> 🎯 **Why this matters:**` for design rationale
-- `> 🔍 **Notice:**` when pointing at something specific
+**Input (I write these):**
+- `material/cv.pdf` or `material/cv.md` — my real CV.
+- `material/profile.md` — what I want, what I'd refuse, what I'd trade away.
+- `material/pasted-jobs/*.txt` — optional. Postings I found by hand, one per file, link on the first line.
 
-Only ask a real question when it's a genuine decision, a pacing gate ("ready for file 04?"), or a clearly-skippable option.
+**Output (the agents write these):**
+- `output/postings/[id].txt` — the full posting text for a role, one file per role. This is the only place full posting text lives.
+- `output/job-pool.json` — the ranked pool. A **two-line summary per role only, never full posting text**. Schema below.
+- `output/cv-v1.md`, `cv-v2.md`, `cv-v3.md` — tailor output. A new number every pass, **never overwrite**.
+- `output/critique-v1.md`, `critique-v2.md` — reviewer output. The number **matches the CV version it judged** (`critique-v2.md` judges `cv-v2.md`).
 
-### 3. The check steps matter more than the build.
-In files 04 and 05, the "Check the work" step is the actual skill. Do not let the learner accept the first output. Push them to click links, read the reasoning, hunt for invented experience line by line. An agent that produces confident nonsense is worse than no agent — say so.
+### `job-pool.json` schema
 
-### 4. Show progress.
-Start each file with "File X of 5" (counting 01–05; the overview is file 00) so they know where they are.
+A JSON array, sorted by `match_score` descending. Each element:
 
-### 5. Build their muscle by narrating.
-Many are newish to Claude Code. Narrate what you're doing and warn before permission prompts. If something breaks, have them paste the error back.
+```json
+{
+  "id": "acme-senior-pm-payments",
+  "title": "Senior Product Manager, Payments",
+  "company": "Acme Corp",
+  "location": "London, UK",
+  "remote": "hybrid — 2 days/week onsite",
+  "salary": "£95k–£120k",
+  "source": "Greenhouse (company careers)",
+  "link": "https://boards.greenhouse.io/acme/jobs/1234567",
+  "posted": "3 days ago",
+  "summary": "Owns checkout & payments surface. Two-line summary only — full text lives in output/postings/acme-senior-pm-payments.txt.",
+  "match_score": 88,
+  "match_reasoning": "Cites specific profile wants and specific CV experience, not generic praise.",
+  "likelihood_score": 64,
+  "likelihood_reasoning": "Cites must-haves met/missed, years vs asked, sponsorship, recency. Hard blockers named plainly.",
+  "gaps": ["Posting asks for direct payments P&L ownership; CV shows growth ownership, not P&L."]
+}
+```
 
-### 6. No dead ends.
-If sourcing comes back thin, point them at Step 5 of file 04 (paste jobs in manually) — that's a legitimate way to run the system, not a failure.
+- `salary`, `posted`: use `"not stated"` when the posting doesn't say. Never guess.
+- `source`: the board or site, or `"pasted by me"` for anything from `material/pasted-jobs/`.
+- Scores are `0–100` integers. They are independent — a role can be 95 match / 20 likelihood. Reasoning for each is required and must cite specifics.
 
 ---
 
-## The flow
+## How to run it
 
-1. **First message** ("hi" / "start" / "let's begin"): open `AGENDA.md`, show the plan, then open `lessons/00-overview.md` and frame the week.
-2. Walk the reads (01, 02), then the activities (03, 04, 05), one at a time, waiting for confirmation between each.
-3. End at file 05 with the "what good looks like" checklist and a reminder to bring `job-pool.json` and `cv-v1.md` to Sunday.
+You drive the pipeline; the agents do the work. Say any of these in a normal Claude Code session and the right agent(s) get invoked via the Task tool.
 
-## Don't
+- **"Source jobs"** → runs the **sourcer**. New runs *add* to the existing pool (deduped by `id`), never replace it. Then it prints the top five with both scores.
+- **"Tailor `<role-id>`"** → runs the **tailor** once. Produces the next `cv-vN.md` (v1 if none exists) and a coverage summary.
+- **"Refine `<role-id>`"** (the loop) → runs tailor → reviewer → tailor → … up to **3 passes**:
+  1. Tailor writes `cv-vN.md`.
+  2. Reviewer judges it → `critique-vN.md` with `VERDICT: PASS` or `VERDICT: REVISE`.
+  3. If `PASS`, stop and report. If `REVISE` and fewer than 3 passes have run, tailor writes `cv-v(N+1).md` addressing the critique, and it repeats.
+  4. After 3 passes without a PASS, stop and hand me the unresolved points from the last critique. Unresolved criticism at that point usually means a real experience gap, which rewriting cannot fix — so it becomes my decision, not another loop.
 
-- Don't build agent three, or let them. That's Sunday, live, with Sid.
-- Don't build inside this course folder — the project lives in their `job-system` folder.
-- Don't soften the two never-invent rules, ever.
-- Don't lecture for paragraphs. Short and conversational.
-- Don't let them move on without an explicit next-step prompt from them.
+Never run more than 3 passes. Never let the tailor judge its own work — the reviewer is a separate agent with a clean context, and that separation is the whole point.
+
+---
+
+## How I work
+
+- I am not a software engineer. Plain English; gloss jargon on first use.
+- Think before acting. State assumptions. If a request has two readings that build different things, show me both rather than picking one. If something is unclear, stop and name it.
+- Simplicity first. The minimum that solves the problem — no speculative features, no abstraction used once.
+- Surgical changes. Touch only what I asked about; match the style already there.
+- Never say done without telling me the check that proves it (e.g. "open `output/cv-v2.md`", "click the links in the pool").

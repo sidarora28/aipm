@@ -1,5 +1,17 @@
-node_modules
+.DS_Store
+node_modules/
 .env
 .env.local
-output/
-.DS_Store
+
+# Your real CV stays local
+material/cv.pdf
+material/cv.md
+material/cv.docx
+material/cv.txt
+
+# Postings you paste in stay local
+material/pasted-jobs/*.txt
+
+# Generated output stays local; keep the folder
+output/*
+!output/.gitkeep

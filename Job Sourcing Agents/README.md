@@ -1,70 +1,62 @@
 # Job Sourcing Agents
 
-A self-paced course where you build a real, three-agent job application system — and understand each piece by the end.
+A three-agent job application system that runs locally in Claude Code on your Pro subscription. No code to run, no API keys, no accounts.
 
-- **Agent one** finds real open roles that match you and ranks them honestly.
-- **Agent two** rewrites your CV for the role you pick.
-- **Agent three** (built live on Sunday) tears that CV apart as a hiring manager and as screening software, and sends it back to be rewritten — up to three times.
+- **Sourcer** finds real open roles that fit you and ranks them honestly, with two separate scores (how well it fits vs. how likely you'd get an interview) and written reasoning for each.
+- **Tailor** rewrites your CV for one role you pick — reframing what's genuinely on your CV, never adding what isn't.
+- **Reviewer** tears that CV apart against the posting, as a hiring manager and as screening software, and sends specific criticism back. The tailor rewrites from it. They loop up to three times.
 
-You build agents one and two this week. You don't need to code, and you don't need an API key — your Claude Pro subscription is the runtime.
+The agents never talk to each other. They read and write files in `output/`. Every handoff is a file you can open, which is what makes the system honest and debuggable.
 
 ---
 
-## Setup (one thing)
+## Setup (2 minutes)
 
-Open this folder in Claude Code by typing:
+1. **Drop in your CV.** Put your real CV in `material/` as `cv.pdf` or `cv.md`. Use the genuine one — the whole system depends on it.
+2. **Fill in your profile.** Edit `material/profile.md` and answer the questions honestly. This is what the sourcer ranks against.
 
-```
+Then open this folder in Claude Code:
+
+```bash
 claude
 ```
 
-(in your terminal, after cloning the repo to your computer). That's it — Rey (your tutor) takes over from there.
+Your CV and generated output stay on your machine (they're git-ignored).
 
 ---
 
-## Start
+## Using it
 
-In Claude Code, type:
+Just say these in the session — the right agent runs automatically:
 
-> **let's start**
+| Say this | What happens |
+|---|---|
+| **`source jobs`** | Sourcer searches the web and writes a ranked pool to `output/job-pool.json`. Run it again anytime — new roles are added, not replaced. |
+| **`tailor <role-id>`** | Tailor rewrites your CV for that role → `output/cv-v1.md`, with a summary of what's covered and what isn't. |
+| **`refine <role-id>`** | The loop: tailor writes a version, reviewer judges it (`PASS`/`REVISE`), tailor rewrites from the critique, up to 3 passes. Stops when the reviewer passes it or after 3 rounds. |
 
-Rey greets you, walks the agenda, and takes you through the overview + 5 files. The full plan is in `AGENDA.md`.
+Role ids come from `output/job-pool.json` after sourcing. Pick a role where the match is high and you'd genuinely be pleased with the interview — it doesn't have to be number one.
 
----
-
-## Before you begin, you need
-
-- Your **actual CV** (or someone else's), as a PDF or text file
-- Fifteen minutes to answer some questions about what you want in a job
-
-Use your real CV. Agent one ranks roles by how well your genuine experience matches; agent two rewrites that genuine experience. A made-up CV gives output you can't judge.
+> **If sourcing comes back thin:** some job sites are hard to read automatically. Find 5–8 postings by hand, drop each into `material/pasted-jobs/` as its own `.txt` file with the link on the first line, and run `source jobs` again. The sourcer scores them like any other role. This is a legitimate way to run the system, not a failure.
 
 ---
 
-## How you build (important)
+## The two rules the agents never break
 
-Files 01 and 02 are reading. Files 03–05 are done at your machine, and you build the project in a **fresh `job-system` folder of your own** — not inside this course folder. File 03 walks you through creating it. This folder holds the lessons and your tutor.
-
----
-
-## What you'll have at the end
-
-- `output/job-pool.json` — a ranked list of real open roles, two scores each, with reasoning
-- `output/cv-v1.md` — your CV rewritten for the top role
-- `.claude/agents/sourcer.md` and `tailor.md` — running from your terminal
-
-Bring both to Sunday.
+1. **Never invent a job.** Every role has a real link that opens. Nothing found means it says so, not fills the gap.
+2. **Never invent experience.** Tailoring reframes what's on your CV; it never adds a skill you don't have. That's the one unforgivable failure here.
 
 ---
 
 ## What's in this folder
 
-- `AGENDA.md` — the week's plan
-- `CLAUDE.md` — Rey's tutor instructions (loaded automatically when you open Claude Code here)
-- `lessons/` — the overview + 5 files Rey walks you through
+- `CLAUDE.md` — the project rules and the file contract every agent obeys (read this to understand or change how it works).
+- `.claude/agents/` — the three agents: `sourcer.md`, `tailor.md`, `reviewer.md`.
+- `material/` — your CV and `profile.md` (your input).
+- `output/` — everything the agents produce: `job-pool.json`, `postings/`, `cv-vN.md`, `critique-vN.md`.
 
 ---
 
-## If anything goes wrong
+## Checking the work matters more than running it
 
-Tell Rey. "I'm stuck", "go slower", "my sourcer found nothing", "skip ahead" — all fine. Or post in the Slack group.
+An agent that produces confident nonsense is worse than no agent. After sourcing, open `output/job-pool.json` and click a few links — do they open real, open postings? Is the reasoning specific to you, or generic? After tailoring, put `cv-v1.md` next to your original and hunt, line by line, for anything new — a tool you haven't used, a "contributed to" that became "led". If you find it, tell the agent exactly which line and have it rewrite. Directing the agents until the output is good is the actual skill.
