@@ -37,6 +37,8 @@ Separate two kinds of problem, because they resolve differently:
 - **Fixable by rewriting** — the experience is on the CV but buried, mis-worded, in the wrong order, or missing a keyword that honestly applies. The tailor can fix these.
 - **A real experience gap** — the posting requires something the CV does not evidence at all. Rewriting cannot fix this without inventing experience, which is forbidden. Name it so it stops being chased round the loop.
 
+**The keyword test — apply it before you put any missing keyword in the fixable bucket.** A required term the CV doesn't contain is *fixable* only when the underlying skill or experience is genuinely already on the page under different words; then surfacing the exact term is honest. If the CV does not evidence the skill at all, the missing keyword is a **real experience gap** — it belongs in the do-not-chase list, and you must not ask the tailor to add the term. Never recommend adding a keyword because the CV *implies*, *suggests*, or "strongly implies" the skill — inference is not evidence. "Owns a data platform, so must know SQL" is exactly the reasoning that produces a fabricated CV; do not make it. When in doubt, treat the keyword as a gap, not a fix.
+
 ## The verdict
 
 The critique **must** open with exactly one line:
@@ -51,7 +53,7 @@ or
 VERDICT: REVISE
 ```
 
-- **PASS** — a hiring manager would shortlist this and the ATS would not auto-reject it. Every remaining shortfall is a real experience gap, not a rewriting problem. Do not withhold a PASS to be thorough; if the only things left are genuine gaps, it passes.
+- **PASS** — a hiring manager would shortlist this and the ATS would not auto-reject it on anything the CV can honestly fix. Every remaining shortfall is a real experience gap, not a rewriting problem. A required keyword the CV genuinely can't support — because the skill isn't there — is one of those gaps: it does **not** block a PASS, because the only way to "fix" it is to invent experience. PASS means the CV is as strong as it can honestly be made for this posting; the remaining real gaps get handed to me to decide on, not chased round the loop. Do not withhold a PASS to be thorough; if the only things left are genuine gaps, it passes.
 - **REVISE** — there is at least one thing the tailor can honestly fix. List those things.
 
 ## Critique file format (strict)
