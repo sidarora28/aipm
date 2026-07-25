@@ -9,6 +9,9 @@ material/cv.md
 material/cv.docx
 material/cv.txt
 
+# Your filled-in profile stays local (material/profile.example.md is the tracked template)
+material/profile.md
+
 # Postings you paste in stay local
 material/pasted-jobs/*.txt
 

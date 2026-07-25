@@ -13,7 +13,12 @@ The agents never talk to each other. They read and write files in `output/`. Eve
 ## Setup (2 minutes)
 
 1. **Drop in your CV.** Put your real CV in `material/` as `cv.pdf` or `cv.md`. Use the genuine one — the whole system depends on it.
-2. **Fill in your profile.** Edit `material/profile.md` and answer the questions honestly. This is what the sourcer ranks against.
+2. **Fill in your profile.** Copy the template and answer the questions honestly — this is what the sourcer ranks against:
+   ```bash
+   cp material/profile.example.md material/profile.md
+   ```
+
+Your CV and your filled-in `profile.md` are git-ignored, so they stay on your machine. `material/profile.example.md` is the tracked template.
 
 Then open this folder in Claude Code:
 
