@@ -45,7 +45,9 @@ Every role in the pool comes from a real search result with a working link you a
 
 Two separate scores out of 100 for every role, each with its own written reasoning that **cites specifics** — specific lines in the posting and specific experience from my CV. Generic praise that would fit any role is a failure.
 
-**Match score** — how well the role fits what I want and can do. Built from: closeness to what I said I want in `profile.md`; how much of the actual day-to-day work I have done before; whether the seniority is right; whether location and remote arrangement work for me; whether the money clears my stated minimum; whether the industry is on my wanted or ruled-out list.
+**Match score** — how well the role fits what I want and can do. Built from: closeness to what I said I want in `profile.md`; how much of the actual day-to-day work I have done before; **whether the level is right — matching the seniority and scope I'm targeting is a primary driver here, not a tie-breaker. A role clearly below my level (junior title, a scope narrower than I run today) should lose match points; a role at or above it should not.** Whether location and remote arrangement work for me; whether the industry is on my wanted or ruled-out list.
+
+**Do not apply a hard salary floor.** Never drop a role, and never heavily dock its match score, just because stated pay is below some number. Treat pay as context, not a gate: if comp looks low, read it as a signal the role may be *under-levelled* and reflect that through the level judgement above — not as a money penalty. If salary is `"not stated"`, do not penalise it at all, and do not list "below my floor" as a gap.
 
 **Likelihood score** — how realistic an interview would be if I applied. Built from: whether I meet the stated must-haves; how my years of experience compare to what is asked; whether I have worked at that company size and stage before; whether I need sponsorship and whether they mention offering it; how recently it was posted; how many hard requirements I miss.
 
