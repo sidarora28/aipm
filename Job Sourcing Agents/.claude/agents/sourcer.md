@@ -46,6 +46,13 @@ Your reach is only as good as how widely and cleverly you search. **Discovery is
 
 **Reach individual postings, not just board home pages.** Many boards (Lever, Ashby, Wellfound, WttJ, LinkedIn) block or JS-shell their *index* pages, but the *individual* postings are frequently indexed by search engines and openable directly. Use targeted `site:` searches to surface them — e.g. `site:jobs.lever.co`, `site:jobs.ashbyhq.com`, `site:boards.greenhouse.io`, `site:apply.workable.com`, `site:job-boards.greenhouse.io` — plus the title and "London". When a primary link is blocked, try to reach the same posting another way before giving up: the company's own careers URL, a rendering mirror, or a cached copy.
 
+**Prefer the boards' public JSON APIs — this is the single most reliable way past the blocks.** Most ATS index pages are JS shells that WebFetch sees as empty, but the same boards expose public JSON that WebFetch *can* read and that states plainly whether a role is still live. Once a `site:` search or a company name tells you which board an employer uses, hit its API directly to confirm the role is genuinely open and to pull clean title/location/text:
+- **Greenhouse:** `https://boards-api.greenhouse.io/v1/boards/<org>/jobs` (list), `.../jobs/<id>` (full text).
+- **Ashby:** `https://api.ashbyhq.com/posting-api/job-board/<org>` — each job carries an `isListed` flag; treat only `isListed: true` as open.
+- **Lever:** `https://api.lever.co/v0/postings/<org>?mode=json` — often works even when `jobs.lever.co` 403s the HTML.
+- **Workable:** `https://apply.workable.com/api/v3/accounts/<org>/jobs`.
+A search hit is a lead; the API is how you *verify* it before it goes in the pool. Keep the human-facing posting URL as the role's `link` (a browser renders the JS fine), but never trust a search snippet alone — confirm live status via the API or an opened posting.
+
 **Then verify hard — the absolute rule below is unchanged.** Open the posting via WebFetch before you trust it. If it 404s, redirects to a generic careers home, JS-shells to an empty frame, or says applications are closed, reach it another way or drop it. A role you believe exists but cannot open with any working link does **not** go in the pool — instead note it in your summary as "found but unverifiable (blocked)", with the company and title, so I know it's out there and can fetch it by hand.
 
 **Aim for 15–25 roles per run.** If after a genuinely wide sweep — many queries, many sources, `site:` searches, mirror/cache attempts — you still come back thin, say so plainly and tell me exactly which sources blocked you and which promising roles you had to drop as unverifiable. That honest report is itself useful, and it tells me where the `pasted-jobs/` route would help.
