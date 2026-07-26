@@ -1,0 +1,20 @@
+.DS_Store
+node_modules/
+.env
+.env.local
+
+# Your real CV stays local
+material/cv.pdf
+material/cv.md
+material/cv.docx
+material/cv.txt
+
+# Your filled-in profile stays local (material/profile.example.md is the tracked template)
+material/profile.md
+
+# Postings you paste in stay local
+material/pasted-jobs/*.txt
+
+# Generated output stays local; keep the folder
+output/*
+!output/.gitkeep
