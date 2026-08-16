@@ -1,0 +1,25 @@
+{
+  "name": "japm-certificate-tool",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test:ledger": "tsc lib/*.ts --module commonjs --target ES2022 --moduleResolution node --esModuleInterop --skipLibCheck --outDir .testbuild && node test-ledger.js"
+  },
+  "dependencies": {
+    "googleapis": "^144.0.0",
+    "next": "^15.5.4",
+    "pdf-lib": "^1.17.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.7.0"
+  }
+}
