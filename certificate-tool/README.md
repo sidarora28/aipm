@@ -6,10 +6,13 @@ Sheet is the roster and the ledger.
 
 ## Status
 
-**Phase 1 complete.** Ledger read/write, credential-ID allocation, the reuse
-check, Drive upload and private streaming all work end to end.
-`lib/generate.ts` is still a **stub** that stamps the four values onto a blank
-page. Phase 2 swaps in the artwork; nothing outside that file changes.
+Ledger read/write, credential-ID allocation, the reuse check, Drive upload and
+private streaming all work end to end. The generator is real: Allura and
+Questrial are embedded, all four fields are stamped and auto-shrink to fit.
+
+**One thing outstanding** — `assets/certificate-template.(pdf|png)`. Until it
+is present the generator warns and stamps onto a blank page. Drop the file in
+and it is picked up automatically; see `assets/README.md`.
 
 ## How it works
 
@@ -76,11 +79,27 @@ Deploying from this repo: set Vercel's **Root Directory** to `certificate-tool`.
 - The lookup route is rate limited per IP, in-process. On serverless that is
   best-effort only — see the comment in `lib/ratelimit.ts`.
 
-## Phase 2 — what's still needed
+## The certificate
 
-- `assets/` — the certificate background, with the sample name, body line, date
-  and credential ID removed. PDF preferred, 300dpi PNG works.
-- The three display fonts as TTF/OTF (gold script, geometric sans), plus
-  `@pdf-lib/fontkit`. pdf-lib only ships Helvetica/Times/Courier.
-- Then: replace the blank page in `lib/generate.ts` with the template and tune
-  the `LAYOUT` block at the top of that file.
+Four fields are stamped; everything else — logo, titles, rule, the pre-printed
+"by JustAnotherPM", signature block and the two labels — is the template.
+
+| Field | Font | Position |
+| --- | --- | --- |
+| Recipient name | Allura, gold | centred just above the rule |
+| `For completing Cohort#N of <course> course` | Questrial | above "by JustAnotherPM" |
+| Completion date (fixed per cohort) | Questrial | bottom left |
+| Credential ID | Questrial | bottom right |
+
+Coordinates and sizes live in one `LAYOUT` object at the top of
+`lib/generate.ts`. Positions are fractions of the page, so they survive a
+re-export at a different size; every field shrinks to fit its `maxWidth`
+instead of overflowing.
+
+To nudge them, `npm run dev` then:
+
+```
+http://localhost:3000/api/preview?name=Ishanya%20Anthapur&cohort=2&certId=JAPMAIPM2001
+```
+
+Renders on the fly — no roster, no ledger, no Drive. Disabled in production.
