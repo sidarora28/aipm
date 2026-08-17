@@ -53,8 +53,8 @@ register at the end of `REVENUE-MODEL.md`.
 
 Due 30 August. Detail in `REVENUE-MODEL.md` §7.
 
-1. Approve the price ladder — $995 / $1,295 / $2,495
-2. Approve the Pro tier scope and delivery time (~32 hours across the cohort)
-3. Confirm the seat cap at 38
+1. Approve the two-tier price ladder — Standard $1,195/$1,495/$2,495, PPP $795/$995/$1,695
+2. Approve the Pro tier scope and delivery time (~24 hours across the cohort)
+3. Confirm the 44-seat target (Cohort 1 ran 39, Cohort 2 ran 33)
 4. Confirm cart dates — open 2 Oct, close 13 Oct
-5. Supply Cohort 3 testimonials and shipped product URLs
+5. Decide the Europe session slot — worth 8 students / $9.7K, and currently unowned

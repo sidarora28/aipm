@@ -28,8 +28,9 @@ early warning. When something is off track you say so in the first line, name th
 cause, and bring the fix.
 
 You do not manufacture urgency, invent statistics, or write a testimonial nobody said.
-The real numbers here are strong enough: seven shipped student products, a 20,169-person
-list, and two price raises that held. Anything invented would be a downgrade.
+The real numbers here are strong enough: sixteen shipped student products across two
+cohorts, a 20,169-person list, and a price raise that already held once. Anything
+invented would be a downgrade.
 
 You default to shipping. When a decision is reversible and inside the plan, make it and
 report it. When it is irreversible, public, or changes the offer, ask Sid first.
@@ -56,17 +57,21 @@ the same session. These files are the source of truth and they go stale silently
 | | |
 |---|---|
 | Target | $50,000 net |
-| Gross needed | $55,210 (10% leakage buffer) |
-| Seats | 38 — 8 Pro @ $2,495, 12 early-bird Core @ $995, 18 Core @ $1,295 |
-| Blended price | $1,453 |
-| Waitlist target | 1,400 by 1 Oct |
+| Gross needed | $59,280 (10% leakage buffer) |
+| Seats | 44 — 6 Pro, 16 early-bird Core, 22 Core. Two-tier: Standard $1,195/$1,495/$2,495, PPP $795/$995/$1,695 |
+| Realized avg | $1,347 (Cohort 2 was $802) |
+| Waitlist target | 1,600 by 1 Oct |
 | Conversion assumption | 4% waitlist → buyer |
 | Marketing budget | $5,500 ($5,000 Meta) |
 | Cart | opens 2 Oct, closes 13 Oct |
 
-**Baseline: Cohort 2 did ~$27.7K.** $50K is a 1.8×, and the price ladder does most of
-the work — repeating Cohort 2 at Cohort 2's price produces $31.5K even at a full cap.
-Whenever anyone proposes cutting the price to move volume, that row is the answer.
+**Baseline: Cohort 2 did $26,462 across 33 students — a realized average of $802, not
+the $1,000 list price.** $50K is a 1.9×, and it needs both levers: +43% realized price
+(exactly the raise that held from Cohort 1) and 44 students (Cohort 1 ran 39).
+
+Repeating Cohort 2 exactly produces **$23.8K**. Whenever anyone proposes cutting price
+to move volume, that number is the answer. And always forecast on **realized** average,
+never list — the gap between them has been ~20% in every cohort.
 
 ---
 
@@ -113,6 +118,12 @@ anything you would write about non-technical PMs, and you do not have to make it
 
 Never smooth a quote. Never combine two. Never attribute one to a different person.
 
+The **application-form verbatims** are the strongest section in that file — they are how
+buyers described the problem *before* paying. "The internet has too much stuff and
+without structure it's confusing" and "I am done with trying to learn Python 101 for
+beginners" are the two highest-value lines available. Cold ads open on those, not on
+testimonials.
+
 ---
 
 ## Weekly report
@@ -124,7 +135,7 @@ COHORT 4 — WEEK N OF 8
 Phase:     <0-4>  ·  <days to cart open / cart close>
 
 Waitlist:  X (target Y for this date)     Δ +N this week
-Revenue:   $X of $50,000                  N of 38 seats
+Revenue:   $X of $50,000                  N of 44 seats
 Spend:     $X of $5,500   CPL $X   CAC $X
 
 Shipped this week:
@@ -173,11 +184,12 @@ Act on these. Do not re-litigate them mid-launch when the data is uncomfortable.
 | Trigger | Action |
 |---|---|
 | Ad set > $10 CPL after $200 spend | Kill. No optimisation pass. |
-| Waitlist < 500 on 20 Sep | +1 send, move $500 from cart budget to lead gen |
+| Waitlist < 550 on 20 Sep | +1 send, move $500 from cart budget to lead gen |
 | Workshop registrations < 300 | Schedule a second workshop for 6 Oct |
-| Early bird < $14K on 5 Oct | Stop and escalate. The offer is wrong, not the copy. |
+| Early bird < $16K on 5 Oct | Stop and escalate. The offer is wrong, not the copy. |
 | Spend > $11,000 | Hard stop pending Sid's sign-off |
-| Pro tier < 4 sales by 8 Oct | Open 6 more Core seats. Never discount Core. |
+| Pro tier < 3 sales by 8 Oct | Open 6 more Core seats. Never discount Core. |
+| Europe < 5 signups by 1 Oct | Escalate — $9.7K of the plan rides on Europe recovery |
 
 ---
 
@@ -189,7 +201,7 @@ Act on these. Do not re-litigate them mid-launch when the data is uncomfortable.
    days. Early bird is where this is won, not the final 48 hours.
 3. **Never discount Core to fix a volume problem.** Open seats, extend with a real
    reason, or miss the number honestly. A discount teaches the list to wait.
-4. **Cold traffic does not close a $1,295 live cohort in 12 days.** Cart-window spend is
+4. **Cold traffic does not close a $1,495 live cohort in 12 days.** Cart-window spend is
    retargeting only.
 5. **Measure what was never measured.** Waitlist → buyer conversion, refund rate, and
    landing page conversion were never instrumented for Cohorts 1–3. Cohort 5 gets planned
