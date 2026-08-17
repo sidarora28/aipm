@@ -22,7 +22,7 @@ Oct 14 ─────────── Oct 15    PHASE 4   Onboard           c
 Two hard gates. Miss either and the target moves out of reach rather than getting
 harder:
 
-- **30 Aug** — price approved, Europe slot decided, landing page live, Cohort 2 testimonials collected
+- **30 Aug** — price approved, Europe slot decided, landing page live, recent proof deepened
 - **1 Oct** — 1,600 waitlist, cart assets built and reviewed
 
 ---
@@ -36,7 +36,7 @@ the only phase with no external pressure forcing it to happen.
 |---|---|---|---|---|
 | 0.1 | Approve two-tier price ladder — Std $1,195/$1,495/$2,495, PPP $795/$995/$1,695 | **Sid** | 20 Aug | Everything |
 | 0.2 | Approve Pro tier scope + 44-seat target | **Sid** | 20 Aug | Landing page |
-| 0.3 | Get 2-sentence testimonials from the 9 Cohort 2 builders | Sid | 24 Aug | All proof copy |
+| 0.3 | Get 2-sentence testimonials from the 8 Cohort 2 builders who never gave one (Sheila already has one) | Sid | 24 Aug | All proof copy |
 | 0.3b | **Decide the Europe session slot (evening CET)** — worth 8 students / $9.7K | **Sid** | 20 Aug | Europe recovery |
 | 0.4 | Run `japm-customer-research` on Beehiiv replies, DMs, waitlist | agent | 24 Aug | All copy |
 | 0.5 | Refresh `.agents/product-marketing.md` with real VOC | agent | 25 Aug | All copy |
@@ -234,9 +234,10 @@ Ranked by expected damage.
    first, to the warmest segment, in the early-bird window — while scarcity is real.
 3. **Europe is not recovered.** Worth 8 students and $9.7K — the single largest swing
    factor in the model, and it needs a session slot decision, not a marketing tactic.
-4. **Cohort 2 written testimonials never arrive.** Nine Cohort 2 students shipped
-   products, but every quotable testimonial in the file is Cohort 1 and now six months
-   old. Two sentences from each of the nine is the cheapest proof upgrade available.
+4. **Recent proof stays thin.** Cohort 2 testimonial coverage is one student (Sheila)
+   against nine who shipped. Two sentences from the other eight is the cheapest proof
+   upgrade available, but it is a depth problem, not an absence — the launch is not
+   blocked on it.
 4. **Conversion below 2.5%.** Fixable before 1 Oct through offer clarity and proof.
    Not fixable after — by then the only lever left is more email, which does not work.
 5. **Sid's capacity.** Eight weeks of launch execution while running a full-time role.

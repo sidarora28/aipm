@@ -152,35 +152,44 @@ not just build one.
 
 - **Lauren Nagel** (VP of Product) took Cohort 2, shipped Viora, then enrolled again in
   Build with Claude Code to extend it. Repeat purchase from a VP-level buyer.
-- **Sheila Lin** (Associate Director, SCMP) went from "a little skeptical about whether
-  it would be worth it" to shipping Asia Briefing. Her before-and-after arc is the
-  cleanest objection-handling story in the account.
+- **Sheila Lin** (Associate Director, SCMP, **Cohort 2**) went from "a little skeptical
+  about whether it would be worth it" to shipping Asia Briefing. Her before-and-after arc
+  is the cleanest objection-handling story in the account — and it is recent, which makes
+  it the strongest single piece of proof available for the Cohort 4 launch.
 
 ---
 
 ## Customer language — verbatim
 
-Real quotes from Cohort 1 students, unedited. **Use these words. Do not improve them.**
-When `japm-customer-research` runs a fresh mining pass on Beehiiv replies and DMs,
-append to this section rather than replacing it.
+Real quotes from real students, unedited. **Use these words. Do not improve them.**
+When `japm-customer-research` runs a fresh mining pass, append to this section rather
+than replacing it.
+
+> **On cohort attribution.** The source doc files all of these under a "Cohort 1 Student
+> Testimonials" heading. That heading is wrong — the testimonials span cohorts and are
+> not tagged. Cohorts below are verified against the roster sheet's cohort column, not
+> the doc. **Sheila is Cohort 2.** *Aditya* is ambiguous — three students by that name
+> appear across Cohorts 1, 2 and 3 — so do not state a cohort for that quote.
+>
+> Never label a quote with a cohort you have not checked against the roster.
 
 ### On disbelief → capability (strongest emotional vein)
 
 > "I've never been a developer in my life. Even when I started my career at Cognizant
 > in the 2000s I started as QA. I have not written a single piece of code. So I never
 > believed I would build something. So it was really fun. **Thank you for instilling
-> that belief and trust. I never thought I would.**" — Karthik
+> that belief and trust. I never thought I would.**" — Karthik *(Cohort 1)*
 
 > "**My French is better than my SQL and I just don't even know French.** So for a
 > person like me who has not a lot of notion of tech to be building something from
-> scratch, it's all thanks to this course." — Tushar
+> scratch, it's all thanks to this course." — Tushar *(Cohort 1)*
 
 > "**No professional achievement came closer** to knowing how to build something on
 > your own. Actually going there and taking the first step was what really mattered."
-> — Yashaswini
+> — Yashaswini *(Cohort 1)*
 
 > "I didn't know that AI products I would be able to build probably in **less than two
-> weeks**." — Nikesh
+> weeks**." — Nikesh *(Cohort 1)*
 
 ### On scattered learning → structure (the core pain)
 
@@ -188,39 +197,39 @@ append to this section rather than replacing it.
 > but I felt scattered. I had bits and pieces of knowledge, but no coherent framework
 > to tie it all together.** This course was exactly what I was looking for. It brought
 > structure to everything I had been learning and gave me a way to think about AI
-> product management that feels durable." — Natalie
+> product management that feels durable." — Natalie *(Cohort 1)*
 
 > "Being an AI enthusiast and a Data PM myself, I have been reading and following the
 > AI landscape **to the best possible extent, without losing my mental sanity. The pace
-> of changes and amount of content online is simply bewildering.**" — Yashaswini
+> of changes and amount of content online is simply bewildering.**" — Yashaswini *(Cohort 1)*
 
 > "I have understood more about this space from your pre-reads, **than the mandatory
-> trainings at work ever taught me.**" — Tushar
+> trainings at work ever taught me.**" — Tushar *(Cohort 1)*
 
 ### On immediate work payoff (the ROI vein)
 
 > "I was **immediately able to much more quickly create a prototype** that's getting
 > passed to designers at work... other people were asking me, 'Oh, how'd you do that?'
 > ... **I've got put on some kind of higher visibility projects directly after that**
-> because of it." — Milo
+> because of it." — Milo *(Maile Thiesen, Cohort 1)*
 
 > "By the end of the course, I walked away with something I'm really proud of — a
 > working application that showcased my ability to think and work with AI as a Product
 > Manager. **If you're a PM trying to get serious about AI, this course is the real
-> deal.**" — Jerel
+> deal.**" — Jerel *(Cohort 1)*
 
 ### On the "should we use AI" filter (the credibility vein)
 
 > "The best part of the course is to help a PM decide first, **when** to use AI in
 > product. Sid spent a good amount of time discussing why a PM should ask, '**Should**
 > AI be used here' than asking '**Can** AI be used here'. This question itself cuts
-> down a lot of noise." — Yashaswini
+> down a lot of noise." — Yashaswini *(Cohort 1)*
 
 ### On skepticism overcome (use in objection-handling emails)
 
 > "Before taking the AIPM course, **I was a little skeptical about whether it would be
 > worth it.** But I was convinced by Sid's solid (and generous) newsletter content and
-> decided to go for it. I am glad I did." — Sheila
+> decided to go for it. I am glad I did." — **Sheila (Cohort 2)**
 
 ---
 
@@ -522,9 +531,10 @@ Flag these to Sid rather than inventing answers.
   assumes 4%. Instrument it this cycle — it is the highest-variance number in the model.
 - **Refund rate** unknown. Model assumes 10% leakage. The only refunds visible in the
   roster are $25 Lovable credit reimbursements, which suggests the real rate is low.
-- **Written testimonials from Cohort 2 are missing.** Nine Cohort 2 students shipped
-  products and recorded demos, but the quotable text testimonials in this file are all
-  Cohort 1. Ask the nine Cohort 2 builders for two sentences each — that is the single
-  cheapest proof upgrade available before launch.
+- **Testimonial coverage is thin for Cohort 2, not absent.** Sheila's is Cohort 2 and is
+  excellent. But eight of the nine Cohort 2 builders shipped products and recorded demos
+  without ever giving a written testimonial. Two sentences from each is still the cheapest
+  proof upgrade available before launch — the point is to deepen recent proof, not to
+  create it from nothing.
 - **No Cohort 2 application answers for the "why" question** in the same depth as
   Cohort 1 and 3 — the verbatims above skew to Cohorts 1 and 3.
