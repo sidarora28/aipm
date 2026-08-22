@@ -1,10 +1,10 @@
 # Assets
 
-## `certificate-template.(pdf|png|jpg)` — **still needed**
+## `certificate-template.pdf` — present
 
 The certificate background, with the four stamped fields blank: recipient
 name, the "For completing Cohort#N of … course" line, the completion date and
-the credential ID.
+the credential ID. Currently an 842.25 x 595.5pt (A4 landscape) PDF.
 
 Everything else stays in the artwork — the JAPM logo, the CERTIFICATE / OF
 COMPLETION titles, "This certificate is proudly presented to", the rule, the
@@ -20,7 +20,7 @@ certificate-template.jpg
 certificate-template.jpeg
 ```
 
-PDF keeps the artwork sharp at any zoom. A 300dpi PNG is fine. Until a file is
+PDF keeps the artwork sharp at any zoom. A 300dpi PNG is fine. With no file
 present the generator logs a warning and stamps onto a blank A4-landscape page,
 so dev and tests keep working.
 
@@ -46,7 +46,7 @@ npm run dev
 open "http://localhost:3000/api/preview?name=Ishanya%20Anthapur&cohort=2&certId=JAPMAIPM2001"
 ```
 
-Renders straight from the query string — no roster, no ledger, no Drive. Nudge
+Renders straight from the query string — no sheet, no Drive. Nudge
 `LAYOUT` in `lib/generate.ts`, refresh. The route is disabled in production.
 
 Positions are fractions of the page (`y: 0.52` = 52% down from the top), so

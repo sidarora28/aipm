@@ -31,8 +31,8 @@ export const LAYOUT = {
   /** Recipient name, in Allura, centred just above the rule. */
   name: {
     x: 0.5,
-    y: 0.520,
-    size: 62,
+    y: 0.492,
+    size: 68,
     maxWidth: 0.56,
     minSize: 26,
     align: 'center' as const,
@@ -47,7 +47,7 @@ export const LAYOUT = {
   body: {
     x: 0.5,
     y: 0.607,
-    size: 20,
+    size: 19,
     maxWidth: 0.62,
     minSize: 13,
     align: 'center' as const,
@@ -57,7 +57,7 @@ export const LAYOUT = {
 
   /** Fixed completion date, under the printed "Date of Completion" label. */
   date: {
-    x: 0.024,
+    x: 0.025,
     y: 0.958,
     size: 15,
     maxWidth: 0.3,
@@ -69,7 +69,7 @@ export const LAYOUT = {
 
   /** Credential ID, under the printed "Credential ID" label. */
   certId: {
-    x: 0.9775,
+    x: 0.980,
     y: 0.958,
     size: 15,
     maxWidth: 0.3,
@@ -232,5 +232,5 @@ export async function generateCertificate(input: CertificateInput): Promise<Uint
 
 export function certificateFilename(input: CertificateInput): string {
   const safeName = input.name.replace(/[^\p{L}\p{N} .-]/gu, '').trim() || 'certificate';
-  return `${safeName} — ${input.certId}.pdf`;
+  return `${input.certId} — ${safeName}.pdf`;
 }

@@ -73,6 +73,23 @@ export async function uploadPdf(filename: string, bytes: Uint8Array): Promise<st
   return id;
 }
 
+/**
+ * Finds a certificate in the folder by its credential ID, which leads the
+ * filename. Avoids storing a Drive file id anywhere — the members tab stays
+ * exactly as wide as it already is.
+ */
+export async function findFileIdByCertId(certId: string): Promise<string | null> {
+  const escaped = certId.replace(/'/g, "\\'");
+  const res = await driveClient().files.list({
+    q: `'${driveFolderId()}' in parents and name contains '${escaped}' and trashed = false`,
+    fields: 'files(id,name)',
+    pageSize: 10,
+  });
+  const files = res.data.files ?? [];
+  const exact = files.find((f) => (f.name ?? '').startsWith(certId));
+  return exact?.id ?? files[0]?.id ?? null;
+}
+
 /** Raw bytes of a Drive file, for streaming back through our own route. */
 export async function downloadFile(fileId: string): Promise<NodeJS.ReadableStream> {
   const res = await driveClient().files.get(

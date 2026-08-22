@@ -1,5 +1,5 @@
-import { findByCertId } from '@/lib/ledger';
-import { downloadFile } from '@/lib/google';
+import { findByCertId } from '@/lib/members';
+import { downloadFile, findFileIdByCertId } from '@/lib/google';
 import { certificateFilename } from '@/lib/generate';
 
 export const runtime = 'nodejs';
@@ -16,12 +16,13 @@ export async function GET(
   const { certId } = await params;
 
   const row = await findByCertId(certId);
-  if (!row || !row.driveFileId) {
-    return new Response('Not found', { status: 404 });
-  }
+  if (!row) return new Response('Not found', { status: 404 });
+
+  const fileId = await findFileIdByCertId(row.certId);
+  if (!fileId) return new Response('Not found', { status: 404 });
 
   const { Readable } = await import('node:stream');
-  const nodeStream = await downloadFile(row.driveFileId);
+  const nodeStream = await downloadFile(fileId);
   const webStream = Readable.toWeb(nodeStream as import('node:stream').Readable);
 
   const filename = certificateFilename({

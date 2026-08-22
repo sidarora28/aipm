@@ -1,66 +1,67 @@
 # JAPM Certificate of Completion
 
 Single-page email lookup that issues each person exactly one certificate per
-cohort, forever. No database, no auth provider, no admin dashboard — the Google
-Sheet is the roster and the ledger.
+cohort, forever. No database, no auth provider, no admin dashboard — the
+"members" tab of the Google Sheet is both roster and issuance record.
 
 ## Status
 
-Ledger read/write, credential-ID allocation, the reuse check, Drive upload and
-private streaming all work end to end. The generator is real: Allura and
-Questrial are embedded, all four fields are stamped and auto-shrink to fit.
-
-**One thing outstanding** — `assets/certificate-template.(pdf|png)`. Until it
-is present the generator warns and stamps onto a blank page. Drop the file in
-and it is picked up automatically; see `assets/README.md`.
+Code complete and rendering correctly against the real template. What has NOT
+happened: a single call against live Google credentials. Every test runs
+against an in-memory fake. Sharing, scopes and the real tab contents are
+unverified until someone runs it for real.
 
 ## How it works
 
 1. `POST /api/lookup` with `{ email }`. Any `cohort` in the body is ignored —
-   the roster decides.
+   the sheet decides.
 2. Email is trimmed and lowercased on both sides of the comparison.
-3. Every roster row matching that email produces a certificate, so someone in
-   two cohorts gets two.
-4. The `issued` ledger is checked first, keyed on `(email_lower, cohort)`. A row
-   with a `drive_file_id` is returned as-is and **never regenerated**.
-5. Otherwise: reserve a ledger row → generate → upload to Drive → write the
-   `drive_file_id` back.
+3. Every row in the **members** tab matching that email produces a certificate,
+   so someone in two cohorts gets two.
+4. A row that already has a `CERT ID` returns that stored ID. A row that also
+   has a `CERT URL` is finished and is **never regenerated**.
+5. Otherwise: reserve the `CERT ID` -> generate -> upload to Drive -> write the
+   `CERT URL` back.
+
+The members tab is both roster and issuance record. There is no second tab and
+no database.
 
 ### Credential IDs
 
 ```
 JAPM  AIPM  2  001
-│     │     │  └── global running sequence, zero-padded to 3
-│     │     └───── cohort number from the roster
-│     └─────────── course code: cohort 1,2 → AIPM · cohort 3 → BWCC
-└───────────────── fixed prefix
+|     |     |  +-- global running sequence, zero-padded to 3
+|     |     +----- cohort number from the sheet
+|     +----------- course code: cohort 1,2 -> AIPM . cohort 3 -> BWCC
++----------------- fixed prefix
 ```
 
-The sequence is **global**, not per cohort, so IDs never repeat across courses.
-Because it is sequential it cannot be derived from an email — the ledger is the
-only thing that keeps a person's ID stable, which is why allocation is written
-defensively (see the header comment in `lib/ledger.ts`).
+The sequence is **global**, so no two certificates share a number even across
+courses. Because it is sequential it cannot be derived from an email — the
+sheet is the only thing keeping a person's ID stable, which is why allocation
+re-reads to confirm it owns its number before the PDF is built.
 
-A row is written *before* the PDF exists. A blank `drive_file_id` means
-"reserved but not delivered": the next request finishes the job on the same row
-under the same ID, so a failed generation self-heals without burning an ID.
+A `CERT ID` with a blank `CERT URL` means "reserved but not delivered": the
+next request finishes the job on the same row under the same ID, so a failed
+generation self-heals without burning an ID.
 
 ## Setup
 
-1. Copy `.env.example` to `.env.local` and fill it in.
-2. Service account needs the `spreadsheets` and `drive.file` scopes.
-3. Share the roster spreadsheet with the service account's `client_email`
-   (Viewer is not enough — the `issued` tab is written to, so Editor).
+1. Copy `.env.example` to `.env.local`. `SHEET_ID` and `DRIVE_FOLDER_ID` are
+   already filled in.
+2. Create a Google service account with the `spreadsheets` and `drive.file`
+   scopes; put its JSON key, base64-encoded, in `GOOGLE_SERVICE_ACCOUNT_B64`.
+3. Share the spreadsheet with the service account's `client_email` as
+   **Editor** (the members tab is written to).
 4. Share the Drive folder with the same address as Editor.
-5. The spreadsheet needs a tab named `issued` with this header row:
-   `cert_id | email_lower | cohort | name | issued_at | drive_file_id`
-6. Roster tab needs `Name | Email | Cohort`. Columns are matched by header
-   name, so their order does not matter. Cohort cells hold `1`, `2` or `3`.
+5. The members tab needs `Name`, `Email`, `Cohort`, `CERT ID` and `CERT URL`
+   columns. They are matched by header name, so order does not matter and the
+   other columns are ignored.
 
 ```bash
 npm install
 npm run dev
-npm run test:ledger   # ledger + reuse check against an in-memory sheet
+npm run test:ledger   # allocation + reuse against an in-memory members tab
 ```
 
 Deploying from this repo: set Vercel's **Root Directory** to `certificate-tool`.
@@ -102,4 +103,4 @@ To nudge them, `npm run dev` then:
 http://localhost:3000/api/preview?name=Ishanya%20Anthapur&cohort=2&certId=JAPMAIPM2001
 ```
 
-Renders on the fly — no roster, no ledger, no Drive. Disabled in production.
+Renders on the fly — no sheet, no Drive. Disabled in production.

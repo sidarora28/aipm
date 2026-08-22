@@ -1,4 +1,4 @@
-import { findByCertId } from '@/lib/ledger';
+import { findByCertId } from '@/lib/members';
 import { cohortConfig } from '@/lib/cohorts';
 
 export const runtime = 'nodejs';

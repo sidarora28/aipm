@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { findRosterEntries, looksLikeEmail, normalizeEmail } from '@/lib/roster';
-import { reserveOrFind, setDriveFileId } from '@/lib/ledger';
+import { findMemberRows, looksLikeEmail, normalizeEmail, reserveCertId, setCertUrl } from '@/lib/members';
 import { certificateFilename, generateCertificate } from '@/lib/generate';
 import { uploadPdf } from '@/lib/google';
 import { clientIp, rateLimit } from '@/lib/ratelimit';
@@ -10,8 +9,8 @@ export const dynamic = 'force-dynamic';
 
 /**
  * The same sentence comes back whether the email is on the roster, absent, or
- * malformed. Nothing in the response distinguishes those cases except the
- * certificates the caller is entitled to.
+ * malformed. Nothing distinguishes those cases except the certificates the
+ * caller is entitled to.
  */
 const MESSAGE = 'If you completed a course, your certificate is ready below.';
 
@@ -27,9 +26,16 @@ function respond(certificates: Certificate[]) {
   return NextResponse.json({ message: MESSAGE, certificates });
 }
 
+/** Public origin of this deployment, so CERT URL in the sheet is clickable. */
+function origin(request: Request): string {
+  const headers = request.headers;
+  const host = headers.get('x-forwarded-host') ?? headers.get('host');
+  const proto = headers.get('x-forwarded-proto') ?? 'https';
+  return host ? `${proto}://${host}` : new URL(request.url).origin;
+}
+
 export async function POST(request: Request) {
-  const ip = clientIp(request.headers);
-  const limit = rateLimit(ip);
+  const limit = rateLimit(clientIp(request.headers));
   if (!limit.ok) {
     return NextResponse.json(
       { message: 'Too many requests. Please try again shortly.', certificates: [] },
@@ -38,7 +44,7 @@ export async function POST(request: Request) {
   }
 
   // Only the email is read. A cohort in the body is ignored on purpose — the
-  // roster decides which cohorts a person belongs to.
+  // members tab decides which cohorts a person belongs to.
   let email = '';
   try {
     const body = (await request.json()) as { email?: unknown };
@@ -49,41 +55,43 @@ export async function POST(request: Request) {
 
   if (!looksLikeEmail(email)) return respond([]);
 
-  let entries;
+  let rows;
   try {
-    entries = await findRosterEntries(email);
+    rows = await findMemberRows(email);
   } catch (error) {
-    console.error('roster lookup failed', error);
+    console.error('members lookup failed', error);
     return NextResponse.json(
       { message: 'Something went wrong. Please try again later.', certificates: [] },
       { status: 500 },
     );
   }
 
+  const base = origin(request);
   const certificates: Certificate[] = [];
 
-  for (const entry of entries) {
+  for (const row of rows) {
     try {
-      const row = await reserveOrFind(entry.emailLower, entry.cohort, entry.name);
+      const certId = await reserveCertId(row.rowNumber);
+      const downloadUrl = `${base}/api/certificate/${certId}`;
 
-      // A row with a file is finished, forever. Never regenerate.
-      if (!row.driveFileId) {
-        const input = { name: row.name, cohort: row.cohort, certId: row.certId };
+      // A row with a CERT URL is finished, forever. Never regenerate.
+      if (!row.certUrl) {
+        const input = { name: row.name, cohort: row.cohort, certId };
         const bytes = await generateCertificate(input);
-        const fileId = await uploadPdf(certificateFilename(input), bytes);
-        await setDriveFileId(row.rowNumber, fileId);
+        await uploadPdf(certificateFilename(input), bytes);
+        await setCertUrl(row.rowNumber, downloadUrl);
       }
 
       certificates.push({
-        certId: row.certId,
+        certId,
         name: row.name,
         cohort: row.cohort,
-        downloadUrl: `/api/certificate/${row.certId}`,
-        verifyUrl: `/verify/${row.certId}`,
+        downloadUrl: `/api/certificate/${certId}`,
+        verifyUrl: `/verify/${certId}`,
       });
     } catch (error) {
       // One bad cohort must not sink the others.
-      console.error(`issuance failed for cohort ${entry.cohort}`, error);
+      console.error(`issuance failed for row ${row.rowNumber}`, error);
     }
   }
 
