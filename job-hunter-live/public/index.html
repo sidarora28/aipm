@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Job Hunter</title>
+<style>
+  :root { --bg:#0e1411; --panel:#151d18; --ink:#eef4f0; --mute:#9bb0a4; --line:#27352d; --accent:#5fe0b0; --warn:#f2c46b; --bad:#ff8a7a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:18px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .wrap { max-width:1180px; margin:0 auto; padding:28px 20px 60px; display:grid; gap:22px; }
+  h1 { margin:0; font-size:40px; letter-spacing:-.02em; }
+  .sub { color:var(--mute); margin:4px 0 0; }
+  .bar { display:grid; gap:12px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px; }
+  .row { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  input[type=text], textarea { flex:1; min-width:240px; background:#0b100d; color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:14px 16px; font:inherit; font-size:22px; }
+  textarea { font-size:16px; min-height:56px; resize:vertical; }
+  button { background:var(--accent); color:#06231a; border:0; border-radius:10px; padding:14px 24px; font:inherit; font-weight:700; font-size:20px; cursor:pointer; }
+  button:disabled { opacity:.5; cursor:wait; }
+  .chip { background:transparent; color:var(--accent); border:1px solid var(--line); padding:8px 14px; font-size:16px; font-weight:500; }
+  label.t { color:var(--mute); font-size:16px; display:flex; gap:8px; align-items:center; }
+  .grid { display:grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap:22px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  h2 { margin:0 0 10px; font-size:14px; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); font-weight:600; }
+  .feed { display:grid; gap:10px; align-content:start; }
+  .say { background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:10px; padding:12px 14px; }
+  .say b { display:block; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:2px; }
+  .tool { border:1px dashed var(--accent); border-radius:10px; padding:12px 14px; background:#0f1a14; }
+  .tool .h { display:flex; gap:10px; align-items:center; font-weight:700; }
+  .tool .d { color:var(--mute); font-weight:400; }
+  .spin { width:14px; height:14px; border:3px solid var(--line); border-top-color:var(--accent); border-radius:50%; animation:s 0.8s linear infinite; }
+  @keyframes s { to { transform:rotate(360deg); } }
+  .tool.done .spin { animation:none; border-color:var(--accent); background:var(--accent); }
+  .out { margin-top:6px; color:var(--ink); }
+  .chk { font-size:15px; margin-top:6px; display:grid; gap:4px; }
+  .chk div { display:flex; gap:8px; }
+  .yes { color:var(--accent); } .no { color:var(--bad); } .un { color:var(--warn); }
+  .cards { display:grid; gap:12px; align-content:start; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px; }
+  .card h3 { margin:0; font-size:21px; line-height:1.25; }
+  .card .co { color:var(--mute); margin:2px 0 8px; }
+  .badge { display:inline-block; font-size:13px; padding:3px 9px; border-radius:99px; border:1px solid var(--line); color:var(--mute); margin-right:6px; }
+  .card .v { color:var(--accent); font-size:15px; margin:8px 0 4px; }
+  .card a { color:var(--accent); font-weight:700; }
+  .empty { color:var(--mute); border:1px dashed var(--line); border-radius:12px; padding:22px; }
+  .err { color:var(--bad); }
+  .final { color:var(--mute); font-size:16px; margin-top:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div>
+    <h1>Job Hunter</h1>
+    <p class="sub">Type any job. The agent finds roles that are open right now, checks each one, and shows every step.</p>
+  </div>
+
+  <div class="bar">
+    <div class="row">
+      <input id="job" type="text" value="AI product manager" aria-label="Job type" autocomplete="off">
+      <button id="go">Find jobs</button>
+    </div>
+    <div class="row" id="chips"></div>
+    <div class="row">
+      <textarea id="about" placeholder="Optional: a line about the person, for example 'PM at a bank, 6 years, wants to move into AI, based in London'"></textarea>
+    </div>
+    <div class="row">
+      <label class="t"><input type="checkbox" id="li"> Also search LinkedIn (uses Apify credit, about a tenth of a cent per job)</label>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div><h2>What the agent is doing</h2><div class="feed" id="feed"><div class="empty">Press "Find jobs" and watch it work.</div></div></div>
+    <div><h2>Jobs it checked itself</h2><div class="cards" id="cards"><div class="empty">Results appear here.</div></div></div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+["AI product manager", "Data scientist", "UX designer", "Growth marketer", "Customer success manager", "Prompt engineer"].forEach((t) => {
+  const b = document.createElement("button"); b.className = "chip"; b.textContent = t; b.onclick = () => { $("job").value = t; $("job").focus(); }; $("chips").appendChild(b);
+});
+$("job").addEventListener("keydown", (e) => { if (e.key === "Enter") start(); });
+$("go").onclick = start;
+
+let es = null, toolEls = {};
+function start() {
+  const job = $("job").value.trim();
+  if (!job) return;
+  if (es) es.close();
+  $("feed").innerHTML = ""; $("cards").innerHTML = '<div class="empty">Working on it...</div>'; toolEls = {};
+  $("go").disabled = true; $("go").textContent = "Working...";
+  const url = `/run?job=${encodeURIComponent(job)}&about=${encodeURIComponent($("about").value)}&linkedin=${$("li").checked ? 1 : 0}`;
+  es = new EventSource(url);
+  es.onmessage = (m) => handle(JSON.parse(m.data));
+  es.onerror = () => { es.close(); finish(); };
+}
+function finish() { $("go").disabled = false; $("go").textContent = "Find jobs"; }
+function add(html, cls) { const d = document.createElement("div"); d.className = cls; d.innerHTML = html; $("feed").appendChild(d); d.scrollIntoView({ block: "nearest", behavior: "smooth" }); return d; }
+
+function handle(e) {
+  if (e.kind === "say") add(`<b>Agent</b>${esc(e.text)}`, "say");
+  else if (e.kind === "tool") {
+    toolEls[e.id] = add(`<div class="h"><span class="spin"></span><span>${esc(e.label)}</span><span class="d">${esc(e.detail)}</span></div><div class="out"></div>`, "tool");
+  } else if (e.kind === "result") {
+    const el = toolEls[e.id]; if (!el) return;
+    el.classList.add("done");
+    let h = esc(e.summary);
+    if (e.data) h += '<div class="chk">' + e.data.map((r) => `<div class="${r.open === "yes" ? "yes" : r.open === "no" ? "no" : "un"}"><span>${r.open === "yes" ? "✓ open" : r.open === "no" ? "✗ closed" : "? unclear"}</span><span>${esc(r.evidence)}</span></div>`).join("") + "</div>";
+    el.querySelector(".out").innerHTML = h;
+  } else if (e.kind === "done") { render(e.text, e.cost); es.close(); finish(); }
+  else if (e.kind === "error") { add(`<span class="err">${esc(e.text)}</span>`, "say"); es.close(); finish(); }
+}
+function render(text, cost) {
+  const m = text.match(/```json\s*([\s\S]*?)```/);
+  let jobs = []; try { jobs = JSON.parse(m ? m[1] : "[]"); } catch {}
+  const after = text.replace(/```json[\s\S]*?```/, "").trim();
+  $("cards").innerHTML = jobs.length ? jobs.map((j) => `<div class="card"><h3>${esc(j.title)}</h3><div class="co">${esc(j.company)}</div>
+    <span class="badge">${esc(j.source)}</span><span class="badge">${esc(j.posted)}</span>
+    <div class="v">✓ ${esc(j.verified)}</div><div>${esc(j.pitch)}</div><p><a href="${esc(j.url)}" target="_blank" rel="noopener">Open the posting</a></p></div>`).join("")
+    + `<div class="final">${esc(after)}</div>` : `<div class="empty">${esc(after || "No verified roles found.")}</div>`;
+}
+</script>
+</body>
+</html>
