@@ -7,9 +7,9 @@ const days = Number(flags.days || 7), max = Number(flags.max || 30);
 const loc = locTerms(flags.location), want = wantedLevel(flags.level);
 if (!query) { print({ error: "Give a job type, for example: search_boards.mjs \"AI product manager\"" }); process.exit(0); }
 
-const GREENHOUSE = ["anthropic","stripe","airbnb","figma","databricks","scaleai","vercel","brex","coinbase","instacart","discord","duolingo","reddit","pinterest","lyft","dropbox","gitlab","asana","intercom","datadog","mongodb","twilio","cloudflare","robinhood","gusto","webflow","carta","samsara","togetherai","airtable","affirm","groww","elastic","okta","monzo","wise","deliveroo"];
-const ASHBY = ["openai","ramp","notion","linear","perplexity","cursor","replit","sierra","decagon","harvey","cohere","deepgram","runway","pinecone"];
-const LEVER = ["palantir","spotify","wealthfront","outreach","cred","meesho"];
+const GREENHOUSE = ["anthropic","stripe","airbnb","figma","databricks","scaleai","vercel","brex","coinbase","instacart","discord","duolingo","reddit","pinterest","lyft","dropbox","gitlab","asana","intercom","datadog","mongodb","twilio","cloudflare","robinhood","gusto","webflow","carta","samsara","togetherai","airtable","affirm","groww","elastic","okta","monzo","wise","deliveroo","gocardless","ebury","graphcore","hellofresh","ocadogroup","sumup","tide","truelayer","cleo","druva","highradius","sigmoid","thoughtworks"];
+const ASHBY = ["openai","ramp","notion","linear","perplexity","cursor","replit","sierra","decagon","harvey","cohere","deepgram","runway","pinecone","elevenlabs","wayve","synthesia","faculty","lendable","marshmallow","mollie","paddle","snyk","improbable","multiverse","farfetch","atlan","sarvam"];
+const LEVER = ["palantir","spotify","wealthfront","outreach","cred","meesho","octoenergy","moonpig","zopa","paytm","zeta","fampay","hevodata","mindtickle","pocketfm","porter","nium"];
 
 const counts = {};
 const jobs = [];
@@ -61,7 +61,7 @@ print({
   summary: `Searched 2 remote job boards and ${boards} company boards. ${final.length} matches${where} from the last ${days} days.`,
   by_source: counts,
   role_matches_in_other_places: elsewhere,
-  coverage_note: final.length === 0 && elsewhere > 0 ? `${elsewhere} matching roles exist, but none in ${flags.location}. These boards lean toward US and UK companies, so try LinkedIn or widen the days.` : undefined,
+  coverage_note: final.length === 0 && elsewhere > 0 ? `${elsewhere} matching roles exist, but none in ${flags.location}. These boards cover mainly US and UK companies plus a few Indian ones, so try LinkedIn or widen the days.` : undefined,
   sources: sources.sort((a, b) => b.kept - a.kept || b.role - a.role || a.name.localeCompare(b.name)),
   jobs: final,
 });
