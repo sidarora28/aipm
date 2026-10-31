@@ -28,6 +28,7 @@ The agent does **not** search the whole internet. It only reads a fixed list of 
 | Company pages on Workday (Adobe, Salesforce, Mastercard, Visa, eBay, GSK, Barclays, Accenture and more) | `WORKDAY` list | Free |
 | Workable (Apna) | `WORKABLE` list | Free |
 | Amazon's own jobs site | `amazon()` in `tools/search_boards.mjs` | Free |
+| Naukri (India), Indeed and Glassdoor (any country), through Apify | `tools/search_jobsites.mjs` | About $0.0001 to $0.0004 per job |
 | LinkedIn jobs (any company, any city) | `tools/search_linkedin.mjs`, through Apify | About $0.001 per job |
 
 What this means in practice:
@@ -123,6 +124,15 @@ The agent can use more sources if you connect them. These are ideas, and each ne
 Each new source needs a small tool file in `tools/` that prints jobs in the same format as the existing ones. Ask Claude: "Add a new job source for X following the pattern in search_linkedin.mjs".
 
 ---
+
+### Job sites already connected through Apify
+`tools/search_jobsites.mjs` uses three Apify actors by the author `valig`: `naukri-jobs-scraper`, `indeed-jobs-scraper` and `glassdoor-jobs-scraper`. They use the same `APIFY_API_TOKEN` as LinkedIn and need no extra account. Test it:
+
+```
+JOBHUNTER_ALLOW_APIFY=1 node tools/search_jobsites.mjs "product manager" --location "India" --days 7 --limit 10
+```
+
+A test run for India returned about 36 matching jobs for roughly 2 cents. To add another site (for example Foundit or Wellfound), find an actor in the Apify Store, then add an entry to the `SITES` list in that file with its actor name, input fields and how to read its results.
 
 ## 6. Running the agent
 

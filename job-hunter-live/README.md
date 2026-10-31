@@ -7,6 +7,7 @@ How it works: the agent (Claude, run through the `claude` CLI) is given three to
 | Tool | What it does | Cost |
 |---|---|---|
 | `tools/search_boards.mjs` | Remote job boards plus about 49 company job boards (Greenhouse, Ashby, Lever public feeds) | Free |
+| `tools/search_jobsites.mjs` | Naukri (India only), Indeed and Glassdoor jobs, through Apify | About $0.0001 to $0.0004 per job, off unless ticked |
 | `tools/search_linkedin.mjs` | LinkedIn jobs from the last few days, through Apify | About $0.001 per job, off unless ticked |
 | `tools/verify.mjs` | Checks a posting is still accepting applications | Free |
 
