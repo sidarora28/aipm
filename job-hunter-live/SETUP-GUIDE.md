@@ -23,12 +23,19 @@ The agent does **not** search the whole internet. It only reads a fixed list of 
 | Source type | Where the list lives | Cost |
 |---|---|---|
 | 2 remote job boards (Remotive, RemoteOK) | `tools/search_boards.mjs` | Free |
-| About 95 company career pages (Greenhouse, Ashby, Lever) | `GREENHOUSE`, `ASHBY`, `LEVER` lists at the top of `tools/search_boards.mjs` | Free |
+| Company pages on Greenhouse, Ashby and Lever (about 100 companies) | `GREENHOUSE`, `ASHBY`, `LEVER` lists at the top of `tools/search_boards.mjs` | Free |
+| Company pages on SmartRecruiters (Swiggy, Freshworks, BlueStone, ixigo, NoBroker, Unacademy, Upstox, Experian, ServiceNow and more) | `SMARTRECRUITERS` list | Free |
+| Company pages on Workday (Adobe, Salesforce, Mastercard, Visa, eBay, GSK, Barclays, Accenture and more) | `WORKDAY` list | Free |
+| Workable (Apna) | `WORKABLE` list | Free |
+| Amazon's own jobs site | `amazon()` in `tools/search_boards.mjs` | Free |
 | LinkedIn jobs (any company, any city) | `tools/search_linkedin.mjs`, through Apify | About $0.001 per job |
 
 What this means in practice:
 - **US and UK roles work well.** Most hardcoded companies are US or UK based.
-- **India is thin.** Only a few Indian companies are in the list (Paytm, Meesho, CRED, Groww, FamPay and others). Big names like Flipkart, Swiggy, Zomato, PhonePe and Razorpay run their own career sites, which the free tool cannot read.
+- **India now works much better.** A 7-day search for "product manager" in India returns about 24 roles, from Amazon, Adobe, GSK, ServiceNow, eBay, Mastercard, Visa, Experian, Salesforce, Barclays and others.
+- **Some big Indian names are still missing.** Flipkart, Zomato, PhonePe, Razorpay, Myntra and Ola run custom career sites with no public feed, so the free tool cannot read them. LinkedIn covers those.
+- **Workday and SmartRecruiters notes:** locations are sometimes shown as "2 Locations", so a few India roles may be missed.
+- **Workable (Apna) is lightly tested** because the site rate-limited me during testing.
 - **If a company is not in the list, the free search will never find it.** LinkedIn is the only source that covers everything.
 - Roles found through LinkedIn link to LinkedIn, not to the company's own application page.
 
@@ -38,7 +45,9 @@ What this means in practice:
 3. Open `tools/search_boards.mjs` and add the slug to the matching list (`GREENHOUSE`, `ASHBY` or `LEVER`).
 4. Test it: `node tools/search_boards.mjs "product manager" --location "india" --days 30`
 
-If the career page uses another system (Workday, a custom site), the free tool cannot read it. Use LinkedIn or a connector instead.
+For SmartRecruiters, the slug is in `jobs.smartrecruiters.com/COMPANY`. For Workday you need three parts from an address like `https://adobe.wd5.myworkdayjobs.com/external_experienced`: company (`adobe`), server (`wd5`) and site (`external_experienced`). Add them as a new row in the `WORKDAY` list.
+
+If the career page is a custom site, the free tool cannot read it. Use LinkedIn or a connector instead.
 
 ---
 

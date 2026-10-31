@@ -28,6 +28,23 @@ async function check(url) {
     if (d.__status === 404) return { open: "no", evidence: "Lever says this posting no longer exists (404)" };
     if (d.id) return { open: "yes", evidence: "Live on the company's Lever board" };
   }
+  if ((m = url.match(/jobs\.smartrecruiters\.com\/([^/]+)\/(\d+)/i))) {
+    const d = await getJSON(`https://api.smartrecruiters.com/v1/companies/${m[1]}/postings/${m[2]}`);
+    if (d.__status === 404) return { open: "no", evidence: "SmartRecruiters says this posting no longer exists (404)" };
+    if (d.id) return { open: "yes", evidence: `Live on the company's SmartRecruiters board, released ${String(d.releasedDate || "").slice(0, 10)}` };
+  }
+  if ((m = url.match(/apply\.workable\.com\/([^/]+)\/j\/([A-Z0-9]+)/i))) {
+    const d = await getJSON(`https://apply.workable.com/api/v2/accounts/${m[1]}/jobs/${m[2]}`);
+    if (d.__status === 404) return { open: "no", evidence: "Workable says this job no longer exists (404)" };
+    if (d.shortcode) return { open: "yes", evidence: "Live on the company's Workable board" };
+  }
+  if ((m = url.match(/^https:\/\/([^.]+)\.(wd\d+)\.myworkdayjobs\.com\/(?:[a-z]{2}-[A-Z]{2}\/)?([^/]+)(\/job\/.+)$/))) {
+    const d = await getJSON(`https://${m[1]}.${m[2]}.myworkdayjobs.com/wday/cxs/${m[1]}/${m[3]}${m[4]}`, 30000);
+    if (d.__status === 404 || d.__status === 400) return { open: "no", evidence: `Workday says this job no longer exists (${d.__status})` };
+    if (d.jobPostingInfo) return d.jobPostingInfo.canApply === false
+      ? { open: "no", evidence: "Workday shows this job can no longer be applied to" }
+      : { open: "yes", evidence: `Live on the company's Workday site, ${d.jobPostingInfo.postedOn || "posted recently"}` };
+  }
   try {
     const r = await fetch(url, { headers: { "user-agent": UA }, redirect: "follow", signal: AbortSignal.timeout(20000) });
     if (r.status === 404 || r.status === 410) return { open: "no", evidence: `Page returns ${r.status}` };
