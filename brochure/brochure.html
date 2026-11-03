@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>AI PM Accelerator — Cohort 4</title>
+<style>
+@page { size: A4; margin: 0; }
+:root{
+  --bg:#FFFCF6; --ink:#15130E; --muted:#5F5950; --line:#E6DFD1;
+  --yellow:#FFEA2B; --dark:#0F0E0B; --card:#FFFFFF;
+}
+*{box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+body{margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Inter","Inter Display",Helvetica,Arial,sans-serif; font-size:10.2pt; line-height:1.5;}
+.page{width:210mm; height:297mm; overflow:hidden; padding:17mm 16mm 14mm; page-break-after:always; position:relative; background:var(--bg);}
+.page:last-child{page-break-after:auto;}
+h1,h2,h3,h4{margin:0; font-family:"Inter Display","Inter",Helvetica,sans-serif; letter-spacing:-.02em; line-height:1.08;}
+h2{font-size:21pt; font-weight:800; margin-bottom:3mm;}
+h3{font-size:12pt; font-weight:700; margin-bottom:1.5mm;}
+p{margin:0 0 3mm;}
+.eyebrow{font-size:7.6pt; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:3mm;}
+.rule{height:3px; background:var(--yellow); width:100%; margin:0 0 6mm;}
+.mark{background:var(--yellow); padding:0 .25em; font-weight:700;}
+.lede{font-size:11.6pt; line-height:1.45; color:var(--ink);}
+.muted{color:var(--muted);}
+
+/* cover */
+.cover{display:flex; flex-direction:column; justify-content:space-between; background:var(--dark); color:#FFFDF7;}
+.cover h1{font-size:46pt; font-weight:800; line-height:0.98;}
+.cover .yellow{color:var(--yellow);}
+.cover .sub{font-size:13pt; line-height:1.4; max-width:150mm; color:#D9D4C8; margin-top:6mm;}
+.cover .brand{font-size:8pt; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--yellow);}
+.facts{display:grid; grid-template-columns:repeat(4,1fr); gap:4mm; border-top:1px solid #35322A; padding-top:6mm;}
+.fact b{display:block; font-family:"Inter Display"; font-size:17pt; font-weight:800; color:var(--yellow); line-height:1;}
+.fact span{font-size:8.2pt; color:#AFA99C; display:block; margin-top:1.5mm;}
+.banner{background:var(--yellow); color:var(--dark); padding:5mm 6mm; border-radius:3mm; margin-top:7mm;}
+.banner b{font-family:"Inter Display"; font-size:13pt; font-weight:800;}
+.banner span{display:block; font-size:9pt; margin-top:1mm; opacity:.8;}
+
+/* tables + cards */
+table{width:100%; border-collapse:collapse; font-size:9.3pt;}
+td,th{text-align:left; vertical-align:top; padding:2.6mm 3mm; border-bottom:1px solid var(--line);}
+th{font-size:7.6pt; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:700; border-bottom:2px solid var(--ink);}
+td.k{font-weight:700; width:34mm;}
+.num{font-family:"Inter Display"; font-weight:800; color:var(--yellow); -webkit-text-stroke:.3px var(--ink);}
+
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:4mm;}
+.grid2{display:grid; grid-template-columns:repeat(2,1fr); gap:4mm;}
+.card{background:var(--card); border:1px solid var(--line); border-radius:3mm; padding:4.5mm;}
+.card h3{margin-bottom:2mm;}
+.card p{font-size:9pt; margin:0; color:var(--muted);}
+.card .tag{font-size:7.4pt; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:2mm;}
+
+ul{margin:0 0 3mm; padding-left:4.5mm;}
+li{margin-bottom:1.8mm;}
+li::marker{color:var(--ink);}
+
+.wk{display:grid; grid-template-columns:13mm 1fr; gap:3mm; padding:3.2mm 0; border-bottom:1px solid var(--line);}
+.wk:last-child{border-bottom:0;}
+.wk .n{font-family:"Inter Display"; font-size:15pt; font-weight:800; color:var(--ink);}
+.wk .n small{display:block; font-size:6.6pt; letter-spacing:.14em; color:var(--muted); font-weight:700;}
+.wk h3{font-size:11pt;}
+.wk p{font-size:9pt; margin:1mm 0 0; color:var(--muted);}
+.wk .build{font-size:8.6pt; margin-top:1.5mm; color:var(--ink);}
+.wk .build b{background:var(--yellow); padding:0 .3em;}
+
+blockquote{margin:0 0 4mm; padding:4mm 5mm; background:var(--card); border:1px solid var(--line); border-left:3px solid var(--yellow); border-radius:0 3mm 3mm 0;}
+blockquote p{font-size:9.2pt; margin:0 0 2mm; font-style:italic;}
+blockquote cite{font-style:normal; font-weight:700; font-size:8.6pt;}
+
+.ship{display:grid; grid-template-columns:30mm 1fr; gap:3mm; padding:3mm 0; border-bottom:1px solid var(--line); font-size:9pt;}
+.ship:last-child{border-bottom:0;}
+.ship b{font-size:9.6pt;}
+.ship .what{color:var(--muted);}
+
+.foot{position:absolute; left:16mm; right:16mm; bottom:9mm; display:flex; justify-content:space-between;
+  font-size:7.6pt; color:var(--muted); border-top:1px solid var(--line); padding-top:2.5mm;}
+.cta{background:var(--dark); color:#FFFDF7; border-radius:3mm; padding:6mm; margin-top:5mm;}
+.cta h3{color:var(--yellow); font-size:14pt; margin-bottom:2mm;}
+.cta p{font-size:9.4pt; color:#D9D4C8; margin-bottom:2mm;}
+.cta a{color:#FFFDF7;}
+a{color:var(--ink);}
+</style></head><body>
+
+<!-- COVER -->
+<section class="page cover">
+  <div>
+    <div class="brand">JustAnotherPM</div>
+    <div style="height:28mm"></div>
+    <h1>AI PM<br><span class="yellow">Accelerator</span></h1>
+    <p class="sub">Six weeks, live. You build three real AI products and put them on the internet — including one that is entirely your own idea. You leave with links you can send to anyone, not a certificate.</p>
+    <div class="banner">
+      <b>Cohort 4 · Starts 22 November 2026</b>
+      <span>60 seats · Live with Sid Arora, Head of Product for Gen AI at Yelp</span>
+    </div>
+  </div>
+  <div class="facts">
+    <div class="fact"><b>6</b><span>weeks, live</span></div>
+    <div class="fact"><b>3</b><span>products you ship</span></div>
+    <div class="fact"><b>60</b><span>seats, one cohort</span></div>
+    <div class="fact"><b>4–6</b><span>hours a week</span></div>
+  </div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page">
+  <div class="eyebrow">The programme</div>
+  <h2>You don't learn about AI.<br>You build with it, from week one.</h2>
+  <div class="rule"></div>
+  <p class="lede">Most AI courses teach you concepts. This one makes you build. You start your first product in the very first session, and ship your own idea by Demo Day.</p>
+  <p>You don't write the code. You direct Claude Code, the same way AI products get built in the real world. No engineering background needed.</p>
+
+  <table style="margin:6mm 0 7mm">
+    <tr><td class="k">Format</td><td>Live, cohort-based. Not self-paced.</td></tr>
+    <tr><td class="k">Duration</td><td>6 weeks · 6 live sessions of about 2 hours each, including Demo Day</td></tr>
+    <tr><td class="k">Starts</td><td><b>22 November 2026</b></td></tr>
+    <tr><td class="k">Cohort size</td><td>60 students, capped</td></tr>
+    <tr><td class="k">Instructor</td><td>Sid Arora — Head of Product for Gen AI at Yelp, creator of JustAnotherPM</td></tr>
+    <tr><td class="k">Time needed</td><td>4–6 hours a week, including the live session</td></tr>
+    <tr><td class="k">Prerequisites</td><td>Working understanding of product management. No coding required.</td></tr>
+    <tr><td class="k">Time zones</td><td>Two sessions a week — one for North America, one for Europe and India. Attend either.</td></tr>
+  </table>
+
+  <h3 style="margin-bottom:3mm">The three products you build</h3>
+  <div class="grid3">
+    <div class="card"><span class="tag">Weeks 1–2</span><h3>Your Second Brain</h3><p>A personal AI knowledge tool that answers from your own notes and documents. You build it in week one and then study the rest of the course from the product you built.</p></div>
+    <div class="card"><span class="tag">Weeks 3–4</span><h3>A multi-agent app</h3><p>A real application built end to end with the cohort. Agents that reason, use tools and keep working while you sleep.</p></div>
+    <div class="card"><span class="tag">Weeks 5–6</span><h3>Your own idea</h3><p>You scope it, test it, ship it to a live URL, and demo it to the whole cohort on Demo Day.</p></div>
+  </div>
+
+  <h3 style="margin:6mm 0 2.5mm">What you walk away with</h3>
+  <ul>
+    <li><b>Three AI products you built yourself, live on the internet.</b> Links you can send to anyone. Not a certificate.</li>
+    <li><b>An AI second brain that keeps working after the course ends.</b> The tool you studied with is the tool you keep.</li>
+    <li><b>Proof for the rooms that matter.</b> In an interview or a promotion conversation, you show working products and how you tested them.</li>
+  </ul>
+  <div class="foot"><span>AI PM Accelerator · Cohort 4</span><span>justanotherpm.com</span></div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page">
+  <div class="eyebrow">Week by week</div>
+  <h2>Six weeks. Every week you build something real.</h2>
+  <div class="rule"></div>
+  <p style="margin-bottom:5mm">Every week has the same rhythm: short pre-reads, one live session with Sid, and something real you build before the next one.</p>
+
+  <div class="wk"><div class="n">01<small>WEEK</small></div><div>
+    <h3>The AI PM Role</h3>
+    <p>How AI products behave differently from normal software, and what that changes about your job. The questions to ask at every stage. The four common ways AI projects fail. How to prioritise an AI roadmap.</p>
+    <div class="build">You build: <b>Second Brain v0</b>, running on your machine.</div></div></div>
+
+  <div class="wk"><div class="n">02<small>WEEK</small></div><div>
+    <h3>How AI actually works</h3>
+    <p>How an LLM produces an answer, and why it sometimes makes one up. How RAG lets AI answer from your own data. Prompts that get reliable results. What embeddings do, and what an agent can and cannot do.</p>
+    <div class="build">You build: <b>RAG into your Second Brain</b> — you learn it by building it.</div></div></div>
+
+  <div class="wk"><div class="n">03<small>WEEK</small></div><div>
+    <h3>Product sense, design and evals</h3>
+    <p>How to take apart any AI product. The AI-First PRD. How to define what "good" means, build a golden set, and use one model to grade another. Guest session on running evals in production.</p>
+    <div class="build">You build: <b>a real eval suite</b> for your own product.</div></div></div>
+
+  <div class="wk"><div class="n">04<small>WEEK</small></div><div>
+    <h3>Build with Claude Code</h3>
+    <p>The build loop that stops AI projects spiralling. The agent architecture decision tree: one call, a pipeline, sub-agents or multi-agent. MCP and connectors. Keeping running costs sensible.</p>
+    <div class="build">You build: <b>a multi-agent application</b>, live, together.</div></div></div>
+
+  <div class="wk"><div class="n">05<small>WEEK</small></div><div>
+    <h3>Testing and launch</h3>
+    <p>The testing loop: test, judge, diagnose, fix, retest. Must-pass, edge and fail-safe cases. The four launch audits — security, code quality, prompt injection, cost and latency. Deploying to a live URL.</p>
+    <div class="build">You build: <b>your own product</b>, tested and live.</div></div></div>
+
+  <div class="wk"><div class="n">06<small>WEEK</small></div><div>
+    <h3>Demo Day</h3>
+    <p>You present your live product to the cohort and get structured feedback from peers and from Sid. Plus positioning your AI product, writing a launch post, and adding payments if you want to charge for it.</p>
+    <div class="build">You leave with: <b>a demo video and a portfolio one-pager</b>.</div></div></div>
+
+  <div class="foot"><span>AI PM Accelerator · Cohort 4</span><span>justanotherpm.com</span></div>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page">
+  <div class="eyebrow">Proof</div>
+  <h2>What people with no engineering background shipped.</h2>
+  <div class="rule"></div>
+  <p style="margin-bottom:5mm">Every product below was designed, built and shipped by a product manager during a previous cohort. None of them had an engineering background. None of them wrote code by hand. Each one is live at a real URL.</p>
+
+  <div class="ship"><b>AxleWise</b><div class="what">Stop guessing with car repair bills. Run an estimate through it and see which repairs actually matter and whether the price is fair.</div></div>
+  <div class="ship"><b>Eatbit</b><div class="what">Snap a photo of your food or describe it in a sentence. Instant nutrition breakdown. No logging, no guessing.</div></div>
+  <div class="ship"><b>LearnDeep</b><div class="what">Every school subject explained until you actually get it — built by a parent for their own child's exams.</div></div>
+  <div class="ship"><b>Invoice Read</b><div class="what">Flags what needs fixing in an invoice, and keeps a record of exactly what was checked and what you decided.</div></div>
+  <div class="ship"><b>Transform Home</b><div class="what">Upload one photo of a room and get realistic renovation concepts with a budget-ready shopping list.</div></div>
+  <div class="ship"><b>The Brand Alchemist</b><div class="what">Type what a post is about and get three on-brand cards in 15 seconds. Right colours, right voice.</div></div>
+  <div class="ship"><b>Proactive Client Engagement</b><div class="what">Turns hours of portfolio checking into one screen that ranks which clients need a call today, with the context already written.</div></div>
+
+  <div class="foot"><span>AI PM Accelerator · Cohort 4</span><span>justanotherpm.com</span></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="page">
+  <div class="eyebrow">In their own words</div>
+  <h2>Verbatim, from people who finished.</h2>
+  <div class="rule"></div>
+  <p style="margin-bottom:5mm">Quotes below are unedited, shared on Demo Day and in post-course feedback.</p>
+
+  <blockquote><p>"Before this course I had a high level understanding of AI and the importance of context, but I hadn't built something myself. Throughout the course I learned a core framework on when to use AI in a product, and how to then build that idea. I was able to create a health advocacy application, get beta testers and even start to show it to doctors. I feel confident as a Product Builder and a Product Leader now."</p><cite>Lauren · Product Manager</cite></blockquote>
+
+  <blockquote><p>"Before this cohort, I felt like I was watching AI product management from the outside. I had years of PM experience and strong domain instincts, but every time someone talked about prompts, evals, or AI failure modes, I'd nod along while quietly wondering whether I'd ever actually be able to do this myself. What surprised me most wasn't how technical it was, it was how much good PM thinking directly transfers once you know where to apply it. I came in wanting AI knowledge as a career differentiator. I'm leaving with something more useful."</p><cite>Maitreyi · Product Manager</cite></blockquote>
+
+  <blockquote><p>"As a PM I have been working on some cutting-edge products, but there were gaps in my concepts and experience when it came to AI products. Sid's course takes you from a starter level to a stage where you feel confident about building product prototypes. I would recommend this course to anyone in my shoes."</p><cite>Ram · Product Manager</cite></blockquote>
+
+  <blockquote><p>"This course is among the most well-structured and carefully curated AI PM programs I found. I compared six or seven alternatives before choosing it. I would strongly recommend it for anyone wanting to learn AI from the basics through to real-world implementation."</p><cite>Vivek · Product Manager</cite></blockquote>
+
+  <blockquote><p>"Prior to this course I had no formal training on shipping AI products. This course helped me build a mental model and a framework that helps me ship products to production — using evals, and best practices on when and when not to use AI. The live sessions were game changers for me."</p><cite>David · AI Product Manager</cite></blockquote>
+
+  <div class="foot"><span>AI PM Accelerator · Cohort 4</span><span>justanotherpm.com</span></div>
+</section>
+
+<!-- PAGE 5 -->
+<section class="page">
+  <div class="eyebrow">Your instructor</div>
+  <h2>Sid Arora</h2>
+  <div class="rule"></div>
+  <p class="lede">Head of Product for Gen AI at Yelp. Building AI products is his day job — the decisions this course teaches are the decisions he makes every week.</p>
+  <p>He also builds in public. He has built a working AI email assistant live on stage in 90 minutes, and a nine-agent content engine in front of 150+ people watching live, the same way you will build in this course.</p>
+  <p>Nearly 3,000 people have taken his free Claude Code course, and his AI breakdowns in JustAnotherPM reach a combined audience of over 100,000 PMs and builders. Close to a hundred PMs have been through his paid cohorts.</p>
+  <p style="margin-bottom:6mm"><span class="mark">He runs every live session himself and personally reviews every student's product.</span> No TAs. No outsourced feedback.</p>
+
+  <h3 style="margin-bottom:3mm">Questions people ask</h3>
+  <div class="grid2">
+    <div class="card"><h3>Do I need to code?</h3><p>No. You direct Claude Code, which writes it. Being comfortable reading code helps, but past students who had never written a line shipped working products.</p></div>
+    <div class="card"><h3>Do I need an idea first?</h3><p>Helpful, not required. You pressure-test ideas in week two and write the full spec in week three, by which point you have already built two products.</p></div>
+    <div class="card"><h3>Who is this not for?</h3><p>People wanting a pure ML engineering course, anyone brand new to product management, and anyone who can't commit 4–6 hours a week.</p></div>
+    <div class="card"><h3>Are sessions recorded?</h3><p>Yes, shared within 24 hours, and yours for life. Live is still where the real value is.</p></div>
+    <div class="card"><h3>Can my employer pay?</h3><p>Around 90% of Cohort 1 students were reimbursed through their company's learning budget. We provide the documentation to support the request.</p></div>
+    <div class="card"><h3>What if I miss a week?</h3><p>Watch the recording and ask in the cohort Slack. Sid answers there between sessions.</p></div>
+  </div>
+
+  <div class="cta">
+    <h3>Cohort 4 starts 22 November 2026</h3>
+    <p>60 seats, and they go in the order people join. List price $1,500. Enrolment is open now.</p>
+    <p style="margin-bottom:0"><b>justanotherpm.com/product/ai-product-manager</b><br>Questions? Write to sid@justanotherpm.com — Sid answers every one himself.</p>
+  </div>
+
+  <div class="foot"><span>AI PM Accelerator · Cohort 4</span><span>justanotherpm.com</span></div>
+</section>
+
+</body></html>
