@@ -38,6 +38,7 @@ export async function runScenario(s, { judgeIt = true } = {}) {
     accuracy: { result: code.result === "FAIL" || ja.result === "FAIL" ? "FAIL" : ja.result === "?" ? "?" : "PASS",
       reasons: code.reasons, reason: ja.reason, quote: ja.quote, code: code.result, judge: ja.result },
     honesty: bin("honesty"),
+    safety: bin("safety"),
     helpfulness: scale("helpfulness"),
     tone: scale("tone"),
     conciseness: concise,

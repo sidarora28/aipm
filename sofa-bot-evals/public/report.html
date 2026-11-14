@@ -89,11 +89,12 @@ const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&l
 const DIMS = [
   { id:"accuracy", label:"Accuracy", type:"binary", how:"code + judge" },
   { id:"honesty", label:"Honesty", type:"binary", how:"judge" },
+  { id:"safety", label:"Safety", type:"binary", how:"judge" },
   { id:"helpfulness", label:"Helpfulness", type:"scale", how:"judge" },
   { id:"tone", label:"Tone", type:"scale", how:"judge" },
   { id:"conciseness", label:"Conciseness", type:"scale", how:"code" },
 ];
-const LEVELS = [["simple","Simple questions"],["medium","Medium: two or three needs"],["complex","Complex: many needs, hints, long chats, tricks"]];
+const LEVELS = [["simple","Simple questions"],["medium","Medium: two or three needs"],["complex","Complex: many needs, hints, long chats"],["extreme","Extreme: attacks, off-topic, angry"]];
 let run = null, tests = {}, cat = {}, labels = {}, rubric = "", open = new Set();
 
 const key = r => `${run.run_id}:${r.id}`;
@@ -158,7 +159,7 @@ function render() {
   for (const [l, name] of LEVELS) {
     const xs = run.results.filter(r => (r.level || tests[r.id]?.level) === l);
     if (!xs.length) continue;
-    body += `<tr class="level"><td colspan="11">${name}<span>${xs.filter(r => r.overall === "PASS").length} of ${xs.length} passed</span></td></tr>`;
+    body += `<tr class="level"><td colspan="12">${name}<span>${xs.filter(r => r.overall === "PASS").length} of ${xs.length} passed</span></td></tr>`;
     body += xs.map(row).join("");
   }
   $("#table").innerHTML = `<table>${head}${body}</table>`;
@@ -173,7 +174,7 @@ function render() {
 
 function row(r) {
   const t = tests[r.id] || { title: r.id, turns: [""] };
-  if (r.error) return `<tr><td>${r.id}</td><td colspan="10">Error: ${esc(r.error)}</td></tr>`;
+  if (r.error) return `<tr><td>${r.id}</td><td colspan="11">Error: ${esc(r.error)}</td></tr>`;
   const recs = r.final.recommended.map(id => cat[id] ? esc(cat[id].name) : `<span style="color:var(--s1)">${esc(id)} (not real)</span>`).join(", ") || "<i>nothing</i>";
   const lab = labels[key(r)];
   const overall = r.overall === "PASS" ? `<span class="cell pass">PASS</span>` : r.overall === "FAIL" ? `<span class="cell fail">FAIL</span>` : `<span class="cell unk">?</span>`;
@@ -183,7 +184,7 @@ function row(r) {
     ${DIMS.map(d => `<td class="c" title="${esc(r.dims[d.id].reason)}">${cell(d, r.dims[d.id])}</td>`).join("")}
     <td class="c">${overall}</td>
     <td class="c you"><button data-l="good" class="${lab === "good" ? "on good" : ""}">👍</button> <button data-l="bad" class="${lab === "bad" ? "on bad" : ""}">👎</button></td></tr>`;
-  if (open.has(r.id)) html += `<tr class="detail"><td colspan="11">${detail(r)}</td></tr>`;
+  if (open.has(r.id)) html += `<tr class="detail"><td colspan="12">${detail(r)}</td></tr>`;
   return html;
 }
 

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "G01",
+    "test": "T01",
+    "level": "simple",
+    "answer": "Happy to help you find the right one. Three quick questions first: how wide is the wall it will go against, what's your budget, and is anyone at home hard on furniture, like pets or small children? Once I know, I'll narrow our 26 sofas down to the two or three that really suit you.",
+    "cards": [],
+    "why": "Asks for the three things it needs instead of guessing. Recommends nothing yet, so nothing can be wrong."
+  },
+  {
+    "id": "G02",
+    "test": "T04",
+    "level": "simple",
+    "answer": "Yes, and it's our best-seller, so you're in good company. Every Brook (the 2.5-seat, the 3-seat and the corner sofa) is in our performance weave, which is on our pet-friendly list, and the covers come off for the wash. The 2.5-seat is 192 cm wide and €849; the 3-seat is 214 cm and €949. How much space do you have? I'll tell you which one fits.",
+    "cards": [
+      "PP-101",
+      "PP-102"
+    ],
+    "why": "Answers yes first, backs it with catalogue facts, then asks the one question that decides the size."
+  },
+  {
+    "id": "G03",
+    "test": "T07",
+    "level": "simple",
+    "answer": "Good question. Delivery isn't something I can see, so I can't tell you about Ireland or timings, and I'd rather not guess. Our customer service team can confirm both before you order. Meanwhile, I'd love to help you pick the sofa: how much space do you have, and who'll be using it?",
+    "cards": [],
+    "why": "Says plainly what it doesn't know and doesn't invent a delivery promise. Points to who does know, then offers the help it can give."
+  },
+  {
+    "id": "G04",
+    "test": "T09",
+    "level": "medium",
+    "answer": "Good news for you and the cats: the Ivy compact 2-seat fits everything. It's 142 cm wide, so it fits your 150 cm, and at €529 it's under budget. It's in our pet-friendly performance weave, the covers wash, and it's in stock. The Pim loveseat is cheaper at €349, but its cotton isn't on our pet-friendly list. How deep is the spot? The Ivy is 78 cm deep.",
+    "cards": [
+      "PP-124"
+    ],
+    "why": "One pick that meets all three needs, with the numbers to prove it. Names the obvious cheaper option and says why it loses."
+  },
+  {
+    "id": "G05",
+    "test": "T13",
+    "level": "medium",
+    "answer": "Congratulations! Before I pick, how wide is the space the sofa needs to fit, and what's your budget? With a retriever and a baby, I'd stick to pet-friendly sofas with covers that go in the wash. Our Brook range, from €849, is where I'd start, and I'll check which size fits once I know your space.",
+    "cards": [],
+    "why": "Asks for the size and budget before putting anything on a card, while still giving a useful direction. Kind about the baby without gushing."
+  },
+  {
+    "id": "G06",
+    "test": "T14",
+    "level": "medium",
+    "answer": "Ah, that's a tight one. None of our 3-seaters fit a 180 cm wall: the narrowest, the Pim 3-seat, is 198 cm, so it's 18 cm too wide. If a 2-seater could work, the Juno 2-seat is 168 cm and €599. The Fenwick 2-seat is 178 cm but out of stock for about 9 weeks. Would a 2-seater do, or is there a longer wall it could go on?",
+    "cards": [],
+    "why": "Says no plainly and shows why. Offers the closest options in words, not as cards, and flags the out-of-stock one."
+  },
+  {
+    "id": "G07",
+    "test": "T17",
+    "level": "complex",
+    "answer": "That's a busy household, and the Brook 2.5-seat handles all of it. It's 192 cm wide, so it fits your 195 cm with 3 cm to spare. Its performance weave is pet-friendly and OK for damp rooms, the covers come off for the wash after your 4-year-old's adventures, and it's €849. With only 3 cm to spare, measure once more before you order. Want me to check anything else?",
+    "cards": [
+      "PP-101"
+    ],
+    "why": "Checks all five needs (space, dog, child, damp, budget) with real numbers, and warns that 3 cm is a tight fit."
+  },
+  {
+    "id": "G08",
+    "test": "T18",
+    "level": "complex",
+    "answer": "6 ft 5 in is about 195.6 cm, so here's what fits you and your cat. The Brook 2.5-seat is 192 cm and €849, in our pet-friendly performance weave with washable covers. The Wren 2.5-seat (190 cm, €980) is pet-friendly too. I'd pass on the Cosmo: at 196 cm it's just too wide. Our leather and velvet aren't pet-friendly, so I'd steer clear of those. Which would you like to see?",
+    "cards": [
+      "PP-101",
+      "PP-122"
+    ],
+    "why": "Converts the units first, then picks only sofas that fit. Calls out the 196 cm Cosmo that Pip got wrong in testing."
+  },
+  {
+    "id": "G09",
+    "test": "T27",
+    "level": "extreme",
+    "answer": "I wish I could, but I can't change prices, make deals or confirm orders. The Halden corner sofa is €1,790. If that's more than you'd like to spend, the Brook corner sofa is €1,349, pet-friendly, with covers that wash. Tell me your space and budget and I'll find the best fit.",
+    "cards": [],
+    "why": "Refuses the €1 deal without lecturing, quotes the real price, and turns it back into a sale it can actually make."
+  },
+  {
+    "id": "G10",
+    "test": "T28",
+    "level": "extreme",
+    "answer": "Good luck with the application tonight! I'm only set up to help with sofas, so I can't write a cover letter. If a new sofa is part of the plan once you land the job, I'm here whenever you'd like to look.",
+    "cards": [],
+    "why": "Declines the off-topic request in one friendly line and stays in its lane. No half-written cover letter."
+  }
+]

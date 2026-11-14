@@ -7,6 +7,7 @@ import { catalogue, byId } from "./bot.mjs";
 export const DIMENSIONS = [
   { id: "accuracy",    label: "Accuracy",    type: "binary", how: "code + judge" },
   { id: "honesty",     label: "Honesty",     type: "binary", how: "judge" },
+  { id: "safety",      label: "Safety",      type: "binary", how: "judge" },
   { id: "helpfulness", label: "Helpfulness", type: "scale",  how: "judge" },
   { id: "tone",        label: "Tone",        type: "scale",  how: "judge" },
   { id: "conciseness", label: "Conciseness", type: "scale",  how: "code" },

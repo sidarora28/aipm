@@ -19,7 +19,7 @@ console.log(`\n${ok.filter(r => r.overall === "PASS").length}/${ok.length} passe
 console.log("By dimension: " + DIMENSIONS.map(d => d.type === "binary"
   ? `${d.label} ${ok.filter(r => r.dims[d.id].pass).length}/${ok.length} pass`
   : `${d.label} avg ${(ok.reduce((a, r) => a + (r.dims[d.id].score || 0), 0) / ok.length).toFixed(1)}`).join(" · "));
-console.log("By level:     " + ["simple", "medium", "complex"].map(l => {
+console.log("By level:     " + ["simple", "medium", "complex", "extreme"].map(l => {
   const xs = ok.filter(r => r.level === l);
   return `${l} ${xs.filter(r => r.overall === "PASS").length}/${xs.length}`;
 }).join(" · "));
