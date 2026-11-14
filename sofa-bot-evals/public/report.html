@@ -6,7 +6,7 @@
 <title>Pip eval report</title>
 <style>
   :root { --bg:#f6f4f0; --card:#fff; --ink:#24211e; --muted:#766e66; --line:#e4ded4; --brand:#2f5d50;
-          --pass:#2e7d4f; --pass-bg:#e4f3ea; --fail:#b3261e; --fail-bg:#fbe7e5; --na:#b8b0a6; --warn-bg:#fff4d6; }
+          --s4:#1f7a45; --s4-bg:#dcf1e4; --s3:#4c8a5e; --s3-bg:#edf6ef; --s2:#9a6200; --s2-bg:#fdf0d5; --s1:#b3261e; --s1-bg:#fbe3e1; }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; }
   header { display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:14px 24px; background:var(--card); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; }
@@ -18,43 +18,51 @@
   button.primary { background:var(--brand); color:#fff; border-color:var(--brand); font-weight:600; }
   button:disabled { opacity:.5; cursor:default; }
   main { padding:18px 24px 60px; max-width:1500px; margin:0 auto; }
-  .summary { font-size:20px; margin:4px 0 4px; }
+  .summary { font-size:20px; margin:4px 0 12px; }
   .summary b { font-size:24px; }
-  .sub { color:var(--muted); margin-bottom:16px; }
-  .panel { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:14px 0; }
-  .panel h2 { font-size:17px; margin:0 0 8px; }
-  .levels { display:flex; flex-wrap:wrap; gap:24px; }
-  .levels div { min-width:180px; }
-  .levels .n { font-size:22px; font-weight:700; }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:12px 0; }
+  .panel h2 { font-size:15px; margin:0 0 10px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+  .tiles { display:flex; flex-wrap:wrap; gap:28px; }
+  .tile .n { font-size:22px; font-weight:700; }
+  .tile .l { font-size:14px; color:var(--muted); }
+  .tile .x { font-size:13px; color:var(--muted); }
+  details.rubric summary { cursor:pointer; font-weight:600; }
+  details.rubric pre { white-space:pre-wrap; font:13.5px/1.5 ui-monospace, Menlo, monospace; background:#fbfaf7; border:1px solid var(--line); border-radius:8px; padding:12px; max-height:520px; overflow:auto; }
   table { width:100%; border-collapse:separate; border-spacing:0; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; font-size:14.5px; }
   th { text-align:left; font-size:12.5px; font-weight:600; color:var(--muted); padding:8px 6px; border-bottom:1px solid var(--line); background:#fbfaf7; vertical-align:bottom; }
-  th.c { text-align:center; width:62px; }
-  th .fails { display:block; color:var(--fail); font-size:12px; min-height:16px; }
+  th.c { text-align:center; width:96px; }
+  th small { display:block; font-weight:400; }
   td { padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:middle; }
+  tr.level td { background:#f1ede6; font-weight:700; font-size:14px; padding:8px 10px; }
+  tr.level td span { font-weight:400; color:var(--muted); margin-left:8px; }
   tr.row { cursor:pointer; }
   tr.row:hover td { background:#fbf8f2; }
   td.c { text-align:center; }
-  .cell { display:inline-block; width:26px; height:26px; line-height:26px; border-radius:7px; font-weight:700; }
-  .pass .cell, .cell.pass { background:var(--pass-bg); color:var(--pass); }
-  .fail .cell, .cell.fail { background:var(--fail-bg); color:var(--fail); }
-  .na .cell, .cell.na { color:var(--na); }
+  .cell { display:inline-block; min-width:30px; height:28px; line-height:28px; border-radius:7px; font-weight:700; padding:0 6px; }
+  .pass { background:var(--s4-bg); color:var(--s4); }
+  .fail { background:var(--s1-bg); color:var(--s1); }
+  .sc4 { background:var(--s4-bg); color:var(--s4); }
+  .sc3 { background:var(--s3-bg); color:var(--s3); }
+  .sc2 { background:var(--s2-bg); color:var(--s2); }
+  .sc1 { background:var(--s1-bg); color:var(--s1); }
+  .unk { color:#b8b0a6; }
   .title { font-weight:600; }
-  .tags { font-size:12px; color:var(--muted); }
-  .recs { font-size:13px; color:var(--muted); max-width:220px; }
+  .q { font-size:13px; color:var(--muted); max-width:420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .recs { font-size:13px; color:var(--muted); max-width:200px; }
   .you button { padding:3px 8px; font-size:15px; border-radius:7px; }
-  .you button.on.good { background:var(--pass-bg); border-color:var(--pass); }
-  .you button.on.bad { background:var(--fail-bg); border-color:var(--fail); }
+  .you button.on.good { background:var(--s4-bg); border-color:var(--s4); }
+  .you button.on.bad { background:var(--s1-bg); border-color:var(--s1); }
   tr.detail td { background:#fcfbf8; padding:14px 18px 18px; }
-  .detail-grid { display:grid; grid-template-columns: 1.2fr 1fr; gap:22px; }
+  .detail-grid { display:grid; grid-template-columns: 1.1fr 1fr; gap:22px; }
   @media (max-width:1000px) { .detail-grid { grid-template-columns:1fr; } }
   .turn { margin:6px 0; white-space:pre-wrap; }
   .turn .who { font-weight:700; font-size:13px; color:var(--muted); }
   .turn.final { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
-  .ok-list { font-size:14px; color:var(--muted); margin:8px 0; }
-  .why { margin:4px 0; font-size:14px; }
-  .why.fail { color:var(--fail); }
-  .need { margin:6px 0; font-size:14px; }
-  .need q { color:var(--muted); font-style:italic; }
+  .dim { margin:10px 0; font-size:14.5px; }
+  .dim .head { font-weight:700; display:flex; align-items:center; gap:8px; }
+  .dim q { display:block; color:var(--muted); font-style:italic; margin-top:2px; }
+  .dim .code { color:var(--s1); font-size:13.5px; }
+  .hint { font-size:14px; color:var(--muted); margin:6px 0; }
   .progress { font-size:14px; color:var(--muted); }
   .cmp-list { margin:6px 0 0; padding-left:20px; }
   .cmp-list li { margin:3px 0; cursor:pointer; }
@@ -78,70 +86,82 @@
 <script>
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
-const CHECKS = [["exists","Real sofa"],["in_stock","In stock"],["fits","Fits the space"],["budget","In budget"],["pets","Pet-proof"],
-  ["kids","Washable"],["damp","Damp-proof"],["asked","Type asked for"],["numbers","Numbers real"],["found","Found a match"]];
-let run = null, scen = {}, cat = {}, labels = {}, open = new Set();
+const DIMS = [
+  { id:"accuracy", label:"Accuracy", type:"binary", how:"code + judge" },
+  { id:"honesty", label:"Honesty", type:"binary", how:"judge" },
+  { id:"helpfulness", label:"Helpfulness", type:"scale", how:"judge" },
+  { id:"tone", label:"Tone", type:"scale", how:"judge" },
+  { id:"conciseness", label:"Conciseness", type:"scale", how:"code" },
+];
+const LEVELS = [["simple","Simple questions"],["medium","Medium: two or three needs"],["complex","Complex: many needs, hints, long chats, tricks"]];
+let run = null, tests = {}, cat = {}, labels = {}, rubric = "", open = new Set();
 
-const mark = st => st === "pass" ? "✓" : st === "fail" ? "✗" : "·";
-const cls = st => st === "pass" ? "pass" : st === "fail" ? "fail" : "na";
 const key = r => `${run.run_id}:${r.id}`;
-const passedBoth = r => r.code_pass && r.judge_pass !== false;
+function cell(d, x) {
+  if (d.type === "binary") return x.result === "PASS" ? `<span class="cell pass">✓</span>` : x.result === "FAIL" ? `<span class="cell fail">✗</span>` : `<span class="cell unk">?</span>`;
+  return x.score ? `<span class="cell sc${x.score}">${x.score}</span>` : `<span class="cell unk">?</span>`;
+}
 
 function render() {
   if (!run) { $("#top").innerHTML = `<div class="empty">No results yet. Press <b>Run all 30</b>, or run <code>node run-evals.mjs</code>.</div>`; $("#table").innerHTML = ""; return; }
   const rs = run.results.filter(r => !r.error);
   const when = new Date(run.at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   $("#meta").textContent = `Run at ${when} · Pip on ${run.bot_model}, judge on ${run.judge_model} · prompt ${run.prompt_version}${run.partial ? " · partial run" : ""}`;
+  const passed = rs.filter(r => r.overall === "PASS").length;
 
-  const both = rs.filter(passedBoth).length, code = rs.filter(r => r.code_pass).length;
-  const judged = rs.filter(r => r.judge_pass !== null), jp = judged.filter(r => r.judge_pass).length;
-  const counts = CHECKS.map(([k, l]) => [l, rs.filter(r => r.checks[k].status === "fail").length]).filter(x => x[1]).sort((a, b) => b[1] - a[1]);
+  const dimTiles = DIMS.map(d => {
+    const xs = rs.map(r => r.dims[d.id]);
+    if (d.type === "binary") {
+      const p = xs.filter(x => x.pass).length;
+      return `<div class="tile"><div class="n">${p}/${rs.length}</div><div class="l">${d.label} passed</div><div class="x">pass / fail · ${d.how}</div></div>`;
+    }
+    const sc = xs.map(x => x.score).filter(Boolean);
+    const avg = sc.length ? (sc.reduce((a, b) => a + b, 0) / sc.length).toFixed(1) : "–";
+    const low = sc.filter(s => s < 3).length;
+    return `<div class="tile"><div class="n">${avg} <span style="font-size:15px;color:var(--muted)">/ 4</span></div><div class="l">${d.label} average</div><div class="x">${low} scored 1 or 2 · ${d.how}</div></div>`;
+  }).join("");
+  const levelTiles = LEVELS.map(([l, name]) => {
+    const xs = rs.filter(r => r.level === l);
+    const p = xs.filter(r => r.overall === "PASS").length;
+    return `<div class="tile"><div class="n">${p}/${xs.length}</div><div class="l">${name.split(":")[0]} passed</div><div class="x">${xs.length ? Math.round(100 * p / xs.length) : 0}%</div></div>`;
+  }).join("");
 
-  // judge vs you
-  const labelled = rs.filter(r => labels[key(r)] && r.judge_pass !== null);
-  const misses = labelled.filter(r => r.judge_pass && labels[key(r)] === "bad");
-  const falseAlarms = labelled.filter(r => !r.judge_pass && labels[key(r)] === "good");
-  const agree = labelled.length - misses.length - falseAlarms.length;
-  const li = r => `<li data-go="${r.id}"><b>${r.id}</b> ${esc(scen[r.id]?.title)}</li>`;
+  const labelled = rs.filter(r => labels[key(r)] && r.overall !== "?");
+  const misses = labelled.filter(r => r.overall === "PASS" && labels[key(r)] === "bad");
+  const falseAlarms = labelled.filter(r => r.overall === "FAIL" && labels[key(r)] === "good");
+  const li = r => `<li data-go="${r.id}"><b>${r.id}</b> ${esc(tests[r.id]?.title)}</li>`;
 
   $("#top").innerHTML = `
-    <div class="summary"><b>${both} of ${rs.length}</b> conversations passed both levels.</div>
-    <div class="sub">${counts.length ? "Most common failure: <b>" + esc(counts[0][0]) + "</b> (" + counts[0][1] + "). Then " + counts.slice(1, 4).map(([l, n]) => `${esc(l)} (${n})`).join(", ") : "No code check failed."}</div>
-    <div class="panel"><div class="levels">
-      <div><div class="n">${code}/${rs.length}</div>Level 1 · code checks passed</div>
-      <div><div class="n">${jp}/${judged.length}</div>Level 2 · judge said yes</div>
-      <div><div class="n">${rs.length - both}</div>Level 3 · left for a human to read</div>
-    </div></div>
-    <div class="panel"><h2>Judge vs you</h2>
+    <div class="summary"><b>${passed} of ${rs.length}</b> test cases passed every dimension.</div>
+    <div class="panel"><h2>By dimension</h2><div class="tiles">${dimTiles}</div></div>
+    <div class="panel"><h2>By how hard the question was</h2><div class="tiles">${levelTiles}</div></div>
+    <div class="panel"><details class="rubric"><summary>The rubric: what PASS / FAIL and 1 to 4 mean</summary>
+      <p class="hint">Accuracy and Honesty are pass / fail: rules that must never break. Helpfulness, Tone and Conciseness are scored 1 to 4, and 3 or more counts as a pass.
+      Conciseness is scored by code: 4 = up to 75 words, 3 = up to 120, 2 = up to 180, 1 = longer or more than 3 sofas on cards.
+      Accuracy is checked twice: code checks every sofa on a card against the catalogue and the customer's needs, and the judge checks every sentence.</p>
+      <pre>${esc(rubric)}</pre></details></div>
+    <div class="panel"><h2>The judge vs you</h2>
       ${labelled.length ? `
-        <div>You labelled <b>${labelled.length}</b>. The judge agreed with you on <b>${agree}</b>.</div>
-        <div style="margin-top:8px"><b style="color:var(--fail)">Misses: ${misses.length}</b> · the judge said fine, you said bad. These ship.
+        <div>You labelled <b>${labelled.length}</b>. The evals agreed with you on <b>${labelled.length - misses.length - falseAlarms.length}</b>.</div>
+        <div style="margin-top:8px"><b style="color:var(--s1)">Misses: ${misses.length}</b> · the evals said pass, you said bad. These ship.
           ${misses.length ? `<ul class="cmp-list">${misses.map(li).join("")}</ul>` : ""}</div>
-        <div style="margin-top:8px"><b>False alarms: ${falseAlarms.length}</b> · the judge said bad, you said fine. These cost two minutes.
+        <div style="margin-top:8px"><b>False alarms: ${falseAlarms.length}</b> · the evals said fail, you said fine. These cost two minutes.
           ${falseAlarms.length ? `<ul class="cmp-list">${falseAlarms.map(li).join("")}</ul>` : ""}</div>`
-      : `<div class="sub" style="margin:0">Label rows with 👍 / 👎 in the <b>You</b> column ("would I be happy if this went to a real customer?"). Then this shows where the judge disagrees with you.</div>`}
+      : `<div class="hint" style="margin:0">Read a few replies and label them 👍 / 👎 in the <b>You</b> column ("would I be happy if this went to a real customer?"). This panel then shows where the evals disagree with you.</div>`}
     </div>`;
   document.querySelectorAll("[data-go]").forEach(el => el.onclick = () => { open.add(el.dataset.go); render(); document.getElementById("r-" + el.dataset.go)?.scrollIntoView({ block: "center" }); });
 
-  const head = `<tr><th style="width:44px">#</th><th>Customer</th><th>Pip recommended</th>
-    ${CHECKS.map(([k, l]) => { const n = rs.filter(r => r.checks[k].status === "fail").length; return `<th class="c"><span class="fails">${n ? "✗" + n : ""}</span>${l}</th>`; }).join("")}
-    <th class="c"><span class="fails">${judged.length - jp ? "✗" + (judged.length - jp) : ""}</span>Judge</th><th class="c">You</th></tr>`;
-  const rows = run.results.map(r => {
-    const s = scen[r.id] || { title: r.id, tags: [] };
-    if (r.error) return `<tr><td>${r.id}</td><td colspan="14">Error: ${esc(r.error)}</td></tr>`;
-    const recs = r.final.recommended.map(id => cat[id] ? esc(cat[id].name) : `<span style="color:var(--fail)">${esc(id)} (not real)</span>`).join(", ") || "<i>nothing</i>";
-    const j = r.judge_pass === null ? "na" : r.judge_pass ? "pass" : "fail";
-    const lab = labels[key(r)];
-    let html = `<tr class="row" id="r-${r.id}" data-id="${r.id}"><td><b>${r.id}</b></td>
-      <td><div class="title">${esc(s.title)}</div><div class="tags">${s.tags.map(esc).join(" · ")}</div></td>
-      <td class="recs">${recs}</td>
-      ${CHECKS.map(([k]) => `<td class="c ${cls(r.checks[k].status)}" title="${esc(r.checks[k].detail)}"><span class="cell">${mark(r.checks[k].status)}</span></td>`).join("")}
-      <td class="c ${j}"><span class="cell">${mark(j)}</span></td>
-      <td class="c you"><button data-l="good" class="${lab === "good" ? "on good" : ""}">👍</button> <button data-l="bad" class="${lab === "bad" ? "on bad" : ""}">👎</button></td></tr>`;
-    if (open.has(r.id)) html += `<tr class="detail"><td colspan="15">${detail(r, s)}</td></tr>`;
-    return html;
-  }).join("");
-  $("#table").innerHTML = `<table>${head}${rows}</table>`;
+  const head = `<tr><th style="width:44px">#</th><th>Test case</th><th>Pip recommended</th>
+    ${DIMS.map(d => `<th class="c">${d.label}<small>${d.type === "binary" ? "pass / fail" : "1 to 4"}</small></th>`).join("")}
+    <th class="c">Overall</th><th class="c">You</th></tr>`;
+  let body = "";
+  for (const [l, name] of LEVELS) {
+    const xs = run.results.filter(r => (r.level || tests[r.id]?.level) === l);
+    if (!xs.length) continue;
+    body += `<tr class="level"><td colspan="11">${name}<span>${xs.filter(r => r.overall === "PASS").length} of ${xs.length} passed</span></td></tr>`;
+    body += xs.map(row).join("");
+  }
+  $("#table").innerHTML = `<table>${head}${body}</table>`;
   document.querySelectorAll("tr.row").forEach(tr => tr.onclick = e => {
     const id = tr.dataset.id;
     const b = e.target.closest("button[data-l]");
@@ -151,25 +171,40 @@ function render() {
   });
 }
 
-function detail(r, s) {
+function row(r) {
+  const t = tests[r.id] || { title: r.id, turns: [""] };
+  if (r.error) return `<tr><td>${r.id}</td><td colspan="10">Error: ${esc(r.error)}</td></tr>`;
+  const recs = r.final.recommended.map(id => cat[id] ? esc(cat[id].name) : `<span style="color:var(--s1)">${esc(id)} (not real)</span>`).join(", ") || "<i>nothing</i>";
+  const lab = labels[key(r)];
+  const overall = r.overall === "PASS" ? `<span class="cell pass">PASS</span>` : r.overall === "FAIL" ? `<span class="cell fail">FAIL</span>` : `<span class="cell unk">?</span>`;
+  let html = `<tr class="row" id="r-${r.id}" data-id="${r.id}"><td><b>${r.id}</b></td>
+    <td><div class="title">${esc(t.title)}</div><div class="q">${esc(t.turns[t.turns.length - 1])}</div></td>
+    <td class="recs">${recs}</td>
+    ${DIMS.map(d => `<td class="c" title="${esc(r.dims[d.id].reason)}">${cell(d, r.dims[d.id])}</td>`).join("")}
+    <td class="c">${overall}</td>
+    <td class="c you"><button data-l="good" class="${lab === "good" ? "on good" : ""}">👍</button> <button data-l="bad" class="${lab === "bad" ? "on bad" : ""}">👎</button></td></tr>`;
+  if (open.has(r.id)) html += `<tr class="detail"><td colspan="11">${detail(r)}</td></tr>`;
+  return html;
+}
+
+function detail(r) {
   const turns = r.history.map((h, i) => {
     const last = i === r.history.length - 1;
     const cards = h.recommended?.length ? `\n[cards: ${h.recommended.map(id => cat[id] ? `${cat[id].name} (${cat[id].width_cm} cm, ${cat[id].material}, €${cat[id].price_eur})` : id).join("; ")}]` : "";
     return `<div class="turn ${last ? "final" : ""}"><div class="who">${h.role === "customer" ? "Customer" : "Pip" + (last ? " · final reply" : "")}</div>${esc(h.text + cards)}</div>`;
   }).join("");
-  const fails = CHECKS.filter(([k]) => r.checks[k].status === "fail").map(([k, l]) => `<div class="why fail">✗ <b>${l}:</b> ${esc(r.checks[k].detail)}</div>`).join("") || `<div class="why">No code check failed.</div>`;
+  const dims = DIMS.map(d => {
+    const x = r.dims[d.id];
+    const codeWhy = d.id === "accuracy" && x.reasons?.length ? `<div class="code">Code: ${x.reasons.map(esc).join("; ")}</div>` : "";
+    const judgeWhy = d.id === "accuracy" ? `<div>Judge: ${esc(x.judge)} · ${esc(x.reason)}</div>` : `<div>${esc(x.reason)}</div>`;
+    return `<div class="dim"><div class="head">${cell(d, x)} ${d.label} <span style="font-weight:400;color:var(--muted);font-size:13px">${d.how}</span></div>
+      ${codeWhy}${judgeWhy}${x.quote ? `<q>${esc(x.quote)}</q>` : ""}</div>`;
+  }).join("");
   const ok = r.correct_answers?.length ? r.correct_answers.map(id => cat[id]?.name || id).join(", ") : "nothing in the catalogue meets every need";
-  const j = r.judge;
-  const judgeHtml = !j ? "" : j.error ? `<div class="why fail">Judge error: ${esc(j.error)}</div>` : `
-    <div class="why"><b>Q1 respected every need:</b> ${esc(j.q1_respected_every_need)}</div>
-    ${(j.needs || []).map(n => `<div class="need">${n.respected === "yes" ? "✓" : "<span style='color:var(--fail)'>✗</span>"} ${esc(n.need)}<br><q>${esc(n.evidence)}</q></div>`).join("")}
-    ${j.q2_asked_before_guessing && j.q2_asked_before_guessing !== "n/a" ? `<div class="why"><b>Q2 asked before guessing:</b> ${esc(j.q2_asked_before_guessing)} <q>${esc(j.q2_evidence)}</q></div>` : ""}`;
+  const t = tests[r.id] || {};
   return `<div class="detail-grid"><div>${turns}</div><div>
-    <div class="ok-list"><b>Customer needs:</b> ${s.needs.map(esc).join(" · ")}</div>
-    <div class="ok-list"><b>Would have worked:</b> ${esc(ok)}</div>
-    <h3 style="margin:12px 0 4px;font-size:15px">Level 1 · code</h3>${fails}
-    <h3 style="margin:14px 0 4px;font-size:15px">Level 2 · judge</h3>${judgeHtml}
-  </div></div>`;
+    ${Object.keys(t.constraints || {}).length ? `<div class="hint"><b>Sofas that meet every need:</b> ${esc(ok)}</div>` : ""}
+    ${dims}</div></div>`;
 }
 
 async function setLabel(r, l) {
@@ -178,16 +213,15 @@ async function setLabel(r, l) {
   labels = await (await fetch("/api/labels", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ key: k, label }) })).json();
   render();
 }
-
-async function loadRuns(selectLatest) {
+async function loadRuns() {
   const runs = await (await fetch("/api/runs")).json();
   $("#runs").innerHTML = runs.slice().reverse().map(x =>
     `<option value="${x.file}">${new Date(x.at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} · ${x.passed}/${x.total} passed · prompt ${x.prompt_version}${x.partial ? " (partial)" : ""}</option>`).join("");
-  if (selectLatest && runs.length) $("#runs").value = runs[runs.length - 1].file;
 }
 async function load(file) {
   run = await (await fetch("/api/results" + (file ? "?file=" + encodeURIComponent(file) : ""))).json();
   labels = await (await fetch("/api/labels")).json();
+  if (run) $("#runs").value = `run-${run.run_id}.json`;
   render();
 }
 $("#runs").onchange = () => load($("#runs").value);
@@ -201,12 +235,13 @@ async function poll() {
   $("#run").disabled = p.running;
   $("#progress").textContent = p.running ? `Running… ${p.done}/${p.total}` : "";
   if (p.running) return setTimeout(poll, 1500);
-  if (p.run_id) { await loadRuns(true); await load(); }
+  if (p.run_id) { await loadRuns(); await load(); }
 }
 (async () => {
-  (await (await fetch("/api/scenarios")).json()).forEach(s => (scen[s.id] = s));
+  (await (await fetch("/api/test-cases")).json()).forEach(t => (tests[t.id] = t));
   (await (await fetch("/api/catalogue")).json()).forEach(p => (cat[p.id] = p));
-  await loadRuns(true);
+  rubric = await (await fetch("/api/rubric")).text();
+  await loadRuns();
   await load();
   const p = await (await fetch("/api/status")).json();
   if (p.running) poll();

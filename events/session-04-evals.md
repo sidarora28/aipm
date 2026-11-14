@@ -6,14 +6,23 @@ Session 4 of 5. The subject: **how you tell whether an AI product actually works
 
 ## What gets demoed
 
-Evals built live on Sid's own seven-agent newsletter pipeline (the Session 3 system), so
-the two sessions chain together.
+**Changed on the morning of 14 Nov.** Sid decided the newsletter pipeline is not a good
+eval case: one draft a week, which he reads anyway. The demo is now **Pip, a sofa
+assistant for a made-up furniture store** (frame it as "imagine you're the PM on IKEA's
+chatbot"). The build, the run-of-show and the discussion prompts are in
+[`../sofa-bot-evals/`](../sofa-bot-evals/).
 
-**The anchor story, which is true and his own:** his writer agent's instruction says 1,200
-words maximum. One Tuesday it returned a **2,200-word draft**. He only caught it because he
-read the whole thing, thought "this feels long", and pasted it into a word counter. The
-only reason it didn't ship was that he happened to be paying attention that morning. That
-is not a system.
+How the evals are structured, as Sid set it:
+
+- **Test case** (a customer question) → **response** → **five dimensions** → a **score**
+- **Accuracy** and **Honesty** are pass / fail. **Helpfulness**, **Tone** and
+  **Conciseness** are 1 to 4, with every level defined, including what a 1 and a 4 look like.
+- Test cases run **simple → medium → complex**. Complexity describes the test case and is
+  used to slice the results. It is not a dimension.
+
+The 2,200-word story below can still open the session as Sid's own "why evals" moment.
+The three levels below are still the method. The section that follows was written for
+the newsletter version.
 
 ## The three levels
 

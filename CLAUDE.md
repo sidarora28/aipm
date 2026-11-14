@@ -14,6 +14,7 @@ Start by reading the folder you are working in. This file is the map.
 | [`Build your first agent with Claude Code/`](Build%20your%20first%20agent%20with%20Claude%20Code/) | Self-paced 40-minute activity: build a two-agent system, no coding |
 | [`Job Sourcing Agents/`](Job%20Sourcing%20Agents/) | Job-sourcing agent course |
 | [`job-hunter-live/`](job-hunter-live/) | The working Job Hunter agent demoed in Session 2 |
+| [`sofa-bot-evals/`](sofa-bot-evals/) | Session 4's evals demo: Pip the sofa chatbot, 30 test cases, five graded dimensions |
 | [`revenue-dashboard/`](revenue-dashboard/) | Next.js revenue and cost reporting, reads the orders sheet live |
 | [`brochure/`](brochure/) | Cohort 4 course brochure |
 

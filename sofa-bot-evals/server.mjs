@@ -5,8 +5,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { askPip, catalogue } from "./lib/bot.mjs";
-import { runChecks } from "./lib/checks.mjs";
-import { runAll, progress, listRuns, scenarios } from "./lib/evals.mjs";
+import { accuracyCode, conciseness } from "./lib/checks.mjs";
+import { runAll, progress, listRuns, testCases } from "./lib/evals.mjs";
 import { pool, BOT_MODEL, JUDGE_MODEL } from "./lib/llm.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -26,7 +26,7 @@ function summarise(file) {
   if (!run) return null;
   const ok = run.results.filter(r => !r.error);
   return { file, run_id: run.run_id, at: run.at, partial: run.partial, prompt_version: run.prompt_version,
-    total: ok.length, passed: ok.filter(r => r.code_pass && r.judge_pass !== false).length };
+    total: ok.length, passed: ok.filter(r => r.overall === "PASS").length };
 }
 
 http.createServer(async (req, res) => {
@@ -36,20 +36,21 @@ http.createServer(async (req, res) => {
     if (req.method === "GET" && url.pathname === "/report") return send(res, 200, fs.readFileSync(path.join(here, "public/report.html")), "text/html");
     if (url.pathname === "/api/config") return send(res, 200, { bot_model: BOT_MODEL, judge_model: JUDGE_MODEL });
     if (url.pathname === "/api/catalogue") return send(res, 200, catalogue);
-    if (url.pathname === "/api/scenarios") return send(res, 200, scenarios());
+    if (url.pathname === "/api/rubric") return send(res, 200, fs.readFileSync(path.join(here, "judge-prompt.md"), "utf8"), "text/plain; charset=utf-8");
+    if (url.pathname === "/api/test-cases") return send(res, 200, testCases());
 
     if (req.method === "POST" && url.pathname === "/api/chat") {
       const { history = [] } = await readBody(req);
       return send(res, 200, await askPip(history));
     }
-    // Same question, n times, side by side. With a scenario id, Level 1 checks run on each answer.
+    // Same question, n times, side by side. With a test case id, the code checks run on each answer.
     if (req.method === "POST" && url.pathname === "/api/ask-many") {
-      const { message, n = 5, scenario_id } = await readBody(req);
-      const s = scenarios().find(x => x.id === scenario_id);
+      const { message, n = 5, test_id } = await readBody(req);
+      const s = testCases().find(x => x.id === test_id);
       const answers = await pool(Array.from({ length: Math.min(n, 10) }), 5, async () => {
         try {
           const a = await askPip([{ role: "customer", text: message }]);
-          return s ? { ...a, checks: runChecks(s, a) } : a;
+          return s ? { ...a, accuracy: accuracyCode(s, a), conciseness: conciseness(a) } : { ...a, conciseness: conciseness(a) };
         } catch (e) { return { error: String(e.message || e) }; }
       });
       return send(res, 200, { answers });

@@ -70,9 +70,9 @@
 </main>
 <footer>
   <div class="presets">
-    <button data-preset="S01">Simple question</button>
-    <button data-preset="S02">Hard question</button>
-    <button data-preset="S04">Feet and inches</button>
+    <button data-preset="T01">Simple question</button>
+    <button data-preset="T19">Hard question</button>
+    <button data-preset="T20">Feet and inches</button>
     <button id="many">Ask this 5 times ▸</button>
     <button id="reset">New chat</button>
   </div>
@@ -84,11 +84,10 @@
 <script>
 const $ = s => document.querySelector(s);
 const thread = $("#thread");
-let catalogue = {}, scenarios = [], history = [], presetId = null;
+let catalogue = {}, tests = [], history = [];
 const COLOURS = { "Storm grey":"#6b7378", "Moss green":"#6d7b4b", "Dusty pink":"#c99a9a", "Emerald":"#2f6b55", "Cognac":"#9a5b2e",
   "Natural":"#b9a98c", "Charcoal":"#45484b", "Slate blue":"#5b6f86", "Oat":"#c8b89a", "Mustard":"#c9a13a", "Heather":"#8c7f8f",
   "Cream":"#d9cfbd", "Black":"#2a2a2a", "Tan":"#b07d4f", "Sand":"#c2ad86", "Terracotta":"#b8603e", "Navy":"#2c3b5a" };
-const CHECK_LABELS = { exists:"Real sofa", in_stock:"In stock", fits:"Fits", budget:"Budget", pets:"Pet-proof", kids:"Washable", damp:"Damp-proof", asked:"Type", numbers:"Numbers real", found:"Found a match" };
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
 function badge(on, label) { return `<span class="badge ${on ? "" : "no"}">${label}</span>`; }
@@ -136,7 +135,7 @@ async function send() {
 async function askMany() {
   const text = $("#input").value.trim() || (history.findLast?.(h => h.role === "customer") || {}).text;
   if (!text) return alert("Type a question first, or pick a preset.");
-  const s = scenarios.find(x => x.turns.length === 1 && x.turns[0] === text);
+  const s = tests.find(x => x.turns.length === 1 && x.turns[0] === text);
   const box = document.createElement("div");
   box.className = "many";
   box.innerHTML = `<h3>Same question, 5 answers</h3><div class="sub">${esc(text)}</div><div class="thinking">Asking Pip 5 times…</div>`;
@@ -144,7 +143,7 @@ async function askMany() {
   box.scrollIntoView({ behavior: "smooth", block: "end" });
   $("#many").disabled = true;
   try {
-    const { answers } = await post("/api/ask-many", { message: text, n: 5, scenario_id: s?.id });
+    const { answers } = await post("/api/ask-many", { message: text, n: 5, test_id: s?.id });
     box.querySelector(".thinking").remove();
     const grid = document.createElement("div");
     grid.className = "grid";
@@ -154,8 +153,10 @@ async function askMany() {
         const p = catalogue[id];
         return `<div class="pick"><b>${p ? esc(p.name) : esc(id) + " (not real)"}</b><br>${p ? `${p.width_cm} cm · ${esc(p.material)} · €${p.price_eur}` : ""}</div>`;
       }).join("") : `<div class="pick">Recommended nothing</div>`;
-      const checks = a.checks ? `<div class="checks">${Object.entries(a.checks).filter(([, c]) => c.status !== "n/a")
-        .map(([k, c]) => `<span class="chk ${c.status}" title="${esc(c.detail)}">${c.status === "pass" ? "✓" : "✗"} ${CHECK_LABELS[k]}</span>`).join("")}</div>` : "";
+      const acc = a.accuracy ? `<span class="chk ${a.accuracy.result === "PASS" ? "pass" : "fail"}">${a.accuracy.result === "PASS" ? "✓" : "✗"} Accuracy</span>` : "";
+      const con = `<span class="chk ${a.conciseness.score >= 3 ? "pass" : "fail"}">Concise ${a.conciseness.score}/4 · ${a.conciseness.words} words</span>`;
+      const why = a.accuracy?.reasons.length ? `<div style="color:var(--fail);font-size:12.5px;margin-top:4px">${esc(a.accuracy.reasons.join("; "))}</div>` : "";
+      const checks = `<div class="checks">${acc}${con}</div>${why}`;
       return `<div class="col"><h4>Answer ${i + 1}</h4>${picks}${checks}<details><summary>What Pip said</summary><div>${esc(a.reply)}</div></details></div>`;
     }).join("");
     box.appendChild(grid);
@@ -167,13 +168,13 @@ $("#many").onclick = askMany;
 $("#input").addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } });
 $("#reset").onclick = () => { history = []; thread.innerHTML = ""; addMsg("pip", "Hi! I'm Pip. Tell me about your room and who lives there, and I'll find you the right sofa."); };
 document.querySelectorAll("[data-preset]").forEach(b => b.onclick = () => {
-  const s = scenarios.find(x => x.id === b.dataset.preset);
+  const s = tests.find(x => x.id === b.dataset.preset);
   if (s) { $("#input").value = s.turns[0]; $("#input").focus(); }
 });
 (async () => {
   const cat = await (await fetch("/api/catalogue")).json();
   cat.forEach(p => (catalogue[p.id] = p));
-  scenarios = await (await fetch("/api/scenarios")).json();
+  tests = await (await fetch("/api/test-cases")).json();
 })();
 </script>
 </body>

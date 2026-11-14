@@ -1,16 +1,16 @@
-// Runs every scenario: Pip answers (turn by turn), then Level 1 checks, then the Level 2 judge.
+// Runs every test case: Pip answers (turn by turn), then the code checks and the judge grade five dimensions.
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { askPip, promptFile } from "./bot.mjs";
-import { runChecks, correctAnswers } from "./checks.mjs";
+import { accuracyCode, conciseness, correctAnswers, DIMENSIONS, PASS_SCORE } from "./checks.mjs";
 import { judge } from "./judge.mjs";
 import { pool, BOT_MODEL, JUDGE_MODEL } from "./llm.mjs";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const resultsDir = path.join(root, "results");
-export const scenarios = () => JSON.parse(fs.readFileSync(path.join(root, "data/scenarios.json"), "utf8"));
+export const testCases = () => JSON.parse(fs.readFileSync(path.join(root, "data/test-cases.json"), "utf8"));
 
 export async function runScenario(s, { judgeIt = true } = {}) {
   const history = [];
@@ -24,22 +24,38 @@ export async function runScenario(s, { judgeIt = true } = {}) {
   } catch (e) {
     return { id: s.id, error: String(e.message || e) };
   }
-  const checks = runChecks(s, final);
-  let verdict = null;
+  const code = accuracyCode(s, final);
+  const concise = conciseness(final);
+  let j = null;
   if (judgeIt) {
-    try { verdict = await judge(s, history, final); } catch (e) { verdict = { error: String(e.message || e) }; }
+    try { j = await judge(s, history, final); } catch (e) { j = { error: String(e.message || e) }; }
   }
-  const codePass = Object.values(checks).every(c => c.status !== "fail");
-  const judgePass = !verdict || verdict.error ? null
-    : verdict.q1_respected_every_need === "yes" && verdict.q2_asked_before_guessing !== "no";
-  return { id: s.id, history, final, checks, judge: verdict, code_pass: codePass, judge_pass: judgePass,
+  const ok = j && !j.error;
+  const bin = id => ok && j[id] ? { result: String(j[id].result).toUpperCase(), reason: j[id].reason, quote: j[id].quote } : { result: "?", reason: j?.error || "not judged" };
+  const scale = id => ok && j[id] ? { score: Number(j[id].score) || null, reason: j[id].reason, quote: j[id].quote } : { score: null, reason: j?.error || "not judged" };
+  const ja = bin("accuracy");
+  const dims = {
+    accuracy: { result: code.result === "FAIL" || ja.result === "FAIL" ? "FAIL" : ja.result === "?" ? "?" : "PASS",
+      reasons: code.reasons, reason: ja.reason, quote: ja.quote, code: code.result, judge: ja.result },
+    honesty: bin("honesty"),
+    helpfulness: scale("helpfulness"),
+    tone: scale("tone"),
+    conciseness: concise,
+  };
+  for (const d of DIMENSIONS) {
+    const x = dims[d.id];
+    x.pass = d.type === "binary" ? (x.result === "?" ? null : x.result === "PASS") : (x.score == null ? null : x.score >= PASS_SCORE);
+  }
+  const passes = DIMENSIONS.map(d => dims[d.id].pass);
+  const overall = passes.every(p => p === true) ? "PASS" : passes.some(p => p === false) ? "FAIL" : "?";
+  return { id: s.id, level: s.level, history, final, dims, overall, judge_raw: j?.error ? j : undefined,
     correct_answers: correctAnswers(s.constraints || {}) };
 }
 
 export const progress = { running: false, done: 0, total: 0, run_id: null };
 
 export async function runAll({ only, concurrency = 6, onResult } = {}) {
-  const list = scenarios().filter(s => !only?.length || only.includes(s.id));
+  const list = testCases().filter(s => !only?.length || only.includes(s.id));
   const prompt = fs.readFileSync(promptFile(), "utf8");
   const run_id = new Date().toISOString().replace(/[:.]/g, "-");
   Object.assign(progress, { running: true, done: 0, total: list.length, run_id });
