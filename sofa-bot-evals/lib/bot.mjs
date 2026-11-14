@@ -30,6 +30,8 @@ export const promptFile = () => path.join(root, process.env.BOT_PROMPT_FILE || "
 
 export function botSystemPrompt() {
   const instructions = fs.readFileSync(promptFile(), "utf8").trim();
+  // A prompt that places the catalogue itself, and defines its own reply format, uses {{CATALOGUE}}.
+  if (instructions.includes("{{CATALOGUE}}")) return instructions.replace("{{CATALOGUE}}", catalogueText());
   return `${instructions}\n\nCATALOGUE\n${catalogueText()}\n${FORMAT}`;
 }
 

@@ -2,333 +2,172 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap">
 <style>
-/* Layout: a working eval sheet. Sticky tab bar, one wide content column, tables scroll inside their own box. */
+/* Layout: four plain sheets. Thin grid, frozen header row, colour fills only on score cells. */
 :root {
-  --bg: #f3f5f2; --surface: #ffffff; --surface-2: #ecf1ed; --ink: #17201b; --muted: #5a675f; --line: #d9e1db;
-  --accent: #2b5d4e; --accent-ink: #ffffff; --accent-soft: #e1ede7;
-  --go: #16703e; --go-bg: #dcf1e3; --nogo: #b0251c; --nogo-bg: #fbe3e0;
-  --s4: #16703e; --s4-bg: #dcf1e3; --s3: #3d7a55; --s3-bg: #edf5ef; --s2: #8a5800; --s2-bg: #fbeed0; --s1: #b0251c; --s1-bg: #fbe3e0;
-  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --bg: #ffffff; --ink: #202124; --muted: #5f6368; --grid: #dadce0; --head: #f6f7f8; --accent: #1d5c4d;
+  --go-bg: #d4ecd9; --go: #1b5e2f; --nogo-bg: #f7d4d1; --nogo: #8f1d16;
+  --s4-bg: #c6e7d1; --s4: #14532b; --s3: #2f6a45; --s3-bg: #e7f4eb; --s2-bg: #fcebc0; --s2: #6e4a00; --s1-bg: #f7d4d1; --s1: #8f1d16;
+  --font: "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #111714; --surface: #18201c; --surface-2: #1e2823; --ink: #e4ebe6; --muted: #98a69e; --line: #2b3731;
-  --accent: #82c4aa; --accent-ink: #0e1914; --accent-soft: #1d3129;
-  --go: #6fd19a; --go-bg: #163826; --nogo: #ff9087; --nogo-bg: #412020;
-  --s4: #6fd19a; --s4-bg: #163826; --s3: #9fcfb1; --s3-bg: #1c2f25; --s2: #f0c062; --s2-bg: #3a2e14; --s1: #ff9087; --s1-bg: #412020;
+  --bg: #17191b; --ink: #e8eaed; --muted: #9aa0a6; --grid: #33373b; --head: #202326; --accent: #7cc4ad;
+  --go-bg: #1d3a26; --go: #8fd6a4; --nogo-bg: #45201d; --nogo: #f2a59e;
+  --s4-bg: #1d3a26; --s4: #8fd6a4; --s3-bg: #1b2a21; --s3: #b2dcc0; --s2-bg: #3d3115; --s2: #f1cc73; --s1-bg: #45201d; --s1: #f2a59e;
   color-scheme: dark; } }
 :root[data-theme="dark"] {
-  --bg: #111714; --surface: #18201c; --surface-2: #1e2823; --ink: #e4ebe6; --muted: #98a69e; --line: #2b3731;
-  --accent: #82c4aa; --accent-ink: #0e1914; --accent-soft: #1d3129;
-  --go: #6fd19a; --go-bg: #163826; --nogo: #ff9087; --nogo-bg: #412020;
-  --s4: #6fd19a; --s4-bg: #163826; --s3: #9fcfb1; --s3-bg: #1c2f25; --s2: #f0c062; --s2-bg: #3a2e14; --s1: #ff9087; --s1-bg: #412020;
+  --bg: #17191b; --ink: #e8eaed; --muted: #9aa0a6; --grid: #33373b; --head: #202326; --accent: #7cc4ad;
+  --go-bg: #1d3a26; --go: #8fd6a4; --nogo-bg: #45201d; --nogo: #f2a59e;
+  --s4-bg: #1d3a26; --s4: #8fd6a4; --s3-bg: #1b2a21; --s3: #b2dcc0; --s2-bg: #3d3115; --s2: #f1cc73; --s1-bg: #45201d; --s1: #f2a59e;
   color-scheme: dark; }
 
 * { box-sizing: border-box; }
-body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font-body); }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
-.wrap { max-width: 1440px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; text-wrap: balance; margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 14px/1.5 var(--font); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 p { margin: 0; }
-.muted { color: var(--muted); }
-.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-
-/* masthead */
-.mast { background: var(--surface); border-bottom: 1px solid var(--line); }
-.mast .wrap { padding-block: 22px 0; display: grid; gap: 6px; }
-.mast h1 { font-size: clamp(22px, 3vw, 30px); }
-.mast .sub { color: var(--muted); max-width: 900px; }
-.mast .store { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
-.mast .store b { color: var(--accent); font-family: var(--font-display); font-size: 15px; }
-.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
-.tabs .wrap { display: flex; gap: 4px; overflow-x: auto; padding-block: 10px 0; }
-.tab { font: 600 14.5px var(--font-body); color: var(--muted); background: none; border: 0; border-bottom: 3px solid transparent; padding: 8px 14px 11px; cursor: pointer; white-space: nowrap; }
+header .wrap { padding-block: 18px 6px; }
+h1 { font-size: 20px; font-weight: 600; margin: 0 0 2px; }
+.sub { color: var(--muted); }
+nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--grid); }
+nav .wrap { display: flex; gap: 2px; overflow-x: auto; }
+.tab { font: 500 14px var(--font); color: var(--muted); background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 12px; cursor: pointer; white-space: nowrap; }
 .tab:hover { color: var(--ink); }
 .tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
-.tab:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
-.tab .n { font-family: var(--font-mono); font-size: 12px; margin-right: 6px; opacity: .7; }
-main .wrap { padding-block: 26px 70px; display: grid; gap: 26px; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+main .wrap { padding-block: 16px 40px; }
 section[hidden] { display: none; }
-.lede { font-size: 16.5px; max-width: 820px; }
-.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; min-width: 0; }
+.intro { color: var(--muted); margin-bottom: 12px; max-width: 900px; }
 
-/* pills */
-.pill { display: inline-flex; align-items: center; justify-content: center; min-width: 30px; height: 26px; padding: 0 8px; border-radius: 7px; font: 700 13px var(--font-mono); font-variant-numeric: tabular-nums; }
+/* the sheet */
+.sheet-box { overflow: auto; max-height: calc(100vh - 150px); border: 1px solid var(--grid); }
+table { border-collapse: separate; border-spacing: 0; width: 100%; }
+th, td { border-right: 1px solid var(--grid); border-bottom: 1px solid var(--grid); padding: 8px 10px; text-align: left; vertical-align: top; }
+th:last-child, td:last-child { border-right: 0; }
+tbody tr:last-child td { border-bottom: 0; }
+thead th { position: sticky; top: 0; z-index: 1; background: var(--head); font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+td.n { color: var(--muted); font-variant-numeric: tabular-nums; }
+td.c, th.c { text-align: center; }
+.score { font-weight: 600; text-align: center; font-variant-numeric: tabular-nums; }
 .go { background: var(--go-bg); color: var(--go); } .nogo { background: var(--nogo-bg); color: var(--nogo); }
 .sc4 { background: var(--s4-bg); color: var(--s4); } .sc3 { background: var(--s3-bg); color: var(--s3); }
 .sc2 { background: var(--s2-bg); color: var(--s2); } .sc1 { background: var(--s1-bg); color: var(--s1); }
-.lvl { display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; background: var(--surface-2); color: var(--muted); }
-.lvl.extreme { background: var(--nogo-bg); color: var(--nogo); }
+.lvl { font-size: 12px; color: var(--muted); text-transform: capitalize; margin-top: 2px; }
+th.dimh { white-space: normal; width: 64px; font-size: 12px; }
+.clip { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; cursor: pointer; white-space: pre-wrap; }
+.clip.open { display: block; }
+.turns { margin: 0; padding-left: 16px; } .turns.one { list-style: none; padding-left: 0; }
+.cards { font-size: 12.5px; color: var(--muted); }
+.cards div + div { margin-top: 2px; }
+.notes p + p { margin-top: 6px; }
+.notes b { font-weight: 600; }
+.legend { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+.legend b { color: var(--ink); font-weight: 600; }
 
-/* TAB 1: rubric */
-.section-head { display: grid; gap: 4px; }
-.section-head h2 { font-size: 21px; }
-.dims { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
-.dim { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: grid; gap: 12px; align-content: start; min-width: 0; }
-.dim-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-.dim h3 { font-size: 19px; }
-.how { font-size: 12.5px; color: var(--muted); font-family: var(--font-mono); }
-.what { color: var(--muted); }
-.gonogo { display: grid; gap: 8px; }
-.gonogo .row { display: grid; grid-template-columns: 74px 1fr; gap: 10px; align-items: start; }
-.gonogo .row .pill { width: 100%; }
-.ex { font-size: 14px; border-left: 3px solid var(--line); padding: 2px 0 2px 10px; color: var(--muted); }
-.ex b { color: var(--ink); font-weight: 600; }
-.ladder { display: grid; gap: 6px; }
-.ladder .row { display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: start; }
-.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-.rules .panel h3 { font-size: 16px; margin-bottom: 6px; }
-.levels-def { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-.levels-def .panel { display: grid; gap: 6px; align-content: start; }
+/* dimensions sheet */
+.guide { display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; align-items: start; }
+.guide .k { font-weight: 600; text-align: center; padding: 0 6px; border-radius: 3px; font-size: 12.5px; white-space: nowrap; }
 
-/* TAB 2: results */
-.summary { display: grid; grid-template-columns: minmax(200px, 260px) 1fr 1fr; gap: 16px; }
-@media (max-width: 1000px) { .summary { grid-template-columns: 1fr; } }
-.big { font: 700 44px/1 var(--font-display); font-variant-numeric: tabular-nums; }
-.big small { font-size: 20px; color: var(--muted); font-weight: 600; }
-.bars { display: grid; gap: 8px; margin-top: 8px; }
-.bar { display: grid; grid-template-columns: 112px 1fr 64px; gap: 10px; align-items: center; font-size: 14px; }
-.bar .track { height: 10px; background: var(--surface-2); border-radius: 99px; overflow: hidden; }
-.bar .fill { height: 100%; background: var(--accent); border-radius: 99px; }
-.bar .v { font-family: var(--font-mono); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
-.insight { font-size: 15px; }
-.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.chip { font: 500 13.5px var(--font-body); padding: 6px 13px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
-.chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-.table-box { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
-table { border-collapse: collapse; width: 100%; min-width: 1240px; font-size: 14px; }
-thead th { position: sticky; top: 0; background: var(--surface-2); text-align: left; font-size: 12px; font-weight: 600; color: var(--muted); padding: 10px 10px; border-bottom: 1px solid var(--line); vertical-align: bottom; }
-thead th.c { text-align: center; }
-thead th small { display: block; font-weight: 400; font-size: 11px; white-space: nowrap; }
-tbody td { padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-tbody tr:last-child td { border-bottom: 0; }
-td.c { text-align: center; }
-.tc-id { font: 600 13px var(--font-mono); color: var(--muted); }
-.tc-title { font-weight: 600; margin: 4px 0 6px; }
-.turns { margin: 0; padding-left: 18px; color: var(--ink); }
-.turns.single { list-style: none; padding-left: 0; }
-.turns li { margin: 2px 0; }
-.reply { white-space: pre-wrap; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
-.reply.open { display: block; }
-.more { background: none; border: 0; padding: 4px 0 0; color: var(--accent); font: 600 13px var(--font-body); cursor: pointer; }
-.cards { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-.card-chip { font-size: 12px; padding: 2px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--ink); white-space: nowrap; }
-.card-chip.none { background: var(--surface-2); color: var(--muted); }
-.note { font-size: 13.5px; color: var(--ink); }
-.res { font: 700 12px var(--font-mono); padding: 4px 9px; border-radius: 6px; }
-
-/* TAB 3: prompt */
-.prompt-grid { display: grid; gap: 16px; }
-.part { display: grid; gap: 10px; }
-.part-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-.part-head h3 { font-size: 17px; }
-.instructions { font: 16px/1.65 var(--font-mono); white-space: pre-wrap; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 10px; padding: 18px 20px; max-width: 900px; }
-pre.mono { font: 13px/1.55 var(--font-mono); white-space: pre-wrap; background: var(--surface-2); border-radius: 10px; padding: 14px 16px; margin: 0; overflow-x: auto; }
-.cat-box { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
-.cat-box table { min-width: 980px; font-size: 13.5px; }
-.cat-box td, .cat-box th { padding: 8px 10px; }
-.yes { color: var(--go); font-weight: 600; } .no { color: var(--muted); }
-.oos { color: var(--nogo); font-weight: 600; }
-details.raw summary { cursor: pointer; font-weight: 600; }
-.copy { font: 600 13px var(--font-body); padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
-
-/* TAB 4: golden */
-.golden { display: grid; gap: 14px; }
-.g { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 22px; }
-@media (max-width: 860px) { .g { grid-template-columns: 1fr; } }
-.g-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
-.g-id { font: 700 14px var(--font-mono); color: var(--accent); }
-.label { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.answer { font-size: 15.5px; background: var(--accent-soft); border-radius: 10px; padding: 12px 14px; }
-.why { font-size: 14px; margin-top: 10px; }
-.grades { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; align-items: center; font-size: 12.5px; color: var(--muted); }
-.grades .gr { display: inline-flex; gap: 5px; align-items: center; }
-.grades .pill { height: 22px; min-width: 24px; font-size: 12px; padding: 0 6px; }
-
-@media (prefers-reduced-motion: no-preference) { .fill { transition: width .4s ease; } }
+/* prompt */
+.how { margin: 0 0 14px; padding-left: 18px; max-width: 900px; }
+.how li { margin: 3px 0; }
+pre.prompt { font: 13px/1.6 var(--mono); white-space: pre-wrap; border: 1px solid var(--grid); background: var(--head); padding: 16px 18px; margin: 0; max-width: 1100px; overflow-x: auto; }
 </style>
 
-<header class="mast">
-  <div class="wrap">
-    <span class="store"><b>Plank &amp; Pillow</b> made-up furniture store · demo data</span>
-    <h1>Pip Sofa Assistant Evals</h1>
-    <p class="sub">How do you tell whether a shopping chatbot actually works? Every test case is a customer question. Pip answers. Each answer is graded on six dimensions, and every grade comes with the reason.</p>
-  </div>
-</header>
-<nav class="tabs" aria-label="Sections">
-  <div class="wrap" role="tablist">
-    <button class="tab" role="tab" id="t-rubric" data-tab="rubric"><span class="n">1</span>Dimensions &amp; scoring</button>
-    <button class="tab" role="tab" id="t-results" data-tab="results"><span class="n">2</span>30 test cases</button>
-    <button class="tab" role="tab" id="t-prompt" data-tab="prompt"><span class="n">3</span>Pip's system prompt</button>
-    <button class="tab" role="tab" id="t-golden" data-tab="golden"><span class="n">4</span>Golden dataset</button>
-  </div>
-</nav>
-<main>
-  <div class="wrap">
-    <section id="panel-rubric" role="tabpanel" aria-labelledby="t-rubric"></section>
-    <section id="panel-results" role="tabpanel" aria-labelledby="t-results" hidden></section>
-    <section id="panel-prompt" role="tabpanel" aria-labelledby="t-prompt" hidden></section>
-    <section id="panel-golden" role="tabpanel" aria-labelledby="t-golden" hidden></section>
-  </div>
-</main>
+<header><div class="wrap">
+  <h1>Pip Sofa Assistant Evals</h1>
+  <p class="sub">Pip is the sofa-shopping chatbot of Plank &amp; Pillow, a made-up furniture store. Each test case is a customer message, and Pip's reply is scored on six dimensions.</p>
+</div></header>
+<nav aria-label="Sheets"><div class="wrap" role="tablist">
+  <button class="tab" role="tab" data-tab="dimensions">Dimensions</button>
+  <button class="tab" role="tab" data-tab="test-cases">Test cases</button>
+  <button class="tab" role="tab" data-tab="system-prompt">System prompt</button>
+  <button class="tab" role="tab" data-tab="golden">Golden dataset</button>
+</div></nav>
+<main><div class="wrap">
+  <section id="panel-dimensions" role="tabpanel"></section>
+  <section id="panel-test-cases" role="tabpanel" hidden></section>
+  <section id="panel-system-prompt" role="tabpanel" hidden></section>
+  <section id="panel-golden" role="tabpanel" hidden></section>
+</div></main>
 
 <script>
 const DATA = __DATA__;
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const BIN = ["accuracy", "honesty", "safety"], SCALE = ["helpfulness", "tone", "conciseness"];
+const DIMS = ["accuracy", "honesty", "safety", "helpfulness", "tone", "conciseness"];
+const BIN = new Set(["accuracy", "honesty", "safety"]);
 const LABEL = { accuracy: "Accuracy", honesty: "Honesty", safety: "Safety", helpfulness: "Helpfulness", tone: "Tone", conciseness: "Conciseness" };
-const binPill = v => v === "PASS" ? `<span class="pill go" aria-label="Go">✓</span>` : v === "FAIL" ? `<span class="pill nogo" aria-label="No-go">✗</span>` : `<span class="pill">?</span>`;
-const scPill = n => n ? `<span class="pill sc${n}">${n}</span>` : `<span class="pill">?</span>`;
 const cat = Object.fromEntries(DATA.catalogue.map(p => [p.id, p]));
-const cardChip = id => { const p = cat[id]; return p ? `<span class="card-chip">${esc(p.name)} · ${p.width_cm} cm · €${p.price_eur.toLocaleString("en")}</span>` : `<span class="card-chip">${esc(id)}</span>`; };
+const cell = (k, v) => BIN.has(k)
+  ? `<td class="score ${v === "PASS" ? "go" : "nogo"}">${v === "PASS" ? "Go" : "No-go"}</td>`
+  : `<td class="score sc${v}">${v}</td>`;
+const turns = ts => `<ol class="turns ${ts.length === 1 ? "one" : ""}">${ts.map(t => `<li>${esc(t)}</li>`).join("")}</ol>`;
+const cards = ids => ids.length ? `<div class="cards">${ids.map(id => { const p = cat[id]; return `<div>${p ? `${esc(p.name)} · ${p.width_cm} cm · €${p.price_eur.toLocaleString("en")}` : esc(id)}</div>`; }).join("")}</div>` : `<span class="cards">None</span>`;
 
-/* ---------- TAB 1 ---------- */
-function renderRubric() {
-  const R = DATA.rubric;
-  const binCard = d => `<article class="dim">
-      <div class="dim-top"><h3>${d.name}</h3><span class="how">go / no-go · ${esc(d.how)}</span></div>
-      <p class="what">${esc(d.what)}</p>
-      <div class="gonogo">
-        <div class="row"><span class="pill go">GO</span><p>${esc(d.go)}</p></div>
-        <div class="row"><span class="pill nogo">NO-GO</span><p>${esc(d.nogo)}</p></div>
-      </div>
-      <p class="ex"><b>Go:</b> ${esc(d.ex_go)}</p>
-      <p class="ex"><b>No-go:</b> ${esc(d.ex_nogo)}</p>
-    </article>`;
-  const scaleCard = d => `<article class="dim">
-      <div class="dim-top"><h3>${d.name}</h3><span class="how">1 to 4 · ${esc(d.how)}</span></div>
-      <p class="what">${esc(d.what)}</p>
-      <div class="ladder">${[4, 3, 2, 1].map(n => `<div class="row">${scPill(n)}<p>${esc(d.levels[n])}</p></div>`).join("")}</div>
-      ${d.ex4 ? `<p class="ex"><b>A 4 sounds like:</b> ${esc(d.ex4)}</p>` : ""}
-      ${d.ex1 ? `<p class="ex"><b>A 1 sounds like:</b> ${esc(d.ex1)}</p>` : ""}
-    </article>`;
-  document.getElementById("panel-rubric").innerHTML = `<div style="display:grid;gap:26px">
-    <p class="lede">Six dimensions. Three are <b>go / no-go</b> rules that must never break. Three are <b>scored 1 to 4</b>, where 3 or 4 counts as a pass. A test case passes only when all six pass.</p>
-    <div class="section-head"><span class="eyebrow">Go / no-go</span><h2>Rules that must never break</h2><p class="muted">One wrong fact is a sofa that doesn't fit someone's living room. "Mostly accurate" isn't a grade, so these are yes or no.</p></div>
-    <div class="dims">${R.binary.map(binCard).join("")}</div>
-    <div class="section-head"><span class="eyebrow">Scored 1 to 4</span><h2>Quality that comes in degrees</h2><p class="muted">Every level is written down, so a 3 and a 4 can't blur. There is no middle score: each grade has to lean good (3, 4) or bad (1, 2).</p></div>
-    <div class="dims">${R.scale.map(scaleCard).join("")}</div>
-    <div class="section-head"><span class="eyebrow">Test cases</span><h2>How hard the question is</h2><p class="muted">Difficulty describes the question, not the answer, so it isn't a dimension. It is how the results are split, to see where Pip starts failing.</p></div>
-    <div class="levels-def">${R.levels.map(l => `<div class="panel"><span class="lvl ${l.id === "extreme" ? "extreme" : ""}">${l.name}</span><p>${esc(l.desc)}</p><p class="muted" style="font-size:13.5px">${esc(l.eg)}</p></div>`).join("")}</div>
-    <div class="section-head"><span class="eyebrow">Who checks what</span><h2>Code first, then a judge</h2></div>
-    <div class="rules">
-      <div class="panel"><h3>Code</h3><p>Checks anything a computer can count: every sofa on a card exists, is in stock, fits the space, is in budget, and is pet-friendly, washable or damp-OK when the customer needs it. It also flags prices and sizes that aren't in the catalogue, and counts words.</p></div>
-      <div class="panel"><h3>Judge</h3><p>A second, stronger model reads each reply against this rubric and the catalogue. For every grade it gives a one-line reason and quotes the words that decided it, so a person can check it.</p></div>
-      <div class="panel"><h3>Accuracy uses both</h3><p>Code catches the 196 cm sofa on a 195.6 cm wall that a reader misses. The judge catches a wrong sentence that has no number in it. Either one can fail it.</p></div>
-    </div>
-  </div>`;
+function dimensions() {
+  const rows = DATA.dimensions.map(d => `<tr>
+    <td><b>${d.name}</b></td>
+    <td style="min-width:320px">${esc(d.definition)}</td>
+    <td class="c" style="white-space:nowrap">${d.binary ? "Go / No-go" : "1 to 4"}</td>
+    <td style="min-width:340px"><div class="guide">${d.binary
+      ? `<span class="k go">Go</span><span>${esc(d.go)}</span><span class="k nogo">No-go</span><span>${esc(d.nogo)}</span>`
+      : [4, 3, 2, 1].map(n => `<span class="k sc${n}">${n}</span><span>${esc(d.levels[n])}</span>`).join("")}</div></td>
+    <td style="white-space:nowrap">${esc(d.checked_by)}</td></tr>`).join("");
+  document.getElementById("panel-dimensions").innerHTML = `
+    <p class="intro">Six things a good reply from Pip has to get right. Three are rules that are either kept or broken, so they are Go / No-go. Three come in degrees, so they are scored 1 to 4.</p>
+    <div class="sheet-box"><table style="min-width:1050px"><thead><tr><th>Dimension</th><th>What it means</th><th class="c">Scale</th><th>How it's scored</th><th>Checked by</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
-/* ---------- TAB 2 ---------- */
-let filterLevel = "all", failsOnly = false;
-function renderResults() {
-  const rs = DATA.results;
-  const pass = rs.filter(r => r.overall === "PASS").length;
-  const levels = DATA.rubric.levels.map(l => { const xs = rs.filter(r => r.level === l.id); return { ...l, n: xs.length, p: xs.filter(r => r.overall === "PASS").length }; });
-  const dimRows = [...BIN.map(k => ({ k, v: rs.filter(r => r.dims[k] === "PASS").length, max: rs.length, txt: `${rs.filter(r => r.dims[k] === "PASS").length}/${rs.length}` })),
-    ...SCALE.map(k => { const a = rs.reduce((s, r) => s + r.dims[k], 0) / rs.length; return { k, v: a, max: 4, txt: `${a.toFixed(1)} avg` }; })];
-  document.getElementById("panel-results").innerHTML = `<div style="display:grid;gap:22px">
-    <p class="lede">All 30 questions went through Pip's real prompt (tab 3). The replies below are exactly what came back, graded against tab 1. ${esc(DATA.meta.run)}</p>
-    <div class="summary">
-      <div class="panel"><span class="eyebrow">Passed every dimension</span><div class="big" style="margin-top:8px">${pass}<small> / ${rs.length}</small></div>
-        <p class="insight" style="margin-top:10px">${esc(DATA.meta.insight)}</p></div>
-      <div class="panel"><span class="eyebrow">By how hard the question was</span><div class="bars">${levels.map(l => `<div class="bar"><span>${l.name}</span><div class="track"><div class="fill" style="width:${100 * l.p / l.n}%"></div></div><span class="v">${l.p}/${l.n}</span></div>`).join("")}</div></div>
-      <div class="panel"><span class="eyebrow">By dimension</span><div class="bars">${dimRows.map(d => `<div class="bar"><span>${LABEL[d.k]}</span><div class="track"><div class="fill" style="width:${100 * d.v / d.max}%"></div></div><span class="v">${d.txt}</span></div>`).join("")}</div></div>
-    </div>
-    <div class="filters" role="group" aria-label="Filter test cases">
-      ${[["all", "All 30"], ...DATA.rubric.levels.map(l => [l.id, l.name])].map(([id, n]) => `<button class="chip" data-level="${id}" aria-pressed="${filterLevel === id}">${n}</button>`).join("")}
-      <button class="chip" id="fails" aria-pressed="${failsOnly}">Failures only</button>
-    </div>
-    <div class="table-box"><table>
-      <thead><tr>
-        <th style="width:250px">Test case</th><th style="width:380px">Pip's reply</th>
-        ${BIN.map(k => `<th class="c" style="width:66px">${LABEL[k]}<small>go / no-go</small></th>`).join("")}
-        ${SCALE.map(k => `<th class="c" style="width:66px">${LABEL[k] === "Conciseness" ? "Concise" : LABEL[k] === "Helpfulness" ? "Helpful" : LABEL[k]}<small>1 to 4</small></th>`).join("")}
-        <th class="c" style="width:64px">Result</th><th style="width:250px">Notes</th>
-      </tr></thead>
-      <tbody id="rows"></tbody>
-    </table></div>
-  </div>`;
-  document.querySelectorAll("[data-level]").forEach(b => b.onclick = () => { filterLevel = b.dataset.level; renderResults(); });
-  document.getElementById("fails").onclick = () => { failsOnly = !failsOnly; renderResults(); };
-  const shown = rs.filter(r => (filterLevel === "all" || r.level === filterLevel) && (!failsOnly || r.overall === "FAIL"));
-  document.getElementById("rows").innerHTML = shown.map(r => `<tr>
-      <td><span class="tc-id">${r.id}</span> <span class="lvl ${r.level === "extreme" ? "extreme" : ""}">${r.level}</span>
-        <div class="tc-title">${esc(r.title)}</div>
-        <ol class="turns ${r.turns.length === 1 ? "single" : ""}">${r.turns.map(t => `<li>${esc(t)}</li>`).join("")}</ol></td>
-      <td><div class="reply" id="rp-${r.id}">${esc(r.reply)}</div>
-        <button class="more" data-more="${r.id}">Show full reply</button>
-        <div class="cards">${r.cards.length ? r.cards.map(cardChip).join("") : `<span class="card-chip none">No product cards</span>`}</div></td>
-      ${BIN.map(k => `<td class="c">${binPill(r.dims[k])}</td>`).join("")}
-      ${SCALE.map(k => `<td class="c">${scPill(r.dims[k])}${k === "conciseness" ? `<div class="muted" style="font-size:11.5px;margin-top:4px">${r.words} words</div>` : ""}</td>`).join("")}
-      <td class="c"><span class="res ${r.overall === "PASS" ? "go" : "nogo"}">${r.overall === "PASS" ? "PASS" : "FAIL"}</span></td>
-      <td class="note">${esc(r.note)}</td></tr>`).join("") || `<tr><td colspan="11" class="muted" style="padding:24px">No test cases match this filter.</td></tr>`;
-  document.querySelectorAll("[data-more]").forEach(b => {
-    const el = document.getElementById("rp-" + b.dataset.more);
-    if (el.textContent.length < 330) { b.hidden = true; el.classList.add("open"); return; }
-    b.onclick = () => { const o = el.classList.toggle("open"); b.textContent = o ? "Show less" : "Show full reply"; };
-  });
+function testCases() {
+  const rows = DATA.results.map((r, i) => `<tr>
+    <td class="n">${r.id}<div class="lvl">${r.level}</div></td>
+    <td style="min-width:190px">${turns(r.turns)}</td>
+    <td style="min-width:290px"><div class="clip" title="Click to show the full reply">${esc(r.reply)}</div></td>
+    <td style="min-width:120px">${cards(r.cards)}</td>
+    ${DIMS.map(k => cell(k, r.dims[k])).join("")}
+    <td class="notes" style="min-width:290px">${r.notes.length ? r.notes.map(([d, t]) => `<p><b>${LABEL[d]}:</b> ${esc(t)}</p>`).join("") : `<span class="cards">Nothing contentious.</span>`}</td>
+  </tr>`).join("");
+  document.getElementById("panel-test-cases").innerHTML = `
+    <p class="legend"><b>Simple</b> one need · <b>Medium</b> two or three needs, or one catch · <b>Complex</b> four or more needs, hints or a long chat · <b>Extreme</b> attacks, off-topic requests, an angry customer. Click a reply to read all of it.</p>
+    <div class="sheet-box"><table style="min-width:1340px"><thead><tr>
+      <th>#</th><th>Customer message</th><th>Pip's reply</th><th>Product cards</th>
+      ${DIMS.map(k => `<th class="c dimh">${LABEL[k]}</th>`).join("")}<th>Notes</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  document.querySelectorAll("#panel-test-cases .clip").forEach(el => el.onclick = () => el.classList.toggle("open"));
 }
 
-/* ---------- TAB 3 ---------- */
-function renderPrompt() {
-  const yn = (b, cls = "yes") => b ? `<span class="${cls}">yes</span>` : `<span class="no">no</span>`;
-  document.getElementById("panel-prompt").innerHTML = `<div class="prompt-grid">
-    <p class="lede">This is everything Pip was given, word for word. It has three parts. The PM writes the first. The catalogue and the reply format are added by code. ${esc(DATA.meta.model)}</p>
-    <div class="part"><div class="part-head"><span class="eyebrow">Part 1</span><h3>Instructions, written by the PM</h3></div>
-      <div class="instructions">${esc(DATA.prompt.instructions)}</div>
-      <p class="muted" style="max-width:820px">This is a realistic first draft, and the 30 test cases ran against it. It never says "only recommend sofas that meet every need" or "ask for the size first", and the failures in tab 2 trace back to those gaps.</p></div>
-    <div class="part"><div class="part-head"><span class="eyebrow">Part 2</span><h3>The catalogue: ${DATA.catalogue.length} sofas</h3></div>
-      <div class="cat-box"><table><thead><tr><th>ID</th><th>Sofa</th><th>W × D × H cm</th><th>Material</th><th>Colour</th><th style="text-align:right">Price</th><th>Washable covers</th><th>Pet-friendly</th><th>Damp-OK</th><th>In stock</th><th>Note</th></tr></thead>
-      <tbody>${DATA.catalogue.map(p => `<tr><td class="tc-id">${p.id}</td><td><b>${esc(p.name)}</b></td><td style="font-variant-numeric:tabular-nums">${p.width_cm} × ${p.depth_cm} × ${p.height_cm}</td><td>${esc(p.material)}</td><td>${esc(p.colour)}</td><td style="text-align:right;font-variant-numeric:tabular-nums">€${p.price_eur.toLocaleString("en")}</td><td>${yn(p.washable_covers)}</td><td>${yn(p.pet_friendly)}</td><td>${yn(p.damp_ok)}</td><td>${p.in_stock ? `<span class="yes">yes</span>` : `<span class="oos">no</span>`}</td><td class="muted">${esc(p.note)}</td></tr>`).join("")}</tbody></table></div></div>
-    <div class="part"><div class="part-head"><span class="eyebrow">Part 3</span><h3>Reply format</h3></div>
-      <pre class="mono">${esc(DATA.prompt.format)}</pre></div>
-    <details class="raw panel"><summary>The full prompt exactly as sent</summary>
-      <div style="display:flex;justify-content:flex-end;margin:10px 0"><button class="copy" id="copy">Copy prompt</button></div>
-      <pre class="mono" id="raw">${esc(DATA.prompt.raw)}</pre></details>
-  </div>`;
-  document.getElementById("copy").onclick = async e => {
-    try { await navigator.clipboard.writeText(DATA.prompt.raw); e.target.textContent = "Copied"; }
-    catch { const r = document.createRange(); r.selectNodeContents(document.getElementById("raw")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); e.target.textContent = "Selected, press Ctrl+C"; }
-  };
+function systemPrompt() {
+  document.getElementById("panel-system-prompt").innerHTML = `
+    <p class="intro">The full prompt Pip runs on, exactly as sent, catalogue included. It follows Anthropic's prompting guidance:</p>
+    <ul class="how">${DATA.prompt.how.map(h => `<li>${esc(h)}</li>`).join("")}</ul>
+    <pre class="prompt">${esc(DATA.prompt.raw)}</pre>`;
 }
 
-/* ---------- TAB 4 ---------- */
-function renderGolden() {
-  const g = DATA.golden;
-  const grade = x => `<div class="grades"><span>Judge's grade:</span>
-    ${BIN.map(k => `<span class="gr">${LABEL[k]} ${binPill(x.grades[k])}</span>`).join("")}
-    ${SCALE.map(k => `<span class="gr">${LABEL[k]} ${scPill(x.grades[k])}</span>`).join("")}</div>`;
-  document.getElementById("panel-golden").innerHTML = `<div style="display:grid;gap:22px">
-    <div style="display:grid;gap:10px;max-width:860px">
-      <p class="lede">Ten questions with the reply we'd want every time. Each one passes all three rules and aims for a 4 on every scale. They span all four levels, and each matches a test case in tab 2, so you can read Pip's real reply next to the ideal one.</p>
-      <p class="muted">A golden set has two jobs. It is the bar Pip is measured against, and it is a test of the judge. ${esc(DATA.meta.golden_judge)}</p>
-    </div>
-    <div class="golden">${g.map(x => `<article class="g">
-      <div><div class="g-meta"><span class="g-id">${x.id}</span><span class="lvl ${x.level === "extreme" ? "extreme" : ""}">${x.level}</span><span class="muted" style="font-size:13px">same question as ${x.test}</span></div>
-        <div class="label">Customer</div><ol class="turns ${x.turns.length === 1 ? "single" : ""}">${x.turns.map(t => `<li>${esc(t)}</li>`).join("")}</ol></div>
-      <div><div class="label">Perfect answer</div><div class="answer">${esc(x.answer)}</div>
-        <div class="cards">${x.cards.length ? x.cards.map(cardChip).join("") : `<span class="card-chip none">No product cards</span>`}</div>
-        <p class="why"><b>Why it's the bar:</b> ${esc(x.why)}</p>${grade(x)}</div>
-    </article>`).join("")}</div>
-  </div>`;
+function golden() {
+  const rows = DATA.golden.map(g => `<tr>
+    <td class="n">${g.id}<div class="lvl">${g.level}</div></td>
+    <td style="min-width:220px">${turns(g.turns)}</td>
+    <td style="min-width:380px">${esc(g.answer)}</td>
+    <td style="min-width:150px">${cards(g.cards)}</td>
+    <td style="min-width:260px">${esc(g.why)}</td>
+    <td class="n">${g.test}</td></tr>`).join("");
+  document.getElementById("panel-golden").innerHTML = `
+    <p class="intro">Ten customer messages and the reply we'd want every time. Each one is the bar for Pip's real reply to the same message in the Test cases sheet.</p>
+    <div class="sheet-box"><table style="min-width:1300px"><thead><tr><th>#</th><th>Customer message</th><th>Perfect answer</th><th>Product cards</th><th>Why it's the bar</th><th>Test case</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
-/* ---------- tabs + hash ---------- */
-const TABS = ["rubric", "results", "prompt", "golden"];
+const TABS = ["dimensions", "test-cases", "system-prompt", "golden"];
 function show(id) {
-  if (!TABS.includes(id)) id = "rubric";
+  if (!TABS.includes(id)) id = "dimensions";
   TABS.forEach(t => {
     document.getElementById("panel-" + t).hidden = t !== id;
     const b = document.querySelector(`[data-tab="${t}"]`);
-    b.setAttribute("aria-selected", String(t === id)); b.tabIndex = t === id ? 0 : -1;
+    b.setAttribute("aria-selected", String(t === id));
   });
 }
 document.querySelectorAll(".tab").forEach(b => b.onclick = () => { location.hash = b.dataset.tab; show(b.dataset.tab); });
 window.addEventListener("hashchange", () => show(location.hash.slice(1)));
-renderRubric(); renderResults(); renderPrompt(); renderGolden();
+dimensions(); testCases(); systemPrompt(); golden();
 show(location.hash.slice(1));
 </script>

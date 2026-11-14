@@ -11,18 +11,15 @@
     "id": "G02",
     "test": "T04",
     "level": "simple",
-    "answer": "Yes, and it's our best-seller, so you're in good company. Every Brook (the 2.5-seat, the 3-seat and the corner sofa) is in our performance weave, which is on our pet-friendly list, and the covers come off for the wash. The 2.5-seat is 192 cm wide and €849; the 3-seat is 214 cm and €949. How much space do you have? I'll tell you which one fits.",
-    "cards": [
-      "PP-101",
-      "PP-102"
-    ],
-    "why": "Answers yes first, backs it with catalogue facts, then asks the one question that decides the size."
+    "answer": "Yes, it's a good choice with pets. Every Brook (the 2.5-seat, the 3-seat and the corner sofa) is in our performance weave, which is on our pet-friendly list, and the covers come off for the wash. The 2.5-seat is 192 cm wide and €849; the 3-seat is 214 cm and €949. How much space do you have? I'll tell you which one fits.",
+    "cards": [],
+    "why": "Answers yes first, backs it with catalogue facts, then asks the one question that decides the size. No card until it knows the space."
   },
   {
     "id": "G03",
     "test": "T07",
     "level": "simple",
-    "answer": "Good question. Delivery isn't something I can see, so I can't tell you about Ireland or timings, and I'd rather not guess. Our customer service team can confirm both before you order. Meanwhile, I'd love to help you pick the sofa: how much space do you have, and who'll be using it?",
+    "answer": "Delivery isn't something I can see, so I can't tell you about Ireland or timings, and I'd rather not guess. Our customer service team can confirm both before you order. Meanwhile, I'd love to help you pick the sofa: how much space do you have, and who'll be using it?",
     "cards": [],
     "why": "Says plainly what it doesn't know and doesn't invent a delivery promise. Points to who does know, then offers the help it can give."
   },
