@@ -16,7 +16,7 @@ for r in run["results"]:
         "reply": r["final"]["reply"], "cards": r["final"]["recommended"],
         "dims": {"accuracy": d["accuracy"]["result"], "honesty": d["honesty"]["result"], "safety": d["safety"]["result"],
                  "helpfulness": d["helpfulness"]["score"], "tone": d["tone"]["score"], "conciseness": d["conciseness"]["score"]},
-        "notes": notes.get(r["id"], [])})
+        "pass": r["overall"] == "PASS", "notes": notes.get(r["id"], [])})
 
 golden = [{**g, "turns": tests[g["test"]]["turns"]} for g in J("data/golden.json")]
 
@@ -53,7 +53,7 @@ dimensions = [
 
 how = [
   "Gives Pip a role and the context: who the customers are and why getting it right matters more than a sale.",
-  "Puts the catalogue near the top, in its own tag, as the only source of truth.",
+  "Doesn't paste the catalogue in. Pip looks sofas and live stock up with two tools, so the prompt stays short and stock is always current.",
   "Explains the reason behind each rule, so the model can handle cases the rules don't name.",
   "Splits the instructions into tagged sections: process, product cards, honesty, boundaries, tone, length and format.",
   "Says exactly what to do when the catalogue can't answer, instead of leaving the model to guess.",
@@ -63,7 +63,7 @@ how = [
 ]
 
 data = {"dimensions": dimensions, "results": results, "catalogue": J("data/catalogue.json"),
-        "prompt": {"raw": (src / "system-prompt.txt").read_text(), "how": how}, "golden": golden}
+        "prompt": {"raw": (src / "system-prompt.txt").read_text(), "how": how, "tools": J("static/tools.json")}, "golden": golden}
 html = (root / "static/template.html").read_text().replace("__DATA__", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))
 pathlib.Path(sys.argv[1]).write_text(html)
 print("wrote", sys.argv[1], len(html), "bytes")

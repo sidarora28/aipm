@@ -73,6 +73,8 @@ th.dimh { white-space: normal; width: 64px; font-size: 12px; }
 /* prompt */
 .how { margin: 0 0 14px; padding-left: 18px; max-width: 900px; }
 .how li { margin: 3px 0; }
+.h2 { font-size: 15px; font-weight: 600; margin: 22px 0 8px; }
+code { font: 12.5px var(--mono); }
 pre.prompt { font: 13px/1.6 var(--mono); white-space: pre-wrap; border: 1px solid var(--grid); background: var(--head); padding: 16px 18px; margin: 0; max-width: 1100px; overflow-x: auto; }
 </style>
 
@@ -113,35 +115,39 @@ function dimensions() {
     <td class="c" style="white-space:nowrap">${d.binary ? "Go / No-go" : "1 to 4"}</td>
     <td style="min-width:340px"><div class="guide">${d.binary
       ? `<span class="k go">Go</span><span>${esc(d.go)}</span><span class="k nogo">No-go</span><span>${esc(d.nogo)}</span>`
-      : [4, 3, 2, 1].map(n => `<span class="k sc${n}">${n}</span><span>${esc(d.levels[n])}</span>`).join("")}</div></td>
-    <td style="white-space:nowrap">${esc(d.checked_by)}</td></tr>`).join("");
+      : [4, 3, 2, 1].map(n => `<span class="k sc${n}">${n}</span><span>${esc(d.levels[n])}</span>`).join("")}</div></td></tr>`).join("");
   document.getElementById("panel-dimensions").innerHTML = `
     <p class="intro">Six things a good reply from Pip has to get right. Three are rules that are either kept or broken, so they are Go / No-go. Three come in degrees, so they are scored 1 to 4.</p>
-    <div class="sheet-box"><table style="min-width:1050px"><thead><tr><th>Dimension</th><th>What it means</th><th class="c">Scale</th><th>How it's scored</th><th>Checked by</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    <div class="sheet-box"><table style="min-width:900px"><thead><tr><th>Dimension</th><th>What it means</th><th class="c">Scale</th><th>How it's scored</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 function testCases() {
   const rows = DATA.results.map((r, i) => `<tr>
     <td class="n">${r.id}<div class="lvl">${r.level}</div></td>
-    <td style="min-width:190px">${turns(r.turns)}</td>
-    <td style="min-width:290px"><div class="clip" title="Click to show the full reply">${esc(r.reply)}</div></td>
-    <td style="min-width:120px">${cards(r.cards)}</td>
+    <td style="min-width:170px">${turns(r.turns)}</td>
+    <td style="min-width:265px"><div class="clip" title="Click to show the full reply">${esc(r.reply)}</div></td>
+    <td style="min-width:105px">${cards(r.cards)}</td>
     ${DIMS.map(k => cell(k, r.dims[k])).join("")}
-    <td class="notes" style="min-width:290px">${r.notes.length ? r.notes.map(([d, t]) => `<p><b>${LABEL[d]}:</b> ${esc(t)}</p>`).join("") : `<span class="cards">Nothing contentious.</span>`}</td>
+    <td class="score ${r.pass ? "go" : "nogo"}">${r.pass ? "Pass" : "Fail"}</td>
+    <td class="notes" style="min-width:270px">${r.notes.length ? r.notes.map(([d, t]) => `<p><b>${LABEL[d]}:</b> ${esc(t)}</p>`).join("") : `<span class="cards">Nothing contentious.</span>`}</td>
   </tr>`).join("");
   document.getElementById("panel-test-cases").innerHTML = `
     <p class="legend"><b>Simple</b> one need · <b>Medium</b> two or three needs, or one catch · <b>Complex</b> four or more needs, hints or a long chat · <b>Extreme</b> attacks, off-topic requests, an angry customer. Click a reply to read all of it.</p>
-    <div class="sheet-box"><table style="min-width:1340px"><thead><tr>
+    <div class="sheet-box"><table style="min-width:1330px"><thead><tr>
       <th>#</th><th>Customer message</th><th>Pip's reply</th><th>Product cards</th>
-      ${DIMS.map(k => `<th class="c dimh">${LABEL[k]}</th>`).join("")}<th>Notes</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+      ${DIMS.map(k => `<th class="c dimh">${LABEL[k]}</th>`).join("")}<th class="c dimh">Pass</th><th>Notes</th></tr></thead><tbody>${rows}</tbody></table></div>`;
   document.querySelectorAll("#panel-test-cases .clip").forEach(el => el.onclick = () => el.classList.toggle("open"));
 }
 
 function systemPrompt() {
+  const tool = t => `<tr><td><code>${esc(t.name)}</code></td><td>${esc(t.description)}</td><td style="min-width:400px">${Object.entries(t.inputSchema.properties)
+    .map(([k, v]) => `<div><code>${esc(k)}</code> <span class="cards">${esc(v.type === "array" ? "list of numbers" : v.enum ? "one of: " + v.enum.join(", ") : v.type)}${v.description ? " · " + esc(v.description) : ""}</span></div>`).join("")}</td></tr>`;
   document.getElementById("panel-system-prompt").innerHTML = `
-    <p class="intro">The full prompt Pip runs on, exactly as sent, catalogue included. It follows Anthropic's prompting guidance:</p>
+    <p class="intro">Pip's system prompt. The catalogue isn't pasted in: Pip looks up sofas and live stock with the two tools at the bottom of this sheet. The prompt follows Anthropic's prompting guidance:</p>
     <ul class="how">${DATA.prompt.how.map(h => `<li>${esc(h)}</li>`).join("")}</ul>
-    <pre class="prompt">${esc(DATA.prompt.raw)}</pre>`;
+    <pre class="prompt">${esc(DATA.prompt.raw)}</pre>
+    <h2 class="h2">Tools Pip can call</h2>
+    <div class="sheet-box" style="max-width:1100px"><table style="min-width:760px"><thead><tr><th>Tool</th><th>What it does</th><th>Inputs</th></tr></thead><tbody>${DATA.prompt.tools.map(tool).join("")}</tbody></table></div>`;
 }
 
 function golden() {

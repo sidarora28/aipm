@@ -1,0 +1,80 @@
+[
+  {
+    "name": "search_catalogue",
+    "description": "Search Plank & Pillow's live sofa catalogue and current stock. Every filter is optional; combine as many as the customer's needs allow. Returns matching sofas sorted by price, with size, material, colour, price, washable covers, pet-friendly, OK for damp rooms, stock status and the product description.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "max_width_cm": {
+          "type": "number",
+          "description": "Widest the sofa can be, in cm."
+        },
+        "min_width_cm": {
+          "type": "number",
+          "description": "Narrowest the sofa can be, in cm."
+        },
+        "max_depth_cm": {
+          "type": "number",
+          "description": "Deepest the sofa can be, in cm."
+        },
+        "max_price_eur": {
+          "type": "number",
+          "description": "Highest price, in euros."
+        },
+        "seats": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "Acceptable seat counts, e.g. [2, 2.5]."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "sofa",
+            "corner sofa",
+            "sofa bed",
+            "loveseat",
+            "chaise sofa"
+          ]
+        },
+        "material": {
+          "type": "string",
+          "description": "Words to match in the material, e.g. 'leather' or 'performance weave'."
+        },
+        "colour": {
+          "type": "string",
+          "description": "Words to match in the colour, e.g. 'grey' or 'green'."
+        },
+        "pet_friendly": {
+          "type": "boolean"
+        },
+        "washable_covers": {
+          "type": "boolean"
+        },
+        "ok_for_damp_rooms": {
+          "type": "boolean"
+        },
+        "in_stock_only": {
+          "type": "boolean",
+          "description": "Only return sofas that are in stock now. Defaults to false."
+        }
+      }
+    }
+  },
+  {
+    "name": "get_product",
+    "description": "Look up one sofa by product ID (e.g. PP-101) or by name (e.g. 'Arlo'). Returns every catalogue fact and its current stock status. A name can match more than one size.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "id_or_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id_or_name"
+      ]
+    }
+  }
+]

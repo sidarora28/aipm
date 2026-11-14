@@ -28,9 +28,15 @@ Use an empty list if you are not recommending any.`;
 // Which instructions Pip uses. Defaults to bot-prompt.md; BOT_PROMPT_FILE=fixes/bot-prompt-v2.md to try another.
 export const promptFile = () => path.join(root, process.env.BOT_PROMPT_FILE || "bot-prompt.md");
 
+// A prompt that mentions the catalogue tools gets them; the catalogue is then never pasted into the prompt.
+export const usesTools = () => fs.readFileSync(promptFile(), "utf8").includes("search_catalogue");
+const TOOLS = { server: path.join(root, "tools/catalogue-server.mjs"),
+  allowed: ["mcp__catalogue__search_catalogue", "mcp__catalogue__get_product"] };
+
 export function botSystemPrompt() {
   const instructions = fs.readFileSync(promptFile(), "utf8").trim();
   // A prompt that places the catalogue itself, and defines its own reply format, uses {{CATALOGUE}}.
+  if (instructions.includes("search_catalogue")) return instructions;
   if (instructions.includes("{{CATALOGUE}}")) return instructions.replace("{{CATALOGUE}}", catalogueText());
   return `${instructions}\n\nCATALOGUE\n${catalogueText()}\n${FORMAT}`;
 }
@@ -46,7 +52,7 @@ export function transcript(history) {
 export async function askPip(history, model = BOT_MODEL) {
   const user = `${transcript(history)}\n\nWrite Pip's next reply.`;
   const t0 = Date.now();
-  const { text, cost } = await callModel({ system: botSystemPrompt(), user, model });
+  const { text, cost } = await callModel({ system: botSystemPrompt(), user, model, tools: usesTools() ? TOOLS : null });
   let reply = text, recommended = [], format_ok = true;
   try {
     const j = parseJson(text);

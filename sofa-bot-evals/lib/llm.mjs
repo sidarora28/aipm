@@ -6,10 +6,13 @@ import os from "node:os";
 export const BOT_MODEL = process.env.BOT_MODEL || "haiku";
 export const JUDGE_MODEL = process.env.JUDGE_MODEL || "sonnet";
 
-export function callModel({ system, user, model, timeoutMs = 180000 }) {
+// With `tools`, the model can call the store's catalogue tools (an MCP server); otherwise it has no tools at all.
+export function callModel({ system, user, model, tools = null, timeoutMs = 240000 }) {
   return new Promise((resolve, reject) => {
     const args = ["-p", user, "--system-prompt", system, "--tools", "", "--model", model,
       "--output-format", "json", "--strict-mcp-config", "--no-session-persistence"];
+    if (tools) args.push("--mcp-config", JSON.stringify({ mcpServers: { catalogue: { command: "node", args: [tools.server] } } }),
+      "--allowedTools", tools.allowed.join(","), "--max-turns", "10");
     const child = spawn("claude", args, { cwd: os.tmpdir(), stdio: ["ignore", "pipe", "pipe"] });
     let out = "", err = "";
     const timer = setTimeout(() => { child.kill(); reject(new Error("model call timed out")); }, timeoutMs);
