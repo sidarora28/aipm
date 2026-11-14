@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pip eval report</title>
+<style>
+  :root { --bg:#f6f4f0; --card:#fff; --ink:#24211e; --muted:#766e66; --line:#e4ded4; --brand:#2f5d50;
+          --pass:#2e7d4f; --pass-bg:#e4f3ea; --fail:#b3261e; --fail-bg:#fbe7e5; --na:#b8b0a6; --warn-bg:#fff4d6; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; }
+  header { display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:14px 24px; background:var(--card); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; }
+  h1 { font-size:21px; margin:0; }
+  .meta { color:var(--muted); font-size:14px; }
+  .spacer { flex:1; }
+  a { color:var(--brand); font-weight:600; text-decoration:none; }
+  button, select { font:inherit; font-size:14.5px; padding:7px 13px; border-radius:9px; border:1px solid var(--line); background:var(--card); cursor:pointer; }
+  button.primary { background:var(--brand); color:#fff; border-color:var(--brand); font-weight:600; }
+  button:disabled { opacity:.5; cursor:default; }
+  main { padding:18px 24px 60px; max-width:1500px; margin:0 auto; }
+  .summary { font-size:20px; margin:4px 0 4px; }
+  .summary b { font-size:24px; }
+  .sub { color:var(--muted); margin-bottom:16px; }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:14px 0; }
+  .panel h2 { font-size:17px; margin:0 0 8px; }
+  .levels { display:flex; flex-wrap:wrap; gap:24px; }
+  .levels div { min-width:180px; }
+  .levels .n { font-size:22px; font-weight:700; }
+  table { width:100%; border-collapse:separate; border-spacing:0; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; font-size:14.5px; }
+  th { text-align:left; font-size:12.5px; font-weight:600; color:var(--muted); padding:8px 6px; border-bottom:1px solid var(--line); background:#fbfaf7; vertical-align:bottom; }
+  th.c { text-align:center; width:62px; }
+  th .fails { display:block; color:var(--fail); font-size:12px; min-height:16px; }
+  td { padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:middle; }
+  tr.row { cursor:pointer; }
+  tr.row:hover td { background:#fbf8f2; }
+  td.c { text-align:center; }
+  .cell { display:inline-block; width:26px; height:26px; line-height:26px; border-radius:7px; font-weight:700; }
+  .pass .cell, .cell.pass { background:var(--pass-bg); color:var(--pass); }
+  .fail .cell, .cell.fail { background:var(--fail-bg); color:var(--fail); }
+  .na .cell, .cell.na { color:var(--na); }
+  .title { font-weight:600; }
+  .tags { font-size:12px; color:var(--muted); }
+  .recs { font-size:13px; color:var(--muted); max-width:220px; }
+  .you button { padding:3px 8px; font-size:15px; border-radius:7px; }
+  .you button.on.good { background:var(--pass-bg); border-color:var(--pass); }
+  .you button.on.bad { background:var(--fail-bg); border-color:var(--fail); }
+  tr.detail td { background:#fcfbf8; padding:14px 18px 18px; }
+  .detail-grid { display:grid; grid-template-columns: 1.2fr 1fr; gap:22px; }
+  @media (max-width:1000px) { .detail-grid { grid-template-columns:1fr; } }
+  .turn { margin:6px 0; white-space:pre-wrap; }
+  .turn .who { font-weight:700; font-size:13px; color:var(--muted); }
+  .turn.final { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
+  .ok-list { font-size:14px; color:var(--muted); margin:8px 0; }
+  .why { margin:4px 0; font-size:14px; }
+  .why.fail { color:var(--fail); }
+  .need { margin:6px 0; font-size:14px; }
+  .need q { color:var(--muted); font-style:italic; }
+  .progress { font-size:14px; color:var(--muted); }
+  .cmp-list { margin:6px 0 0; padding-left:20px; }
+  .cmp-list li { margin:3px 0; cursor:pointer; }
+  .empty { padding:40px; text-align:center; color:var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Pip eval report</h1>
+  <span class="meta" id="meta"></span>
+  <span class="spacer"></span>
+  <span class="progress" id="progress"></span>
+  <select id="runs" title="Earlier runs"></select>
+  <button class="primary" id="run">Run all 30</button>
+  <a href="/">← Chat</a>
+</header>
+<main>
+  <div id="top"></div>
+  <div id="table"></div>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+const CHECKS = [["exists","Real sofa"],["in_stock","In stock"],["fits","Fits the space"],["budget","In budget"],["pets","Pet-proof"],
+  ["kids","Washable"],["damp","Damp-proof"],["asked","Type asked for"],["numbers","Numbers real"],["found","Found a match"]];
+let run = null, scen = {}, cat = {}, labels = {}, open = new Set();
+
+const mark = st => st === "pass" ? "✓" : st === "fail" ? "✗" : "·";
+const cls = st => st === "pass" ? "pass" : st === "fail" ? "fail" : "na";
+const key = r => `${run.run_id}:${r.id}`;
+const passedBoth = r => r.code_pass && r.judge_pass !== false;
+
+function render() {
+  if (!run) { $("#top").innerHTML = `<div class="empty">No results yet. Press <b>Run all 30</b>, or run <code>node run-evals.mjs</code>.</div>`; $("#table").innerHTML = ""; return; }
+  const rs = run.results.filter(r => !r.error);
+  const when = new Date(run.at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  $("#meta").textContent = `Run at ${when} · Pip on ${run.bot_model}, judge on ${run.judge_model} · prompt ${run.prompt_version}${run.partial ? " · partial run" : ""}`;
+
+  const both = rs.filter(passedBoth).length, code = rs.filter(r => r.code_pass).length;
+  const judged = rs.filter(r => r.judge_pass !== null), jp = judged.filter(r => r.judge_pass).length;
+  const counts = CHECKS.map(([k, l]) => [l, rs.filter(r => r.checks[k].status === "fail").length]).filter(x => x[1]).sort((a, b) => b[1] - a[1]);
+
+  // judge vs you
+  const labelled = rs.filter(r => labels[key(r)] && r.judge_pass !== null);
+  const misses = labelled.filter(r => r.judge_pass && labels[key(r)] === "bad");
+  const falseAlarms = labelled.filter(r => !r.judge_pass && labels[key(r)] === "good");
+  const agree = labelled.length - misses.length - falseAlarms.length;
+  const li = r => `<li data-go="${r.id}"><b>${r.id}</b> ${esc(scen[r.id]?.title)}</li>`;
+
+  $("#top").innerHTML = `
+    <div class="summary"><b>${both} of ${rs.length}</b> conversations passed both levels.</div>
+    <div class="sub">${counts.length ? "Most common failure: <b>" + esc(counts[0][0]) + "</b> (" + counts[0][1] + "). Then " + counts.slice(1, 4).map(([l, n]) => `${esc(l)} (${n})`).join(", ") : "No code check failed."}</div>
+    <div class="panel"><div class="levels">
+      <div><div class="n">${code}/${rs.length}</div>Level 1 · code checks passed</div>
+      <div><div class="n">${jp}/${judged.length}</div>Level 2 · judge said yes</div>
+      <div><div class="n">${rs.length - both}</div>Level 3 · left for a human to read</div>
+    </div></div>
+    <div class="panel"><h2>Judge vs you</h2>
+      ${labelled.length ? `
+        <div>You labelled <b>${labelled.length}</b>. The judge agreed with you on <b>${agree}</b>.</div>
+        <div style="margin-top:8px"><b style="color:var(--fail)">Misses: ${misses.length}</b> · the judge said fine, you said bad. These ship.
+          ${misses.length ? `<ul class="cmp-list">${misses.map(li).join("")}</ul>` : ""}</div>
+        <div style="margin-top:8px"><b>False alarms: ${falseAlarms.length}</b> · the judge said bad, you said fine. These cost two minutes.
+          ${falseAlarms.length ? `<ul class="cmp-list">${falseAlarms.map(li).join("")}</ul>` : ""}</div>`
+      : `<div class="sub" style="margin:0">Label rows with 👍 / 👎 in the <b>You</b> column ("would I be happy if this went to a real customer?"). Then this shows where the judge disagrees with you.</div>`}
+    </div>`;
+  document.querySelectorAll("[data-go]").forEach(el => el.onclick = () => { open.add(el.dataset.go); render(); document.getElementById("r-" + el.dataset.go)?.scrollIntoView({ block: "center" }); });
+
+  const head = `<tr><th style="width:44px">#</th><th>Customer</th><th>Pip recommended</th>
+    ${CHECKS.map(([k, l]) => { const n = rs.filter(r => r.checks[k].status === "fail").length; return `<th class="c"><span class="fails">${n ? "✗" + n : ""}</span>${l}</th>`; }).join("")}
+    <th class="c"><span class="fails">${judged.length - jp ? "✗" + (judged.length - jp) : ""}</span>Judge</th><th class="c">You</th></tr>`;
+  const rows = run.results.map(r => {
+    const s = scen[r.id] || { title: r.id, tags: [] };
+    if (r.error) return `<tr><td>${r.id}</td><td colspan="14">Error: ${esc(r.error)}</td></tr>`;
+    const recs = r.final.recommended.map(id => cat[id] ? esc(cat[id].name) : `<span style="color:var(--fail)">${esc(id)} (not real)</span>`).join(", ") || "<i>nothing</i>";
+    const j = r.judge_pass === null ? "na" : r.judge_pass ? "pass" : "fail";
+    const lab = labels[key(r)];
+    let html = `<tr class="row" id="r-${r.id}" data-id="${r.id}"><td><b>${r.id}</b></td>
+      <td><div class="title">${esc(s.title)}</div><div class="tags">${s.tags.map(esc).join(" · ")}</div></td>
+      <td class="recs">${recs}</td>
+      ${CHECKS.map(([k]) => `<td class="c ${cls(r.checks[k].status)}" title="${esc(r.checks[k].detail)}"><span class="cell">${mark(r.checks[k].status)}</span></td>`).join("")}
+      <td class="c ${j}"><span class="cell">${mark(j)}</span></td>
+      <td class="c you"><button data-l="good" class="${lab === "good" ? "on good" : ""}">👍</button> <button data-l="bad" class="${lab === "bad" ? "on bad" : ""}">👎</button></td></tr>`;
+    if (open.has(r.id)) html += `<tr class="detail"><td colspan="15">${detail(r, s)}</td></tr>`;
+    return html;
+  }).join("");
+  $("#table").innerHTML = `<table>${head}${rows}</table>`;
+  document.querySelectorAll("tr.row").forEach(tr => tr.onclick = e => {
+    const id = tr.dataset.id;
+    const b = e.target.closest("button[data-l]");
+    if (b) { e.stopPropagation(); return setLabel(run.results.find(x => x.id === id), b.dataset.l); }
+    open.has(id) ? open.delete(id) : open.add(id);
+    render();
+  });
+}
+
+function detail(r, s) {
+  const turns = r.history.map((h, i) => {
+    const last = i === r.history.length - 1;
+    const cards = h.recommended?.length ? `\n[cards: ${h.recommended.map(id => cat[id] ? `${cat[id].name} (${cat[id].width_cm} cm, ${cat[id].material}, €${cat[id].price_eur})` : id).join("; ")}]` : "";
+    return `<div class="turn ${last ? "final" : ""}"><div class="who">${h.role === "customer" ? "Customer" : "Pip" + (last ? " · final reply" : "")}</div>${esc(h.text + cards)}</div>`;
+  }).join("");
+  const fails = CHECKS.filter(([k]) => r.checks[k].status === "fail").map(([k, l]) => `<div class="why fail">✗ <b>${l}:</b> ${esc(r.checks[k].detail)}</div>`).join("") || `<div class="why">No code check failed.</div>`;
+  const ok = r.correct_answers?.length ? r.correct_answers.map(id => cat[id]?.name || id).join(", ") : "nothing in the catalogue meets every need";
+  const j = r.judge;
+  const judgeHtml = !j ? "" : j.error ? `<div class="why fail">Judge error: ${esc(j.error)}</div>` : `
+    <div class="why"><b>Q1 respected every need:</b> ${esc(j.q1_respected_every_need)}</div>
+    ${(j.needs || []).map(n => `<div class="need">${n.respected === "yes" ? "✓" : "<span style='color:var(--fail)'>✗</span>"} ${esc(n.need)}<br><q>${esc(n.evidence)}</q></div>`).join("")}
+    ${j.q2_asked_before_guessing && j.q2_asked_before_guessing !== "n/a" ? `<div class="why"><b>Q2 asked before guessing:</b> ${esc(j.q2_asked_before_guessing)} <q>${esc(j.q2_evidence)}</q></div>` : ""}`;
+  return `<div class="detail-grid"><div>${turns}</div><div>
+    <div class="ok-list"><b>Customer needs:</b> ${s.needs.map(esc).join(" · ")}</div>
+    <div class="ok-list"><b>Would have worked:</b> ${esc(ok)}</div>
+    <h3 style="margin:12px 0 4px;font-size:15px">Level 1 · code</h3>${fails}
+    <h3 style="margin:14px 0 4px;font-size:15px">Level 2 · judge</h3>${judgeHtml}
+  </div></div>`;
+}
+
+async function setLabel(r, l) {
+  const k = key(r);
+  const label = labels[k] === l ? null : l;
+  labels = await (await fetch("/api/labels", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ key: k, label }) })).json();
+  render();
+}
+
+async function loadRuns(selectLatest) {
+  const runs = await (await fetch("/api/runs")).json();
+  $("#runs").innerHTML = runs.slice().reverse().map(x =>
+    `<option value="${x.file}">${new Date(x.at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} · ${x.passed}/${x.total} passed · prompt ${x.prompt_version}${x.partial ? " (partial)" : ""}</option>`).join("");
+  if (selectLatest && runs.length) $("#runs").value = runs[runs.length - 1].file;
+}
+async function load(file) {
+  run = await (await fetch("/api/results" + (file ? "?file=" + encodeURIComponent(file) : ""))).json();
+  labels = await (await fetch("/api/labels")).json();
+  render();
+}
+$("#runs").onchange = () => load($("#runs").value);
+$("#run").onclick = async () => {
+  const r = await fetch("/api/run", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
+  if (!r.ok) return alert((await r.json()).error);
+  poll();
+};
+async function poll() {
+  const p = await (await fetch("/api/status")).json();
+  $("#run").disabled = p.running;
+  $("#progress").textContent = p.running ? `Running… ${p.done}/${p.total}` : "";
+  if (p.running) return setTimeout(poll, 1500);
+  if (p.run_id) { await loadRuns(true); await load(); }
+}
+(async () => {
+  (await (await fetch("/api/scenarios")).json()).forEach(s => (scen[s.id] = s));
+  (await (await fetch("/api/catalogue")).json()).forEach(p => (cat[p.id] = p));
+  await loadRuns(true);
+  await load();
+  const p = await (await fetch("/api/status")).json();
+  if (p.running) poll();
+})();
+</script>
+</body>
+</html>

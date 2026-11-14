@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plank & Pillow · Pip</title>
+<style>
+  :root { --bg:#f6f2ea; --card:#fff; --ink:#2b2622; --muted:#7a7068; --line:#e6dfd3; --brand:#2f5d50; --brand-soft:#e3eee9;
+          --pass:#2e7d4f; --pass-bg:#e4f3ea; --fail:#b3261e; --fail-bg:#fbe7e5; --na:#a39a90; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif; }
+  header { display:flex; align-items:center; gap:14px; padding:14px 24px; background:var(--card); border-bottom:1px solid var(--line); }
+  .logo { font-weight:800; font-size:22px; letter-spacing:-.02em; color:var(--brand); }
+  .tag { font-size:13px; color:var(--muted); background:var(--bg); border:1px solid var(--line); padding:2px 8px; border-radius:99px; }
+  header .spacer { flex:1; }
+  header a { color:var(--brand); font-weight:600; text-decoration:none; }
+  main { max-width:1100px; margin:0 auto; padding:20px 24px 140px; }
+  .msg { margin:14px 0; display:flex; flex-direction:column; }
+  .msg.customer { align-items:flex-end; }
+  .bubble { max-width:760px; padding:12px 16px; border-radius:16px; white-space:pre-wrap; }
+  .customer .bubble { background:var(--brand); color:#fff; border-bottom-right-radius:4px; }
+  .pip .bubble { background:var(--card); border:1px solid var(--line); border-bottom-left-radius:4px; }
+  .who { font-size:13px; color:var(--muted); margin:0 4px 4px; }
+  .cards { display:flex; gap:12px; overflow-x:auto; padding:10px 2px 4px; max-width:100%; }
+  .card { flex:0 0 220px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px; font-size:14px; }
+  .card .ph { height:70px; border-radius:8px; margin-bottom:8px; display:flex; align-items:flex-end; padding:6px 8px; font-size:12px; color:#fff; font-weight:600; }
+  .card b { display:block; font-size:15px; }
+  .card .price { font-weight:700; font-size:16px; margin-top:4px; }
+  .badges { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+  .badge { font-size:11.5px; padding:1px 7px; border-radius:99px; background:var(--bg); border:1px solid var(--line); }
+  .badge.no { color:var(--muted); text-decoration:line-through; }
+  .badge.oos { background:var(--fail-bg); color:var(--fail); border-color:transparent; text-decoration:none; }
+  .badge.fake { background:var(--fail-bg); color:var(--fail); }
+  footer { position:fixed; left:0; right:0; bottom:0; background:var(--card); border-top:1px solid var(--line); padding:12px 24px; }
+  .row { max-width:1100px; margin:0 auto; display:flex; gap:10px; align-items:flex-end; }
+  textarea { flex:1; font:inherit; padding:10px 12px; border:1px solid var(--line); border-radius:10px; resize:vertical; min-height:48px; max-height:200px; background:#fffdf9; }
+  button { font:inherit; font-size:15px; font-weight:600; padding:10px 16px; border-radius:10px; border:1px solid var(--line); background:var(--card); cursor:pointer; white-space:nowrap; }
+  button.primary { background:var(--brand); color:#fff; border-color:var(--brand); }
+  button:disabled { opacity:.5; cursor:default; }
+  .presets { max-width:1100px; margin:0 auto 8px; display:flex; gap:8px; flex-wrap:wrap; }
+  .presets button { font-size:13.5px; padding:5px 12px; border-radius:99px; font-weight:500; }
+  .thinking { color:var(--muted); font-style:italic; }
+  /* five answers side by side */
+  .many { margin:18px 0; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; }
+  .many h3 { margin:0 0 4px; }
+  .many .sub { color:var(--muted); font-size:14px; margin-bottom:12px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:12px; }
+  .col { border:1px solid var(--line); border-radius:10px; padding:10px; font-size:13.5px; background:#fffdf9; }
+  .col h4 { margin:0 0 6px; font-size:14px; }
+  .pick { padding:6px 8px; border-radius:8px; background:var(--bg); margin:4px 0; }
+  .pick b { font-size:13.5px; }
+  .checks { display:flex; flex-wrap:wrap; gap:4px; margin-top:8px; }
+  .chk { font-size:11.5px; padding:2px 7px; border-radius:6px; font-weight:600; }
+  .chk.pass { background:var(--pass-bg); color:var(--pass); }
+  .chk.fail { background:var(--fail-bg); color:var(--fail); }
+  details { margin-top:6px; color:var(--muted); }
+  details div { white-space:pre-wrap; color:var(--ink); margin-top:4px; }
+</style>
+</head>
+<body>
+<header>
+  <span class="logo">Plank &amp; Pillow</span>
+  <span>Chat with Pip, our sofa assistant</span>
+  <span class="tag">Demo store · made-up catalogue</span>
+  <span class="spacer"></span>
+  <a href="/report">Eval report →</a>
+</header>
+<main id="thread">
+  <div class="msg pip"><div class="who">Pip</div><div class="bubble">Hi! I'm Pip. Tell me about your room and who lives there, and I'll find you the right sofa.</div></div>
+</main>
+<footer>
+  <div class="presets">
+    <button data-preset="S01">Simple question</button>
+    <button data-preset="S02">Hard question</button>
+    <button data-preset="S04">Feet and inches</button>
+    <button id="many">Ask this 5 times ▸</button>
+    <button id="reset">New chat</button>
+  </div>
+  <div class="row">
+    <textarea id="input" placeholder="Ask Pip about sofas…"></textarea>
+    <button class="primary" id="send">Send</button>
+  </div>
+</footer>
+<script>
+const $ = s => document.querySelector(s);
+const thread = $("#thread");
+let catalogue = {}, scenarios = [], history = [], presetId = null;
+const COLOURS = { "Storm grey":"#6b7378", "Moss green":"#6d7b4b", "Dusty pink":"#c99a9a", "Emerald":"#2f6b55", "Cognac":"#9a5b2e",
+  "Natural":"#b9a98c", "Charcoal":"#45484b", "Slate blue":"#5b6f86", "Oat":"#c8b89a", "Mustard":"#c9a13a", "Heather":"#8c7f8f",
+  "Cream":"#d9cfbd", "Black":"#2a2a2a", "Tan":"#b07d4f", "Sand":"#c2ad86", "Terracotta":"#b8603e", "Navy":"#2c3b5a" };
+const CHECK_LABELS = { exists:"Real sofa", in_stock:"In stock", fits:"Fits", budget:"Budget", pets:"Pet-proof", kids:"Washable", damp:"Damp-proof", asked:"Type", numbers:"Numbers real", found:"Found a match" };
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+function badge(on, label) { return `<span class="badge ${on ? "" : "no"}">${label}</span>`; }
+function cardHtml(id) {
+  const p = catalogue[id];
+  if (!p) return `<div class="card"><div class="ph" style="background:#999">?</div><b>${esc(id)}</b><span class="badge fake">Not in catalogue</span></div>`;
+  return `<div class="card"><div class="ph" style="background:${COLOURS[p.colour] || "#999"}">${esc(p.colour)}</div>
+    <b>${esc(p.name)}</b><span style="color:var(--muted)">${p.width_cm} W × ${p.depth_cm} D cm · ${esc(p.material)}</span>
+    <div class="price">€${p.price_eur}</div>
+    <div class="badges">${badge(p.pet_friendly, "Pet-friendly")}${badge(p.washable_covers, "Washable covers")}${badge(p.damp_ok, "Damp-OK")}
+    ${p.in_stock ? "" : `<span class="badge oos">Out of stock</span>`}</div></div>`;
+}
+function addMsg(role, text, recommended) {
+  const el = document.createElement("div");
+  el.className = "msg " + role;
+  el.innerHTML = `<div class="who">${role === "pip" ? "Pip" : "You"}</div><div class="bubble">${esc(text)}</div>` +
+    (recommended?.length ? `<div class="cards">${recommended.map(cardHtml).join("")}</div>` : "");
+  thread.appendChild(el);
+  el.scrollIntoView({ behavior: "smooth", block: "end" });
+  return el;
+}
+async function post(url, body) {
+  const r = await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+}
+async function send() {
+  const text = $("#input").value.trim();
+  if (!text) return;
+  $("#input").value = "";
+  addMsg("customer", text);
+  history.push({ role: "customer", text });
+  const wait = addMsg("pip", "Pip is thinking…");
+  wait.querySelector(".bubble").classList.add("thinking");
+  $("#send").disabled = true;
+  try {
+    const a = await post("/api/chat", { history });
+    wait.remove();
+    addMsg("pip", a.reply, a.recommended);
+    history.push({ role: "pip", text: a.reply, recommended: a.recommended });
+  } catch (e) { wait.querySelector(".bubble").textContent = "Error: " + e.message; }
+  $("#send").disabled = false;
+}
+async function askMany() {
+  const text = $("#input").value.trim() || (history.findLast?.(h => h.role === "customer") || {}).text;
+  if (!text) return alert("Type a question first, or pick a preset.");
+  const s = scenarios.find(x => x.turns.length === 1 && x.turns[0] === text);
+  const box = document.createElement("div");
+  box.className = "many";
+  box.innerHTML = `<h3>Same question, 5 answers</h3><div class="sub">${esc(text)}</div><div class="thinking">Asking Pip 5 times…</div>`;
+  thread.appendChild(box);
+  box.scrollIntoView({ behavior: "smooth", block: "end" });
+  $("#many").disabled = true;
+  try {
+    const { answers } = await post("/api/ask-many", { message: text, n: 5, scenario_id: s?.id });
+    box.querySelector(".thinking").remove();
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    grid.innerHTML = answers.map((a, i) => {
+      if (a.error) return `<div class="col"><h4>Answer ${i + 1}</h4>Error: ${esc(a.error)}</div>`;
+      const picks = a.recommended.length ? a.recommended.map(id => {
+        const p = catalogue[id];
+        return `<div class="pick"><b>${p ? esc(p.name) : esc(id) + " (not real)"}</b><br>${p ? `${p.width_cm} cm · ${esc(p.material)} · €${p.price_eur}` : ""}</div>`;
+      }).join("") : `<div class="pick">Recommended nothing</div>`;
+      const checks = a.checks ? `<div class="checks">${Object.entries(a.checks).filter(([, c]) => c.status !== "n/a")
+        .map(([k, c]) => `<span class="chk ${c.status}" title="${esc(c.detail)}">${c.status === "pass" ? "✓" : "✗"} ${CHECK_LABELS[k]}</span>`).join("")}</div>` : "";
+      return `<div class="col"><h4>Answer ${i + 1}</h4>${picks}${checks}<details><summary>What Pip said</summary><div>${esc(a.reply)}</div></details></div>`;
+    }).join("");
+    box.appendChild(grid);
+  } catch (e) { box.querySelector(".thinking").textContent = "Error: " + e.message; }
+  $("#many").disabled = false;
+}
+$("#send").onclick = send;
+$("#many").onclick = askMany;
+$("#input").addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } });
+$("#reset").onclick = () => { history = []; thread.innerHTML = ""; addMsg("pip", "Hi! I'm Pip. Tell me about your room and who lives there, and I'll find you the right sofa."); };
+document.querySelectorAll("[data-preset]").forEach(b => b.onclick = () => {
+  const s = scenarios.find(x => x.id === b.dataset.preset);
+  if (s) { $("#input").value = s.turns[0]; $("#input").focus(); }
+});
+(async () => {
+  const cat = await (await fetch("/api/catalogue")).json();
+  cat.forEach(p => (catalogue[p.id] = p));
+  scenarios = await (await fetch("/api/scenarios")).json();
+})();
+</script>
+</body>
+</html>
